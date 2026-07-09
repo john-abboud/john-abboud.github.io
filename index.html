@@ -246,8 +246,36 @@
     object-fit:cover;
     object-position:top;
     border-bottom:1px solid var(--line);
+    cursor:zoom-in;
   }
   .project-body{padding:14px 16px 16px;}
+
+  /* Lightbox */
+  .lightbox{
+    position:fixed;
+    inset:0;
+    background:rgba(9,17,22,0.92);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:100;
+    padding:2rem;
+    cursor:zoom-out;
+  }
+  .lightbox.open{display:flex;}
+  .lightbox img{
+    max-width:100%;
+    max-height:100%;
+    border:1px solid var(--line);
+    box-shadow:0 0 0 4px var(--ink);
+  }
+  .lightbox .hint{
+    position:absolute;
+    top:16px; right:20px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    color:var(--paper-dim);
+  }
   .project-body h3{
     font-family:'Space Grotesk',sans-serif;
     font-size:1.02rem;
@@ -615,6 +643,11 @@
 
 </div>
 
+<div class="lightbox" id="lightbox">
+  <span class="hint">CLICK TO CLOSE</span>
+  <img id="lightboxImg" src="" alt="">
+</div>
+
 <script>
   const buttons = document.querySelectorAll('.layer-item');
   const sections = document.querySelectorAll('.section');
@@ -626,6 +659,18 @@
       document.getElementById(btn.dataset.target).classList.add('active');
       window.scrollTo({top:0, behavior:'smooth'});
     });
+  });  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightboxImg');
+  document.querySelectorAll('.project-card img').forEach(img => {
+    img.addEventListener('click', () => {
+      lightboxImg.src = img.getAttribute('src');
+      lightboxImg.alt = img.getAttribute('alt');
+      lightbox.classList.add('open');
+    });
+  });
+  lightbox.addEventListener('click', () => lightbox.classList.remove('open'));
+  document.addEventListener('keydown', e => {
+    if(e.key === 'Escape') lightbox.classList.remove('open');
   });
 </script>
 
