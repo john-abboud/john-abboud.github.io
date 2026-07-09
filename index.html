@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>John Abboud — GIS Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0F1F29;
+    --panel:#152C3A;
+    --panel-2:#1C3A4B;
+    --line:#3C5865;
+    --teal:#2F9B87;
+    --teal-dim:#1F6C5C;
+    --amber:#E3A23C;
+    --paper:#EDEAE2;
+    --paper-dim:#B9C4C7;
+    --radius:4px;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--ink);
+    color:var(--paper);
+    font-family:'Inter',sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--amber);text-decoration:none;}
+  a:hover{text-decoration:underline;}
+
+  /* ---------- Graticule frame ---------- */
+  .graticule-top, .graticule-left{
+    position:fixed;
+    font-family:'JetBrains Mono',monospace;
+    font-size:9px;
+    letter-spacing:0.5px;
+    color:var(--line);
+    z-index:5;
+    pointer-events:none;
+  }
+  .graticule-top{
+    top:0; left:0; right:0; height:18px;
+    display:flex; justify-content:space-between;
+    padding:4px 16px 0 16px;
+    border-bottom:1px solid var(--line);
+    background:var(--ink);
+  }
+  .graticule-left{display:none;}
+  @media(min-width:900px){
+    .graticule-left{
+      display:flex; flex-direction:column; justify-content:space-between;
+      top:18px; bottom:0; left:0; width:26px;
+      padding:16px 0 16px 6px;
+      border-right:1px solid var(--line);
+      background:var(--ink);
+    }
+    .graticule-left span{writing-mode:vertical-rl; transform:rotate(180deg);}
+  }
+
+  .page{
+    margin-top:18px;
+  }
+  @media(min-width:900px){
+    .page{margin-left:26px;}
+  }
+
+  /* ---------- Header / toolbar ---------- */
+  header{
+    padding:2.5rem 1.5rem 1.5rem;
+    max-width:1000px;
+    margin:0 auto;
+  }
+  .compass{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    color:var(--teal);
+    letter-spacing:1px;
+    margin-bottom:1rem;
+  }
+  .compass svg{width:14px;height:14px;}
+  h1{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:700;
+    font-size:clamp(2.2rem,5vw,3.4rem);
+    margin:0 0 .4rem;
+    letter-spacing:-0.5px;
+  }
+  .role{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:1.05rem;
+    color:var(--teal);
+    font-weight:500;
+    margin:0 0 1rem;
+  }
+  .tagline{
+    max-width:560px;
+    color:var(--paper-dim);
+    font-size:0.98rem;
+  }
+  .coords{
+    margin-top:1.2rem;
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    color:var(--line);
+  }
+
+  /* ---------- Layers panel (tab nav) ---------- */
+  .layout{
+    max-width:1000px;
+    margin:0 auto;
+    padding:0 1.5rem 4rem;
+    display:grid;
+    grid-template-columns:1fr;
+    gap:1.5rem;
+  }
+  @media(min-width:800px){
+    .layout{grid-template-columns:220px 1fr; align-items:start;}
+  }
+
+  .layers-panel{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    overflow:hidden;
+    position:sticky;
+    top:34px;
+  }
+  .layers-panel .panel-head{
+    font-family:'JetBrains Mono',monospace;
+    font-size:10px;
+    letter-spacing:1.5px;
+    color:var(--paper-dim);
+    padding:10px 14px;
+    border-bottom:1px solid var(--line);
+    text-transform:uppercase;
+  }
+  .layer-item{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    width:100%;
+    background:none;
+    border:none;
+    color:var(--paper-dim);
+    font-family:'Inter',sans-serif;
+    font-size:14px;
+    font-weight:500;
+    text-align:left;
+    padding:11px 14px;
+    cursor:pointer;
+    border-bottom:1px solid rgba(255,255,255,0.04);
+    transition:background 0.15s;
+  }
+  .layer-item:last-child{border-bottom:none;}
+  .layer-item:hover{background:var(--panel-2);}
+  .layer-item .box{
+    width:13px;height:13px;
+    border:1.5px solid var(--line);
+    border-radius:2px;
+    flex-shrink:0;
+    position:relative;
+  }
+  .layer-item.active{color:var(--paper); background:var(--panel-2);}
+  .layer-item.active .box{background:var(--teal); border-color:var(--teal);}
+  .layer-item.active .box::after{
+    content:'';
+    position:absolute; inset:0;
+    background-image:linear-gradient(45deg, transparent 40%, rgba(255,255,255,.3) 50%, transparent 60%);
+  }
+
+  /* ---------- Main content ---------- */
+  .section{display:none;}
+  .section.active{display:block;}
+
+  .section-head{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-bottom:1.2rem;
+    padding-bottom:.8rem;
+    border-bottom:1px solid var(--line);
+  }
+  .section-head h2{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:1.5rem;
+    margin:0;
+    font-weight:600;
+  }
+  .section-head .meta{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    color:var(--teal);
+  }
+  .section p.intro{
+    color:var(--paper-dim);
+    max-width:620px;
+    margin-bottom:2rem;
+  }
+
+  /* Project cards */
+  .project-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:1.2rem;
+  }
+  .project-card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    overflow:hidden;
+  }
+  .shot-slot{
+    aspect-ratio:4/3;
+    border-bottom:1px solid var(--line);
+    background:
+      repeating-linear-gradient(45deg, transparent, transparent 8px, rgba(255,255,255,0.03) 8px, rgba(255,255,255,0.03) 9px),
+      var(--ink);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:6px;
+    color:var(--line);
+    text-align:center;
+    padding:1rem;
+  }
+  .shot-slot svg{width:28px;height:28px;opacity:0.6;}
+  .shot-slot span{
+    font-family:'JetBrains Mono',monospace;
+    font-size:10px;
+    letter-spacing:0.5px;
+    max-width:180px;
+  }
+  .project-body{padding:14px 16px 16px;}
+  .project-body h3{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:1.02rem;
+    margin:0 0 6px;
+    font-weight:600;
+  }
+  .project-body p{
+    font-size:13.5px;
+    color:var(--paper-dim);
+    margin:0 0 10px;
+  }
+  .tool-tags{display:flex; flex-wrap:wrap; gap:6px;}
+  .tool-tags span{
+    font-family:'JetBrains Mono',monospace;
+    font-size:10px;
+    background:var(--panel-2);
+    border:1px solid var(--line);
+    color:var(--teal);
+    padding:3px 8px;
+    border-radius:2px;
+  }
+
+  /* Skills */
+  .skills-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:1rem;
+  }
+  .skill-block{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-left:2px solid var(--teal);
+    padding:14px 16px;
+    border-radius:0 var(--radius) var(--radius) 0;
+  }
+  .skill-block h3{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:0.92rem;
+    margin:0 0 8px;
+    color:var(--amber);
+  }
+  .skill-block ul{margin:0; padding-left:0; list-style:none;}
+  .skill-block li{
+    font-size:13px;
+    color:var(--paper-dim);
+    padding:3px 0;
+  }
+
+  /* About */
+  .about-grid{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:2rem;
+  }
+  @media(min-width:700px){
+    .about-grid{grid-template-columns:1.3fr 1fr;}
+  }
+  .about-text p{color:var(--paper-dim); font-size:14.5px; max-width:520px;}
+  .fact-list{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:1rem 1.2rem;
+  }
+  .fact-list dt{
+    font-family:'JetBrains Mono',monospace;
+    font-size:10px;
+    letter-spacing:1px;
+    color:var(--line);
+    text-transform:uppercase;
+    margin-top:12px;
+  }
+  .fact-list dt:first-child{margin-top:0;}
+  .fact-list dd{
+    margin:2px 0 0;
+    font-size:14px;
+    color:var(--paper);
+  }
+
+  /* Contact */
+  .contact-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:1rem;
+  }
+  .contact-card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:16px 18px;
+    flex:1;
+    min-width:200px;
+  }
+  .contact-card .label{
+    font-family:'JetBrains Mono',monospace;
+    font-size:10px;
+    letter-spacing:1px;
+    color:var(--teal);
+    text-transform:uppercase;
+    margin-bottom:6px;
+  }
+  .contact-card a, .contact-card span.value{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:15px;
+    color:var(--paper);
+  }
+
+  /* Scale bar footer */
+  footer{
+    max-width:1000px;
+    margin:0 auto;
+    padding:1.5rem 1.5rem 2.5rem;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:1rem;
+    border-top:1px solid var(--line);
+  }
+  .scale-bar{display:flex; align-items:center; gap:8px;}
+  .scale-bar .bar{
+    width:120px; height:6px;
+    background:repeating-linear-gradient(90deg, var(--paper) 0 15px, transparent 15px 30px);
+    border:1px solid var(--paper);
+  }
+  .scale-bar span{
+    font-family:'JetBrains Mono',monospace;
+    font-size:9px;
+    color:var(--line);
+  }
+  footer .credit{
+    font-family:'JetBrains Mono',monospace;
+    font-size:10px;
+    color:var(--line);
+  }
+</style>
+</head>
+<body>
+
+<div class="graticule-top">
+  <span>51.0447° N</span><span>SAIT — BGIS PROGRAM</span><span>114.0719° W</span>
+</div>
+<div class="graticule-left">
+  <span>N</span><span>· · ·</span><span>S</span>
+</div>
+
+<div class="page">
+
+  <header>
+    <div class="compass">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2v20M2 12h20"/><path d="M12 6l2 6-2 6-2-6z" fill="currentColor" stroke="none"/></svg>
+      GEOSPATIAL PORTFOLIO
+    </div>
+    <h1>John Abboud</h1>
+    <p class="role">GIS Technologist in training — Business &amp; Geographic Information Systems, SAIT</p>
+    <p class="tagline">Mapping, spatial analysis, and data-driven cartography from coursework across the BGIS program. This site tracks project work semester by semester as it's completed.</p>
+    <div class="coords">DATUM: NAD83 · PROJECTION: UTM ZONE 11N · LAST SURVEYED: JUL 2026</div>
+  </header>
+
+  <div class="layout">
+
+    <nav class="layers-panel" id="layersPanel">
+      <div class="panel-head">Layers</div>
+      <button class="layer-item active" data-target="about"><span class="box"></span>Overview</button>
+      <button class="layer-item" data-target="sem1"><span class="box"></span>Semester 1</button>
+      <button class="layer-item" data-target="sem2"><span class="box"></span>Semester 2</button>
+      <button class="layer-item" data-target="skills"><span class="box"></span>Skills &amp; tools</button>
+      <button class="layer-item" data-target="contact"><span class="box"></span>Contact</button>
+    </nav>
+
+    <main>
+
+      <!-- OVERVIEW -->
+      <section class="section active" id="about">
+        <div class="section-head">
+          <h2>Overview</h2>
+          <span class="meta">LAYER 01 / 05</span>
+        </div>
+        <div class="about-grid">
+          <div class="about-text">
+            <p>I'm a student in the Business &amp; Geographic Information Systems (BGIS) program at SAIT, building practical skills in spatial data collection, geodatabase design, cartographic design, and spatial analysis. This portfolio collects project work as I complete each semester, starting with first and second semester coursework.</p>
+            <p>Replace this paragraph with a short summary of your interests within GIS — for example, a focus area like urban planning, environmental mapping, land surveying, or emergency response mapping.</p>
+          </div>
+          <dl class="fact-list">
+            <dt>Program</dt>
+            <dd>Business &amp; GIS (BGIS), SAIT</dd>
+            <dt>Currently</dt>
+            <dd>Semester 2</dd>
+            <dt>Core tools</dt>
+            <dd>ArcGIS Pro, QGIS</dd>
+            <dt>Based in</dt>
+            <dd>Calgary, AB</dd>
+          </dl>
+        </div>
+      </section>
+
+      <!-- SEMESTER 1 -->
+      <section class="section" id="sem1">
+        <div class="section-head">
+          <h2>Semester 1 projects</h2>
+          <span class="meta">LAYER 02 / 05</span>
+        </div>
+        <p class="intro">Foundational GIS coursework — map composition, coordinate systems, and introductory spatial analysis. Upload your screenshots to replace the placeholders below.</p>
+        <div class="project-grid">
+
+          <div class="project-card">
+            <div class="shot-slot">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="3" y="3" width="18" height="18" rx="1"/><path d="M3 15l5-5 4 4 5-6 4 5"/></svg>
+              <span>SCREENSHOT SLOT — replace with project image</span>
+            </div>
+            <div class="project-body">
+              <h3>Project title</h3>
+              <p>Short description of the assignment: what map or analysis you produced and what it shows.</p>
+              <div class="tool-tags"><span>ArcGIS Pro</span><span>Semester 1</span></div>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="shot-slot">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="3" y="3" width="18" height="18" rx="1"/><path d="M3 15l5-5 4 4 5-6 4 5"/></svg>
+              <span>SCREENSHOT SLOT — replace with project image</span>
+            </div>
+            <div class="project-body">
+              <h3>Project title</h3>
+              <p>Short description of the assignment: what map or analysis you produced and what it shows.</p>
+              <div class="tool-tags"><span>QGIS</span><span>Semester 1</span></div>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="shot-slot">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="3" y="3" width="18" height="18" rx="1"/><path d="M3 15l5-5 4 4 5-6 4 5"/></svg>
+              <span>SCREENSHOT SLOT — replace with project image</span>
+            </div>
+            <div class="project-body">
+              <h3>Project title</h3>
+              <p>Short description of the assignment: what map or analysis you produced and what it shows.</p>
+              <div class="tool-tags"><span>ArcGIS Pro</span><span>Semester 1</span></div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- SEMESTER 2 -->
+      <section class="section" id="sem2">
+        <div class="section-head">
+          <h2>Semester 2 projects</h2>
+          <span class="meta">LAYER 03 / 05</span>
+        </div>
+        <p class="intro">Building on semester 1 with more advanced spatial analysis, geodatabase work, and applied GIS problems. Upload your screenshots to replace the placeholders below.</p>
+        <div class="project-grid">
+
+          <div class="project-card">
+            <div class="shot-slot">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="3" y="3" width="18" height="18" rx="1"/><path d="M3 15l5-5 4 4 5-6 4 5"/></svg>
+              <span>SCREENSHOT SLOT — replace with project image</span>
+            </div>
+            <div class="project-body">
+              <h3>Project title</h3>
+              <p>Short description of the assignment: what map or analysis you produced and what it shows.</p>
+              <div class="tool-tags"><span>ArcGIS Pro</span><span>Semester 2</span></div>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="shot-slot">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="3" y="3" width="18" height="18" rx="1"/><path d="M3 15l5-5 4 4 5-6 4 5"/></svg>
+              <span>SCREENSHOT SLOT — replace with project image</span>
+            </div>
+            <div class="project-body">
+              <h3>Project title</h3>
+              <p>Short description of the assignment: what map or analysis you produced and what it shows.</p>
+              <div class="tool-tags"><span>QGIS</span><span>Semester 2</span></div>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="shot-slot">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="3" y="3" width="18" height="18" rx="1"/><path d="M3 15l5-5 4 4 5-6 4 5"/></svg>
+              <span>SCREENSHOT SLOT — replace with project image</span>
+            </div>
+            <div class="project-body">
+              <h3>Project title</h3>
+              <p>Short description of the assignment: what map or analysis you produced and what it shows.</p>
+              <div class="tool-tags"><span>ArcGIS Pro</span><span>Semester 2</span></div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- SKILLS -->
+      <section class="section" id="skills">
+        <div class="section-head">
+          <h2>Skills &amp; tools</h2>
+          <span class="meta">LAYER 04 / 05</span>
+        </div>
+        <p class="intro">A working list of software and concepts covered so far. Edit freely as your toolkit grows.</p>
+        <div class="skills-grid">
+          <div class="skill-block">
+            <h3>GIS software</h3>
+            <ul>
+              <li>ArcGIS Pro</li>
+              <li>QGIS</li>
+              <li>ArcGIS Online</li>
+            </ul>
+          </div>
+          <div class="skill-block">
+            <h3>Spatial analysis</h3>
+            <ul>
+              <li>Coordinate systems &amp; projections</li>
+              <li>Spatial joins &amp; queries</li>
+              <li>Geodatabase design</li>
+            </ul>
+          </div>
+          <div class="skill-block">
+            <h3>Data &amp; office</h3>
+            <ul>
+              <li>Excel</li>
+              <li>SQL basics</li>
+              <li>Cartographic design</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section class="section" id="contact">
+        <div class="section-head">
+          <h2>Contact</h2>
+          <span class="meta">LAYER 05 / 05</span>
+        </div>
+        <p class="intro">Edit these with your real details before publishing.</p>
+        <div class="contact-row">
+          <div class="contact-card">
+            <div class="label">Email</div>
+            <a href="mailto:your.email@example.com">your.email@example.com</a>
+          </div>
+          <div class="contact-card">
+            <div class="label">LinkedIn</div>
+            <a href="#">linkedin.com/in/johnabboud</a>
+          </div>
+          <div class="contact-card">
+            <div class="label">GitHub</div>
+            <a href="#">github.com/john12345</a>
+          </div>
+          <div class="contact-card">
+            <div class="label">Location</div>
+            <span class="value">Calgary, AB</span>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <footer>
+    <div class="scale-bar">
+      <div class="bar"></div>
+      <span>SCALE 1 : NOT TO SCALE</span>
+    </div>
+    <div class="credit">BGIS PORTFOLIO · V1 · JUL 2026</div>
+  </footer>
+
+</div>
+
+<script>
+  const buttons = document.querySelectorAll('.layer-item');
+  const sections = document.querySelectorAll('.section');
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      buttons.forEach(b => b.classList.remove('active'));
+      sections.forEach(s => s.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(btn.dataset.target).classList.add('active');
+      window.scrollTo({top:0, behavior:'smooth'});
+    });
+  });
+</script>
+
+</body>
+</html>
