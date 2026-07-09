@@ -174,6 +174,30 @@
     background-image:linear-gradient(45deg, transparent 40%, rgba(255,255,255,.3) 50%, transparent 60%);
   }
 
+  /* Collapse to a horizontal scrolling tab strip on phones */
+  @media(max-width:799px){
+    .layers-panel{
+      position:static;
+      display:flex;
+      overflow-x:auto;
+      -webkit-overflow-scrolling:touch;
+      scrollbar-width:none;
+    }
+    .layers-panel::-webkit-scrollbar{display:none;}
+    .layers-panel .panel-head{display:none;}
+    .layer-item{
+      width:auto;
+      flex:0 0 auto;
+      padding:10px 13px;
+      font-size:13px;
+      border-bottom:none;
+      border-right:1px solid rgba(255,255,255,0.06);
+      white-space:nowrap;
+    }
+    .layer-item:last-child{border-right:none;}
+    .layer-item .box{width:10px; height:10px;}
+  }
+
   /* ---------- Main content ---------- */
   .section{display:none;}
   .section.active{display:block;}
@@ -396,6 +420,61 @@
     padding:3px 0;
   }
 
+  /* Resume timeline */
+  .resume-group{margin-bottom:2.2rem;}
+  .resume-group h4{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    color:var(--teal);
+    margin:0 0 1rem;
+    padding-bottom:.5rem;
+    border-bottom:1px solid var(--line);
+  }
+  .timeline-entry{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:2px;
+    padding:14px 16px;
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-left:2px solid var(--teal);
+    border-radius:0 var(--radius) var(--radius) 0;
+    margin-bottom:10px;
+  }
+  .timeline-entry .when{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    color:var(--amber);
+    margin-bottom:2px;
+  }
+  .timeline-entry h5{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:1rem;
+    margin:0 0 2px;
+    font-weight:600;
+  }
+  .timeline-entry .org{
+    font-size:13px;
+    color:var(--paper-dim);
+    margin-bottom:8px;
+  }
+  .timeline-entry ul{
+    margin:4px 0 0;
+    padding-left:1.1rem;
+    font-size:13.5px;
+    color:var(--paper-dim);
+  }
+  .timeline-entry li{margin-bottom:3px;}
+  .resume-note{
+    font-size:12.5px;
+    color:var(--line);
+    font-family:'JetBrains Mono',monospace;
+    margin-top:-.6rem;
+    margin-bottom:1.4rem;
+  }
+
   /* Featured final project banner */
   .featured{
     background:linear-gradient(120deg, var(--panel-2), var(--panel));
@@ -558,6 +637,7 @@
       <button class="layer-item active" data-target="about"><span class="box"></span>Overview</button>
       <button class="layer-item" data-target="sem1"><span class="box"></span>Semester 1</button>
       <button class="layer-item" data-target="sem2"><span class="box"></span>Semester 2</button>
+      <button class="layer-item" data-target="resume"><span class="box"></span>Resume</button>
       <button class="layer-item" data-target="skills"><span class="box"></span>Skills &amp; tools</button>
       <button class="layer-item" data-target="contact"><span class="box"></span>Contact</button>
     </nav>
@@ -568,7 +648,7 @@
       <section class="section active" id="about">
         <div class="section-head">
           <h2>Overview</h2>
-          <span class="meta">LAYER 01 / 05</span>
+          <span class="meta">LAYER 01 / 06</span>
         </div>
         <div class="about-grid">
           <div class="about-text">
@@ -592,7 +672,7 @@
       <section class="section" id="sem1">
         <div class="section-head">
           <h2>Semester 1 projects</h2>
-          <span class="meta">LAYER 02 / 05</span>
+          <span class="meta">LAYER 02 / 06</span>
         </div>
         <p class="intro">Four courses across the first semester of the BGIS program - cartographic output, GPS-based field capture, surface modelling, and geoprocessing automation - plus a capstone story map tying the semester's work together.</p>
 
@@ -722,7 +802,7 @@
       <section class="section" id="sem2">
         <div class="section-head">
           <h2>Semester 2 projects</h2>
-          <span class="meta">LAYER 03 / 05</span>
+          <span class="meta">LAYER 03 / 06</span>
         </div>
         <p class="intro">Building on semester 1 with more advanced spatial analysis, geodatabase work, and applied GIS problems. Upload your screenshots to replace the placeholders below.</p>
         <div class="project-grid">
@@ -766,11 +846,62 @@
         </div>
       </section>
 
+      <!-- RESUME -->
+      <section class="section" id="resume">
+        <div class="section-head">
+          <h2>Resume</h2>
+          <span class="meta">LAYER 04 / 06</span>
+        </div>
+        <p class="intro">Education and work history, including experience from before starting the BGIS program. Replace the placeholders below with your real details - dates, employers, and duties.</p>
+        <p class="resume-note">PLACEHOLDER CONTENT - edit dates, titles, and bullet points to match your real background.</p>
+
+        <div class="resume-group">
+          <h4>Education</h4>
+          <div class="timeline-entry">
+            <div class="when">2025 - Present</div>
+            <h5>Bachelor of Applied Technology, Geographic Information Systems</h5>
+            <div class="org">SAIT, Calgary, AB</div>
+            <ul>
+              <li>Coursework in cartographic design, spatial analysis, geodatabase design, GPS field data capture, and geoprocessing automation (FME, ModelBuilder)</li>
+            </ul>
+          </div>
+          <div class="timeline-entry">
+            <div class="when">Add year - Add year</div>
+            <h5>Your previous diploma, degree, or certificate</h5>
+            <div class="org">Institution name</div>
+            <ul>
+              <li>Add a line about relevant coursework, achievements, or focus area</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="resume-group">
+          <h4>Experience</h4>
+          <div class="timeline-entry">
+            <div class="when">Add year - Add year</div>
+            <h5>Job title</h5>
+            <div class="org">Company name · Location</div>
+            <ul>
+              <li>Add a line describing a key responsibility or achievement</li>
+              <li>Add a second line - even non-GIS roles show transferable skills like attention to detail, client communication, or problem solving</li>
+            </ul>
+          </div>
+          <div class="timeline-entry">
+            <div class="when">Add year - Add year</div>
+            <h5>Job title</h5>
+            <div class="org">Company name · Location</div>
+            <ul>
+              <li>Add a line describing a key responsibility or achievement</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
       <!-- SKILLS -->
       <section class="section" id="skills">
         <div class="section-head">
           <h2>Skills &amp; tools</h2>
-          <span class="meta">LAYER 04 / 05</span>
+          <span class="meta">LAYER 05 / 06</span>
         </div>
         <p class="intro">A working list of software and concepts covered so far. Edit freely as your toolkit grows.</p>
         <div class="skills-grid">
@@ -793,8 +924,9 @@
           <div class="skill-block">
             <h3>Data &amp; office</h3>
             <ul>
+              <li>Python</li>
+              <li>SQL</li>
               <li>Excel</li>
-              <li>SQL basics</li>
               <li>Cartographic design</li>
             </ul>
           </div>
@@ -805,7 +937,7 @@
       <section class="section" id="contact">
         <div class="section-head">
           <h2>Contact</h2>
-          <span class="meta">LAYER 05 / 05</span>
+          <span class="meta">LAYER 06 / 06</span>
         </div>
         <p class="intro">Edit these with your real details before publishing.</p>
         <div class="contact-row">
@@ -815,11 +947,11 @@
           </div>
           <div class="contact-card">
             <div class="label">LinkedIn</div>
-            <a href="#">www.linkedin.com/in/john-abboud-c-e-t</a>
+            <a href="https://www.linkedin.com/in/john-abboud-c-e-t" target="_blank" rel="noopener">linkedin.com/in/john-abboud-c-e-t</a>
           </div>
           <div class="contact-card">
             <div class="label">GitHub</div>
-            <a href="#">github.com/john-abboud</a>
+            <a href="https://john-abboud.github.io/" target="_blank" rel="noopener">github.com/john-abboud</a>
           </div>
           <div class="contact-card">
             <div class="label">Location</div>
