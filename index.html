@@ -452,6 +452,87 @@
   }
   .script-download a{color:var(--amber);}
 
+  .app-links{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-top:10px;
+  }
+  .app-links a{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    font-family:'Space Grotesk',sans-serif;
+    font-size:13px;
+    font-weight:600;
+    color:var(--ink);
+    background:var(--teal);
+    padding:8px 14px;
+    border-radius:2px;
+    text-decoration:none;
+    transition:background 0.15s;
+  }
+  .app-links a:hover{background:var(--amber); text-decoration:none;}
+
+  .resume-download{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    background:var(--panel);
+    border:1px solid var(--teal-dim);
+    border-radius:var(--radius);
+    padding:16px 20px;
+    margin-bottom:1.8rem;
+    flex-wrap:wrap;
+  }
+  .resume-download svg{width:26px;height:26px;color:var(--teal); flex-shrink:0;}
+  .resume-download .rd-text{flex:1; min-width:180px;}
+  .resume-download .rd-text .rd-title{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:15px;
+    font-weight:600;
+    color:var(--paper);
+    margin:0 0 2px;
+  }
+  .resume-download .rd-text .rd-sub{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    color:var(--paper-dim);
+  }
+  .resume-download .rd-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    font-family:'Space Grotesk',sans-serif;
+    font-size:14px;
+    font-weight:600;
+    color:var(--ink);
+    background:var(--teal);
+    padding:9px 16px;
+    border-radius:2px;
+    white-space:nowrap;
+    text-decoration:none;
+    transition:background 0.15s;
+  }
+  .resume-download .rd-btn:hover{background:var(--amber); text-decoration:none;}
+
+  .capstone-meta{
+    margin-top:10px;
+    display:flex;
+    flex-direction:column;
+    gap:3px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    color:var(--paper-dim);
+  }
+  .capstone-meta strong{color:var(--teal); font-weight:500;}
+  .capstone-footnote{
+    margin-top:8px;
+    font-size:10.5px;
+    color:var(--line);
+    font-family:'JetBrains Mono',monospace;
+  }
+
   /* Skills */
   .skills-grid{
     display:grid;
@@ -869,14 +950,14 @@
           <p class="course-desc">Managing enterprise and web-based GIS environments - ArcGIS Enterprise and ArcGIS Online - including internet mapping applications, crowd-sourced and mobile data collection, enterprise geodatabase design, multi-user editing, and API-based customization.</p>
           <div class="project-grid">
             <div class="project-card">
-              <div class="shot-slot">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="3" y="3" width="18" height="18" rx="1"/><path d="M3 15l5-5 4 4 5-6 4 5"/></svg>
-                <span>SCREENSHOT SLOT - replace with project image</span>
-              </div>
               <div class="project-body">
-                <h3>Project title</h3>
-                <p>Short description of the assignment: what web map, app, or enterprise workflow you built.</p>
-                <div class="tool-tags"><span>ArcGIS Enterprise</span><span>ArcGIS Online</span><span>GEOS 450</span></div>
+                <h3>Web app builds - Experience Builder &amp; Dashboards</h3>
+                <p>Work in progress on ArcGIS Enterprise/Online web apps: an Experience Builder tutorial build and a live operational dashboard, both published to ArcGIS Online.</p>
+                <div class="tool-tags"><span style="color:var(--amber);border-color:var(--teal-dim);">In Progress</span><span>ArcGIS Enterprise</span><span>ArcGIS Online</span><span>GEOS 450</span></div>
+                <div class="app-links">
+                  <a href="https://experience.arcgis.com/experience/06e0d23c4dc94e778987dd8045ba5d32" target="_blank" rel="noopener">Experience Builder app ↗</a>
+                  <a href="https://www.arcgis.com/apps/dashboards/599dd1bc20b6475ea48310b21d857752" target="_blank" rel="noopener">Dashboard app ↗</a>
+                </div>
               </div>
             </div>
           </div>
@@ -1200,10 +1281,7 @@ https://pro.arcgis.com/en/pro-app/latest/arcpy/get-started/what-is-arcpy-.htm
             </div>
 
             <div class="project-card">
-              <div class="shot-slot">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="3" y="3" width="18" height="18" rx="1"/><path d="M3 15l5-5 4 4 5-6 4 5"/></svg>
-                <span>SCREENSHOT SLOT - replace with map output of the Alberta study area</span>
-              </div>
+              <img src="images/sem1-geos410-survey-mapping.jpg" alt="Survey and mapping systems map showing township, range, section, and legal subdivision grid with roads, hydrology, and pipelines, similar to the study area produced by the Assignment 2 script">
               <div class="project-body">
                 <h3>ATS/DLS land fabric automation and GPS point location - Alberta</h3>
                 <p>A script that builds a file geodatabase from scratch, importing and projecting NTS 1:20,000 base features (contours, trails, pipelines, powerlines, roads) and the ATS/DLS land fabric (sections, quarter sections, legal subdivisions) into a common projection, defines the study area as the township containing a supplied GPS point, then clips and merges the base feature and land fabric layers to that study area. A search cursor is used to print the full DLS description (LSD-Sec-Twp-Rge-Mer) of the legal subdivision containing the GPS point.</p>
@@ -1650,14 +1728,17 @@ SpatialReference
           <p class="course-desc">A full GIS project lifecycle for a real business challenge - project planning, data capture and management, spatial analysis, output design, client presentation, and project closure.</p>
           <div class="project-grid">
             <div class="project-card">
-              <div class="shot-slot">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="3" y="3" width="18" height="18" rx="1"/><path d="M3 15l5-5 4 4 5-6 4 5"/></svg>
-                <span>SCREENSHOT SLOT - replace with capstone project image</span>
-              </div>
+              <img src="images/sem2-geos459-capstone-cover.png" alt="Cover slide for the Avalanche Trigger-Zone Digital Twin capstone project, GEOS 459 Group 1">
               <div class="project-body">
-                <h3>Avalanche Trigger-Zone Digital Twin</h3>
-                <p>An in-progress capstone project focused on the Coal Creek to Morrissey Ridge study area, just southeast of Fernie, British Columbia. The goal is to help identify where avalanche trigger zones may be located, so that future drone-based avalanche control planning can be more targeted and safer.</p>
+                <h3>Avalanche Trigger-Zone Digital Twin*</h3>
+                <p>An in-progress group capstone project focused on the Coal Creek to Morrissey Ridge study area, just southeast of Fernie, British Columbia. The goal is to help identify where avalanche trigger zones may be located, so that future drone-based avalanche control planning can be more targeted and safer.</p>
                 <div class="tool-tags"><span style="color:var(--amber);border-color:var(--teal-dim);">In Progress</span><span>ArcGIS Pro</span><span>Terrain analysis</span><span>Capstone</span><span>GEOS 459</span></div>
+                <div class="capstone-meta">
+                  <span><strong>Team:</strong> Delu Maduekwe · Teng Zhang · John Abboud</span>
+                  <span><strong>Client:</strong> CIRUS Lab, SAIT</span>
+                  <span><strong>Study area:</strong> Coal Creek to Morrissey Ridge, Fernie, BC</span>
+                </div>
+                <div class="capstone-footnote">* working title - subject to change as project scope is finalized</div>
               </div>
             </div>
           </div>
@@ -1670,7 +1751,16 @@ SpatialReference
           <h2>Resume</h2>
           <span class="meta">LAYER 04 / 06</span>
         </div>
-        <p class="intro">Before starting the BGIS program, I spent over 15 years working as an electronics technologist across aerospace, oilfield, and utility industries. That background in troubleshooting, precision testing, and technical documentation now carries over into GIS data quality and field work.</p>
+        <p class="intro">Before starting the BGIS program, I spent over 15 years working as an electronics and instrumentation technologist across aerospace, oilfield, and utility industries. That background in troubleshooting, precision testing, and technical documentation now carries over into GIS data quality and field work.</p>
+
+        <div class="resume-download">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3v12m0 0l-4-4m4 4l4-4"/><path d="M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2"/></svg>
+          <div class="rd-text">
+            <div class="rd-title">Resume - John Abboud, C.E.T.</div>
+            <div class="rd-sub">PDF · 2 pages · updated Jul 2026</div>
+          </div>
+          <a class="rd-btn" href="resume/John_Abboud_Resume.pdf" target="_blank" rel="noopener">Download PDF ↓</a>
+        </div>
 
         <div class="resume-group">
           <h4>Education</h4>
@@ -1804,7 +1894,7 @@ SpatialReference
         <div class="contact-row">
           <div class="contact-card">
             <div class="label">Email</div>
-            <a href="mailto:your.email@example.com">your.email@example.com</a>
+            <a href="mailto:john.abboud@proton.me">john.abboud@proton.me</a>
           </div>
           <div class="contact-card">
             <div class="label">LinkedIn</div>
