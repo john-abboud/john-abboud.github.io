@@ -2249,10 +2249,12 @@ SpatialReference
     }, { threshold: 0, rootMargin: '0px 0px -10% 0px' });
     revealTargets.forEach(el => revealSpy.observe(el));
 
-    // Failsafe: if anything is ever stuck hidden (unexpected layout, browser quirk, etc.), force it visible after a few seconds rather than leaving invisible-but-clickable content
-    setTimeout(() => {
-      document.querySelectorAll('.reveal:not(.in-view)').forEach(el => el.classList.add('in-view'));
-    }, 2500);
+    // Note: no blanket "reveal everything after N seconds" failsafe here on purpose - with the
+    // repeatable toggle-based reveal above, a timer like that would force-show off-screen content
+    // before you'd ever scrolled to it, then the real observer would hide it again the moment it
+    // measured true intersection - exactly the "only animates after scrolling back up" bug.
+    // The threshold:0 fix above (rather than a percentage-of-element-area threshold) is what
+    // actually prevents elements from getting stuck invisible, regardless of their height.
 
     // Hero contour background: subtle drift is pure CSS; nudge slightly further on mouse move (desktop only)
     const heroBg = document.getElementById('heroBg');
