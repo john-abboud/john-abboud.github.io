@@ -142,6 +142,37 @@
   .topnav a:hover{color:var(--paper); background:var(--panel-2); text-decoration:none;}
   .topnav a.active{color:var(--ink); background:var(--teal); font-weight:600;}
 
+  /* On phones, arrange nav as a checkerboard grid of tiles - not sticky, so it doesn't eat permanent screen space */
+  @media(max-width:799px){
+    .topnav-wrap{position:static;}
+    .topnav{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:1px;
+      padding:0;
+      background:var(--line);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      overflow:hidden;
+    }
+    .topnav a{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding:16px 8px;
+      min-height:56px;
+      font-size:12.5px;
+      line-height:1.25;
+      border-radius:0;
+    }
+    .topnav a:nth-child(4n+1),
+    .topnav a:nth-child(4n+4){ background:var(--panel); }
+    .topnav a:nth-child(4n+2),
+    .topnav a:nth-child(4n+3){ background:var(--panel-2); }
+    .topnav a.active{background:var(--teal); color:var(--ink);}
+  }
+
   .layout{
     max-width:1000px;
     margin:0 auto;
@@ -208,6 +239,19 @@
   }
 
   /* Course groupings within a semester */
+  .semester-label{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:1.05rem;
+    font-weight:600;
+    color:var(--paper);
+    margin:0 0 .7rem;
+    scroll-margin-top:70px;
+  }
+  .semester-label--divider{
+    margin-top:2.6rem;
+    padding-top:1.8rem;
+    border-top:1px solid var(--line);
+  }
   .course-group{
     margin-bottom:2.5rem;
   }
@@ -277,11 +321,8 @@
   /* Featured / highlights section (leads the page) */
   .highlight-grid{
     display:grid;
-    grid-template-columns:1fr;
+    grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
     gap:1.2rem;
-  }
-  @media(min-width:700px){
-    .highlight-grid{grid-template-columns:1fr 1fr;}
   }
   .highlight-card{
     background:var(--panel);
@@ -296,6 +337,10 @@
     width:100%;
     aspect-ratio:4/3;
     object-fit:cover;
+    border-bottom:1px solid var(--line);
+  }
+  .highlight-card .shot-slot{
+    aspect-ratio:4/3;
     border-bottom:1px solid var(--line);
   }
   .highlight-body{
@@ -816,10 +861,9 @@
 
   <div class="topnav-wrap">
     <nav class="topnav" id="topNav">
-      <a href="#featured" data-target="featured">Featured</a>
       <a href="#about" data-target="about">Overview</a>
-      <a href="#sem1" data-target="sem1">Semester 1</a>
-      <a href="#sem2" data-target="sem2">Semester 2</a>
+      <a href="#featured" data-target="featured">Featured</a>
+      <a href="#coursework" data-target="coursework">Coursework</a>
       <a href="#resume" data-target="resume">Resume</a>
       <a href="#skills" data-target="skills">Skills &amp; tools</a>
       <a href="#contact" data-target="contact">Contact</a>
@@ -829,39 +873,6 @@
   <div class="layout">
 
     <main>
-
-      <!-- FEATURED -->
-      <section class="section" id="featured">
-        <div class="section-head">
-          <h2>Featured work</h2>
-        </div>
-        <p class="intro">The two things most worth a look right now: an active capstone project and a pair of live web apps.</p>
-        <div class="highlight-grid">
-
-          <div class="highlight-card">
-            <img src="images/sem2-geos459-capstone-cover.png" alt="Cover slide for the Avalanche Trigger-Zone Digital Twin capstone project">
-            <div class="highlight-body">
-              <span class="flag">In progress · GEOS 459 Capstone</span>
-              <h3>Avalanche Trigger-Zone Digital Twin</h3>
-              <p>Identifying likely avalanche trigger zones from Coal Creek to Morrissey Ridge, near Fernie, BC, to help make future drone-based avalanche control more targeted and safer - for client CIRUS Lab, SAIT.</p>
-              <a class="story-link" href="#capstone-card">See project details ↓</a>
-            </div>
-          </div>
-
-          <div class="highlight-card">
-            <div class="highlight-body no-image">
-              <span class="flag">Live · GEOS 450 Enterprise &amp; Web GIS</span>
-              <h3>Web app builds - Experience Builder &amp; Dashboards</h3>
-              <p>An Experience Builder tutorial build and an operational dashboard, both published live on ArcGIS Online - open either one directly, no login required.</p>
-              <div class="app-links">
-                <a href="https://experience.arcgis.com/experience/06e0d23c4dc94e778987dd8045ba5d32" target="_blank" rel="noopener">Experience Builder app ↗</a>
-                <a href="https://www.arcgis.com/apps/dashboards/599dd1bc20b6475ea48310b21d857752" target="_blank" rel="noopener">Dashboard app ↗</a>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </section>
 
       <!-- OVERVIEW -->
       <section class="section" id="about">
@@ -886,11 +897,60 @@
         </div>
       </section>
 
-      <!-- SEMESTER 1 -->
-      <section class="section" id="sem1">
+      <!-- FEATURED -->
+      <section class="section" id="featured">
         <div class="section-head">
-          <h2>Semester 1 projects</h2>
+          <h2>Featured work</h2>
         </div>
+        <p class="intro">Three things most worth a look right now: an active capstone project, a pair of live web apps, and the story map that ties Semester 1 together.</p>
+        <div class="highlight-grid">
+
+          <div class="highlight-card">
+            <img src="images/sem2-geos459-capstone-cover.png" alt="Cover slide for the Avalanche Trigger-Zone Digital Twin capstone project">
+            <div class="highlight-body">
+              <span class="flag">In progress · GEOS 459 Capstone</span>
+              <h3>Avalanche Trigger-Zone Digital Twin</h3>
+              <p>Identifying likely avalanche trigger zones from Coal Creek to Morrissey Ridge, near Fernie, BC, to help make future drone-based avalanche control more targeted and safer - for client CIRUS Lab, SAIT.</p>
+              <a class="story-link" href="#capstone-card">See project details ↓</a>
+            </div>
+          </div>
+
+          <div class="highlight-card">
+            <div class="highlight-body no-image">
+              <span class="flag">Live · GEOS 450 Enterprise &amp; Web GIS</span>
+              <h3>Web app builds - Experience Builder &amp; Dashboards</h3>
+              <p>An Experience Builder tutorial build and an operational dashboard, both published live on ArcGIS Online - open either one directly, no login required.</p>
+              <div class="app-links">
+                <a href="https://experience.arcgis.com/experience/06e0d23c4dc94e778987dd8045ba5d32" target="_blank" rel="noopener">Experience Builder app ↗</a>
+                <a href="https://www.arcgis.com/apps/dashboards/599dd1bc20b6475ea48310b21d857752" target="_blank" rel="noopener">Dashboard app ↗</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="highlight-card">
+            <div class="shot-slot">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="3" y="3" width="18" height="18" rx="1"/><path d="M3 15l5-5 4 4 5-6 4 5"/></svg>
+              <span>COVER IMAGE PENDING - drop file at images/sem1-storymap-cover.jpg</span>
+            </div>
+            <div class="highlight-body">
+              <span class="flag">Semester 1 final project · GEOS 406</span>
+              <h3>Interactive story map</h3>
+              <p>The semester's capstone deliverable, built in ArcGIS StoryMaps - an interactive narrative combining maps, imagery, and text into a guided geospatial story.</p>
+              <a class="story-link" href="https://storymaps.arcgis.com/stories/4eb50804a2494a84a2c6894d2e86b017" target="_blank" rel="noopener">View the story map ↗</a>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- COURSEWORK -->
+      <section class="section" id="coursework">
+        <div class="section-head">
+          <h2>Coursework</h2>
+        </div>
+        <p class="intro">Project work from the BGIS program, organized by semester - cartographic design, spatial analysis, GPS field capture, remote sensing, GIS programming, and the applied capstone.</p>
+
+        <h3 class="semester-label" id="sem1">Semester 1</h3>
         <p class="intro">Four courses across the first semester of the BGIS program - cartographic output, GPS-based field capture, surface modelling, and geoprocessing automation - plus a capstone story map tying the semester's work together.</p>
 
         <div class="featured-card">
@@ -1013,13 +1073,8 @@
 
           </div>
         </div>
-      </section>
 
-      <!-- SEMESTER 2 -->
-      <section class="section" id="sem2">
-        <div class="section-head">
-          <h2>Semester 2 projects</h2>
-        </div>
+        <h3 class="semester-label semester-label--divider" id="sem2">Semester 2</h3>
         <p class="intro">Second semester coursework across five courses - enterprise and web GIS, advanced data capture through remote sensing, GIS programming, cartographic design, and the applied capstone project. Being updated as coursework is completed.</p>
 
         <div class="course-group">
@@ -1964,7 +2019,6 @@ SpatialReference
         <div class="section-head">
           <h2>Contact</h2>
         </div>
-        <p class="intro">Edit these with your real details before publishing.</p>
         <div class="contact-row">
           <div class="contact-card">
             <div class="label">Email</div>
