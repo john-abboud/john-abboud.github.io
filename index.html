@@ -173,6 +173,2134 @@
     .topnav a.active{background:var(--teal); color:var(--ink);}
   }
 
+  /* Compact nav - hidden by default; only slides in on phones once you scroll past the tile grid */
+  .mininav{display:none;}
+  @media(max-width:799px){
+    .mininav{
+      display:flex;
+      flex-wrap:wrap;
+      gap:2px;
+      position:fixed;
+      top:0; left:0; right:0;
+      z-index:45;
+      background:var(--ink);
+      border-bottom:1px solid var(--line);
+      padding:6px 8px;
+      box-shadow:0 4px 14px rgba(0,0,0,0.35);
+      transform:translateY(-100%);
+      transition:transform 0.22s ease;
+      pointer-events:none;
+    }
+    .mininav.visible{transform:translateY(0); pointer-events:auto;}
+    .mininav a{
+      font-family:'JetBrains Mono',monospace;
+      font-size:10.5px;
+      letter-spacing:.3px;
+      color:var(--paper-dim);
+      text-decoration:none;
+      padding:6px 9px;
+      border-radius:2px;
+      white-space:nowrap;
+      transition:background 0.15s, color 0.15s;
+    }
+    .mininav a.active{background:var(--teal); color:var(--ink); font-weight:600;}
+  }
+
+  .layout{
+    max-width:1000px;
+    margin:0 auto;
+    padding:0 1.5rem 4rem;
+  }
+
+  /* Back to top */
+  .back-to-top{
+    position:fixed;
+    right:18px;
+    bottom:18px;
+    z-index:60;
+    width:44px;
+    height:44px;
+    border-radius:50%;
+    background:var(--teal);
+    color:var(--ink);
+    border:none;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    box-shadow:0 4px 14px rgba(0,0,0,0.45);
+    cursor:pointer;
+    opacity:0;
+    pointer-events:none;
+    transform:translateY(10px);
+    transition:opacity 0.2s, transform 0.2s, background 0.15s;
+  }
+  .back-to-top.visible{opacity:1; pointer-events:auto; transform:translateY(0);}
+  .back-to-top:hover{background:var(--amber);}
+  .back-to-top svg{width:18px;height:18px;}
+
+  /* ---------- Main content ---------- */
+  .section{
+    scroll-margin-top:60px;
+    padding-top:2.6rem;
+    border-top:1px solid var(--line);
+  }
+  .section:first-of-type{
+    padding-top:2.2rem;
+    border-top:none;
+  }
+
+  .section-head{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-bottom:1.2rem;
+    padding-bottom:.8rem;
+    border-bottom:1px solid var(--line);
+  }
+  .section-head h2{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:1.5rem;
+    margin:0;
+    font-weight:600;
+  }
+  .section p.intro{
+    color:var(--paper-dim);
+    max-width:620px;
+    margin-bottom:2rem;
+  }
+
+  /* Course groupings within a semester */
+  .semester-label{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:1.05rem;
+    font-weight:600;
+    color:var(--paper);
+    margin:0 0 .7rem;
+    scroll-margin-top:70px;
+  }
+  .semester-label--divider{
+    margin-top:2.6rem;
+    padding-top:1.8rem;
+    border-top:1px solid var(--line);
+  }
+  .course-group{
+    margin-bottom:2.5rem;
+  }
+  .course-group h4{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    letter-spacing:1.5px;
+    color:var(--amber);
+    text-transform:uppercase;
+    margin:0 0 .3rem;
+  }
+  .course-group .course-desc{
+    color:var(--paper-dim);
+    font-size:13px;
+    margin:0 0 1rem;
+    max-width:600px;
+  }
+
+  .featured-card{
+    background:var(--panel);
+    border:1px solid var(--teal-dim);
+    border-radius:var(--radius);
+    padding:1.4rem 1.6rem;
+    display:flex;
+    flex-direction:column;
+    gap:.6rem;
+    margin-bottom:2.5rem;
+  }
+  .featured-card .flag{
+    font-family:'JetBrains Mono',monospace;
+    font-size:10px;
+    letter-spacing:1.5px;
+    color:var(--teal);
+    text-transform:uppercase;
+  }
+  .featured-card h3{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:1.15rem;
+    margin:0;
+  }
+  .featured-card p{
+    color:var(--paper-dim);
+    font-size:14px;
+    max-width:640px;
+    margin:0;
+  }
+  .featured-card .story-link{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    font-family:'Space Grotesk',sans-serif;
+    font-size:14px;
+    font-weight:600;
+    color:var(--ink);
+    background:var(--teal);
+    padding:9px 16px;
+    border-radius:2px;
+    width:fit-content;
+    margin-top:.4rem;
+    transition:background 0.15s;
+    text-decoration:none;
+  }
+  .featured-card .story-link:hover{
+    background:var(--amber);
+  }
+
+  /* Featured / highlights section (leads the page) */
+  .highlight-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
+    gap:1.2rem;
+  }
+  .highlight-card{
+    background:var(--panel);
+    border:1px solid var(--teal-dim);
+    border-radius:var(--radius);
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+  }
+  .highlight-card img{
+    display:block;
+    width:100%;
+    aspect-ratio:4/3;
+    object-fit:cover;
+    border-bottom:1px solid var(--line);
+  }
+  .highlight-card .shot-slot{
+    aspect-ratio:4/3;
+    border-bottom:1px solid var(--line);
+  }
+  .highlight-body{
+    padding:1.2rem 1.3rem 1.4rem;
+    display:flex;
+    flex-direction:column;
+    gap:.5rem;
+    flex:1;
+  }
+  .highlight-body.no-image{padding-top:1.4rem;}
+  .highlight-body .flag{
+    font-family:'JetBrains Mono',monospace;
+    font-size:10px;
+    letter-spacing:1.2px;
+    color:var(--teal);
+    text-transform:uppercase;
+  }
+  .highlight-body h3{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:1.1rem;
+    margin:0;
+  }
+  .highlight-body p{
+    color:var(--paper-dim);
+    font-size:13.5px;
+    margin:0;
+    flex:1;
+  }
+  .highlight-body .story-link{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    font-family:'Space Grotesk',sans-serif;
+    font-size:13.5px;
+    font-weight:600;
+    color:var(--ink);
+    background:var(--teal);
+    padding:8px 14px;
+    border-radius:2px;
+    width:fit-content;
+    margin-top:.3rem;
+    transition:background 0.15s;
+    text-decoration:none;
+  }
+  .highlight-body .story-link:hover{background:var(--amber);}
+
+  /* Project cards */
+  .project-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:1.2rem;
+  }
+  .project-card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    overflow:hidden;
+  }
+  .shot-slot{
+    aspect-ratio:4/3;
+    border-bottom:1px solid var(--line);
+    background:
+      repeating-linear-gradient(45deg, transparent, transparent 8px, rgba(255,255,255,0.03) 8px, rgba(255,255,255,0.03) 9px),
+      var(--ink);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:6px;
+    color:var(--line);
+    text-align:center;
+    padding:1rem;
+  }
+  .shot-slot svg{width:28px;height:28px;opacity:0.6;}
+  .shot-slot span{
+    font-family:'JetBrains Mono',monospace;
+    font-size:10px;
+    letter-spacing:0.5px;
+    max-width:180px;
+  }
+  .project-card img{
+    display:block;
+    width:100%;
+    aspect-ratio:4/3;
+    object-fit:cover;
+    object-position:top;
+    border-bottom:1px solid var(--line);
+    cursor:zoom-in;
+  }
+  .project-card img.diagram{
+    object-fit:contain;
+    background:#fff;
+    padding:8px;
+  }
+  .project-body{padding:14px 16px 16px;}
+
+  /* Lightbox */
+  .lightbox{
+    position:fixed;
+    inset:0;
+    background:rgba(9,17,22,0.92);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:100;
+    padding:2rem;
+    cursor:zoom-out;
+  }
+  .lightbox.open{display:flex;}
+  .lightbox img{
+    max-width:100%;
+    max-height:100%;
+    border:1px solid var(--line);
+    box-shadow:0 0 0 4px var(--ink);
+  }
+  .lightbox .hint{
+    position:absolute;
+    top:16px; right:20px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    color:var(--paper-dim);
+  }
+  .project-body h3{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:1.02rem;
+    margin:0 0 6px;
+    font-weight:600;
+  }
+  .project-body p{
+    font-size:13.5px;
+    color:var(--paper-dim);
+    margin:0 0 10px;
+  }
+  .tool-tags{display:flex; flex-wrap:wrap; gap:6px;}
+  .tool-tags span{
+    font-family:'JetBrains Mono',monospace;
+    font-size:10px;
+    background:var(--panel-2);
+    border:1px solid var(--line);
+    color:var(--teal);
+    padding:3px 8px;
+    border-radius:2px;
+  }
+
+  /* Code toggle (view script accordion) */
+  .code-toggle{
+    margin-top:12px;
+    border-top:1px solid var(--line);
+    padding-top:10px;
+  }
+  .code-toggle summary{
+    cursor:pointer;
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    letter-spacing:0.5px;
+    color:var(--teal);
+    list-style:none;
+    display:flex;
+    align-items:center;
+    gap:6px;
+    user-select:none;
+  }
+  .code-toggle summary::-webkit-details-marker{display:none;}
+  .code-toggle summary::before{
+    content:'▸';
+    display:inline-block;
+    transition:transform 0.15s;
+    font-size:9px;
+  }
+  .code-toggle[open] summary::before{transform:rotate(90deg);}
+  .code-toggle summary:hover{color:var(--amber);}
+  .code-toggle .code-wrap{
+    margin-top:10px;
+    max-height:420px;
+    overflow:auto;
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+  }
+  .code-toggle pre{
+    margin:0;
+    font-size:11.5px;
+    line-height:1.55;
+  }
+  .code-toggle pre[class*="language-"]{
+    background:#0d1117 !important;
+    padding:14px 16px !important;
+  }
+  .code-toggle code[class*="language-"]{
+    font-family:'JetBrains Mono',monospace !important;
+  }
+  .script-download{
+    display:inline-flex;
+    align-items:center;
+    gap:5px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:10.5px;
+    color:var(--paper-dim);
+    margin-top:8px;
+  }
+  .script-download a{color:var(--amber);}
+
+  .app-links{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-top:10px;
+  }
+  .app-links a{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    font-family:'Space Grotesk',sans-serif;
+    font-size:13px;
+    font-weight:600;
+    color:var(--ink);
+    background:var(--teal);
+    padding:8px 14px;
+    border-radius:2px;
+    text-decoration:none;
+    transition:background 0.15s;
+  }
+  .app-links a:hover{background:var(--amber); text-decoration:none;}
+
+  .resume-download{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    background:var(--panel);
+    border:1px solid var(--teal-dim);
+    border-radius:var(--radius);
+    padding:16px 20px;
+    margin-bottom:1.8rem;
+    flex-wrap:wrap;
+  }
+  .resume-download svg{width:26px;height:26px;color:var(--teal); flex-shrink:0;}
+  .resume-download .rd-text{flex:1; min-width:180px;}
+  .resume-download .rd-text .rd-title{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:15px;
+    font-weight:600;
+    color:var(--paper);
+    margin:0 0 2px;
+  }
+  .resume-download .rd-text .rd-sub{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    color:var(--paper-dim);
+  }
+  .resume-download .rd-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    font-family:'Space Grotesk',sans-serif;
+    font-size:14px;
+    font-weight:600;
+    color:var(--ink);
+    background:var(--teal);
+    padding:9px 16px;
+    border-radius:2px;
+    white-space:nowrap;
+    text-decoration:none;
+    transition:background 0.15s;
+  }
+  .resume-download .rd-btn:hover{background:var(--amber); text-decoration:none;}
+
+  .capstone-meta{
+    margin-top:10px;
+    display:flex;
+    flex-direction:column;
+    gap:3px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    color:var(--paper-dim);
+  }
+  .capstone-meta strong{color:var(--teal); font-weight:500;}
+  .capstone-footnote{
+    margin-top:8px;
+    font-size:10.5px;
+    color:var(--line);
+    font-family:'JetBrains Mono',monospace;
+  }
+
+  /* Skills */
+  .skills-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:1rem;
+  }
+  .skill-block{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-left:2px solid var(--teal);
+    padding:14px 16px;
+    border-radius:0 var(--radius) var(--radius) 0;
+  }
+  .skill-block h3{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:0.92rem;
+    margin:0 0 8px;
+    color:var(--amber);
+  }
+  .skill-block ul{margin:0; padding-left:0; list-style:none;}
+  .skill-block li{
+    font-size:13px;
+    color:var(--paper-dim);
+    padding:3px 0;
+  }
+
+  /* Resume timeline */
+  .resume-group{margin-bottom:2.2rem;}
+  .resume-group h4{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    color:var(--teal);
+    margin:0 0 1rem;
+    padding-bottom:.5rem;
+    border-bottom:1px solid var(--line);
+  }
+  .timeline-entry{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:2px;
+    padding:14px 16px;
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-left:2px solid var(--teal);
+    border-radius:0 var(--radius) var(--radius) 0;
+    margin-bottom:10px;
+  }
+  .timeline-entry .when{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    color:var(--amber);
+    margin-bottom:2px;
+  }
+  .timeline-entry h5{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:1rem;
+    margin:0 0 2px;
+    font-weight:600;
+  }
+  .timeline-entry .org{
+    font-size:13px;
+    color:var(--paper-dim);
+    margin-bottom:8px;
+  }
+  .timeline-entry ul{
+    margin:4px 0 0;
+    padding-left:1.1rem;
+    font-size:13.5px;
+    color:var(--paper-dim);
+  }
+  .timeline-entry li{margin-bottom:3px;}
+  .resume-note{
+    font-size:12.5px;
+    color:var(--line);
+    font-family:'JetBrains Mono',monospace;
+    margin-top:-.6rem;
+    margin-bottom:1.4rem;
+  }
+
+  /* Featured final project banner */
+  .featured{
+    background:linear-gradient(120deg, var(--panel-2), var(--panel));
+    border:1px solid var(--teal-dim);
+    border-radius:var(--radius);
+    padding:1.4rem 1.6rem;
+    margin-bottom:1.8rem;
+    display:flex;
+    flex-wrap:wrap;
+    gap:1.2rem;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .featured .flabel{
+    font-family:'JetBrains Mono',monospace;
+    font-size:10px;
+    letter-spacing:1.5px;
+    color:var(--amber);
+    text-transform:uppercase;
+    margin-bottom:6px;
+  }
+  .featured h3{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:1.15rem;
+    margin:0 0 6px;
+  }
+  .featured p{
+    font-size:13.5px;
+    color:var(--paper-dim);
+    margin:0;
+    max-width:520px;
+  }
+  .featured .btn{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    color:var(--ink);
+    background:var(--teal);
+    padding:10px 18px;
+    border-radius:2px;
+    white-space:nowrap;
+    font-weight:500;
+  }
+  .featured .btn:hover{background:var(--amber); text-decoration:none;}
+
+  /* About */
+  .about-grid{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:2rem;
+  }
+  @media(min-width:700px){
+    .about-grid{grid-template-columns:1.3fr 1fr;}
+  }
+  .about-text p{color:var(--paper-dim); font-size:14.5px; max-width:520px;}
+  .fact-list{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:1rem 1.2rem;
+  }
+  .fact-list dt{
+    font-family:'JetBrains Mono',monospace;
+    font-size:10px;
+    letter-spacing:1px;
+    color:var(--line);
+    text-transform:uppercase;
+    margin-top:12px;
+  }
+  .fact-list dt:first-child{margin-top:0;}
+  .fact-list dd{
+    margin:2px 0 0;
+    font-size:14px;
+    color:var(--paper);
+  }
+
+  /* Contact */
+  .contact-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:1rem;
+  }
+  .contact-card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:16px 18px;
+    flex:1;
+    min-width:200px;
+  }
+  .contact-card .label{
+    font-family:'JetBrains Mono',monospace;
+    font-size:10px;
+    letter-spacing:1px;
+    color:var(--teal);
+    text-transform:uppercase;
+    margin-bottom:6px;
+  }
+  .contact-card a, .contact-card span.value{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:15px;
+    color:var(--paper);
+  }
+
+  /* Scale bar footer */
+  footer{
+    max-width:1000px;
+    margin:0 auto;
+    padding:1.5rem 1.5rem 2.5rem;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:1rem;
+    border-top:1px solid var(--line);
+  }
+  .scale-bar{display:flex; align-items:center; gap:8px;}
+  .scale-bar .bar{
+    width:120px; height:6px;
+    background:repeating-linear-gradient(90deg, var(--paper) 0 15px, transparent 15px 30px);
+    border:1px solid var(--paper);
+  }
+  .scale-bar span{
+    font-family:'JetBrains Mono',monospace;
+    font-size:9px;
+    color:var(--line);
+  }
+  footer .credit{
+    font-family:'JetBrains Mono',monospace;
+    font-size:10px;
+    color:var(--line);
+  }
+</style>
+</head>
+<body>
+
+<div class="graticule-top">
+  <span>51.0447° N</span><span>SAIT - BGIS PROGRAM</span><span>114.0719° W</span>
+</div>
+<div class="graticule-left">
+  <span>N</span><span>· · ·</span><span>S</span>
+</div>
+
+<div class="page">
+
+  <header>
+    <div class="compass">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2v20M2 12h20"/><path d="M12 6l2 6-2 6-2-6z" fill="currentColor" stroke="none"/></svg>
+      GEOSPATIAL PORTFOLIO
+    </div>
+    <h1>John Abboud, C.E.T.</h1>
+    <p class="role">GIS Technologist in training - Bachelor of Applied Technology, Geographic Information Systems, SAIT</p>
+    <p class="tagline">Mapping, spatial analysis, and data-driven cartography from coursework across the BGIS program. Currently looking for an entry-level or internship GIS position. This site tracks project work semester by semester as it's completed.</p>
+    <div class="coords">DATUM: NAD83 · PROJECTION: UTM ZONE 11N · LAST SURVEYED: JUL 2026</div>
+  </header>
+
+  <div class="topnav-wrap">
+    <nav class="topnav" id="topNav">
+      <a href="#about" data-target="about">Overview</a>
+      <a href="#featured" data-target="featured">Featured</a>
+      <a href="#coursework" data-target="coursework">Coursework</a>
+      <a href="#resume" data-target="resume">Resume</a>
+      <a href="#skills" data-target="skills">Skills &amp; tools</a>
+      <a href="#contact" data-target="contact">Contact</a>
+    </nav>
+  </div>
+
+  <nav class="mininav" id="miniNav">
+    <a href="#about" data-target="about">Overview</a>
+    <a href="#featured" data-target="featured">Featured</a>
+    <a href="#coursework" data-target="coursework">Coursework</a>
+    <a href="#resume" data-target="resume">Resume</a>
+    <a href="#skills" data-target="skills">Skills</a>
+    <a href="#contact" data-target="contact">Contact</a>
+  </nav>
+
+  <div class="layout">
+
+    <main>
+
+      <!-- OVERVIEW -->
+      <section class="section" id="about">
+        <div class="section-head">
+          <h2>Overview</h2>
+        </div>
+        <div class="about-grid">
+          <div class="about-text">
+            <p>I'm a student in the Bachelor of Applied Technology, Geographic Information Systems (BGIS) program at SAIT, building practical skills in spatial data collection, geodatabase design, cartographic design, and spatial analysis. This portfolio collects project work as I complete each semester, starting with first and second semester coursework.</p>
+            <p>I'm currently looking for an entry-level or internship GIS position where I can apply these skills - spatial analysis, cartographic design, and data-driven mapping - on real projects.</p>
+          </div>
+          <dl class="fact-list">
+            <dt>Program</dt>
+            <dd>BAT - Geographic Information Systems, SAIT</dd>
+            <dt>Currently</dt>
+            <dd>Semester 2</dd>
+            <dt>Core tools</dt>
+            <dd>ArcGIS Pro, QGIS, Python, SQL</dd>
+            <dt>Based in</dt>
+            <dd>Calgary, AB</dd>
+          </dl>
+        </div>
+      </section>
+
+      <!-- FEATURED -->
+      <section class="section" id="featured">
+        <div class="section-head">
+          <h2>Featured work</h2>
+        </div>
+        <p class="intro">Three things most worth a look right now: an active capstone project, a pair of live web apps, and the story map that ties Semester 1 together.</p>
+        <div class="highlight-grid">
+
+          <div class="highlight-card">
+            <img src="images/sem2-geos459-capstone-cover.png" alt="Cover slide for the Avalanche Trigger-Zone Digital Twin capstone project">
+            <div class="highlight-body">
+              <span class="flag">In progress · GEOS 459 Capstone</span>
+              <h3>Avalanche Trigger-Zone Digital Twin</h3>
+              <p>Identifying likely avalanche trigger zones from Coal Creek to Morrissey Ridge, near Fernie, BC, to help make future drone-based avalanche control more targeted and safer - for client CIRUS Lab, SAIT.</p>
+              <a class="story-link" href="#capstone-card">See project details ↓</a>
+            </div>
+          </div>
+
+          <div class="highlight-card">
+            <div class="highlight-body no-image">
+              <span class="flag">Live · GEOS 450 Enterprise &amp; Web GIS</span>
+              <h3>Web app builds - Experience Builder &amp; Dashboards</h3>
+              <p>An Experience Builder tutorial build and an operational dashboard, both published live on ArcGIS Online - open either one directly, no login required.</p>
+              <div class="app-links">
+                <a href="https://experience.arcgis.com/experience/06e0d23c4dc94e778987dd8045ba5d32" target="_blank" rel="noopener">Experience Builder app ↗</a>
+                <a href="https://www.arcgis.com/apps/dashboards/599dd1bc20b6475ea48310b21d857752" target="_blank" rel="noopener">Dashboard app ↗</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="highlight-card">
+            <div class="shot-slot">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="3" y="3" width="18" height="18" rx="1"/><path d="M3 15l5-5 4 4 5-6 4 5"/></svg>
+              <span>COVER IMAGE PENDING - drop file at images/sem1-storymap-cover.jpg</span>
+            </div>
+            <div class="highlight-body">
+              <span class="flag">Semester 1 final project · GEOS 406</span>
+              <h3>Interactive story map</h3>
+              <p>The semester's capstone deliverable, built in ArcGIS StoryMaps - an interactive narrative combining maps, imagery, and text into a guided geospatial story.</p>
+              <a class="story-link" href="https://storymaps.arcgis.com/stories/4eb50804a2494a84a2c6894d2e86b017" target="_blank" rel="noopener">View the story map ↗</a>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- COURSEWORK -->
+      <section class="section" id="coursework">
+        <div class="section-head">
+          <h2>Coursework</h2>
+        </div>
+        <p class="intro">Project work from the BGIS program, organized by semester - cartographic design, spatial analysis, GPS field capture, remote sensing, GIS programming, and the applied capstone.</p>
+
+        <h3 class="semester-label" id="sem1">Semester 1</h3>
+        <p class="intro">Four courses across the first semester of the BGIS program - cartographic output, GPS-based field capture, surface modelling, and geoprocessing automation - plus a capstone story map tying the semester's work together.</p>
+
+        <div class="featured-card">
+          <span class="flag">Semester 1 final project · GEOS 406 - Geospatial Project Foundations</span>
+          <h3>Interactive story map</h3>
+          <p>The semester's capstone deliverable, built in ArcGIS StoryMaps - an interactive narrative combining maps, imagery, and text into a guided geospatial story.</p>
+          <a class="story-link" href="https://storymaps.arcgis.com/stories/4eb50804a2494a84a2c6894d2e86b017" target="_blank" rel="noopener">View the story map ↗</a>
+        </div>
+
+        <div class="course-group">
+          <h4>GEOS 419 - GIS Data Analysis and Output</h4>
+          <p class="course-desc">Choropleth and proportional symbol maps built to explore demographic and land use patterns.</p>
+          <div class="project-grid">
+
+            <div class="project-card">
+              <img src="images/sem1-california-population.jpg" alt="Choropleth map showing percentage of white population by county in California, 2010">
+              <div class="project-body">
+                <h3>White population percentage - California counties, 2010</h3>
+                <p>Choropleth map classifying California counties by white population share using a modified natural breaks method (GVF 0.9792), with a supporting frequency histogram and spatial trend analysis.</p>
+                <div class="tool-tags"><span>ArcGIS Pro</span><span>GEOS 419</span></div>
+              </div>
+            </div>
+
+            <div class="project-card">
+              <img src="images/sem1-calgary-landuse.jpg" alt="Map showing land use designation by community in Calgary, 2019">
+              <div class="project-body">
+                <h3>Land use designation by community - Calgary, 2019</h3>
+                <p>Categorical map of Calgary communities classified into residential, industrial, major park, and residual sub-area designations, sourced from the City of Calgary open data portal.</p>
+                <div class="tool-tags"><span>ArcGIS Pro</span><span>GEOS 419</span></div>
+              </div>
+            </div>
+
+            <div class="project-card">
+              <img src="images/sem1-florida-seniors-pct.jpg" alt="Choropleth map showing percentage of seniors aged 65 and up by county in Florida, 2010">
+              <div class="project-body">
+                <h3>Senior population percentage - Florida counties, 2010</h3>
+                <p>Choropleth map of the 65+ population share by county, with a modified natural breaks classification (GVF 0.9873) and outlier detection using the 1.5×IQR rule.</p>
+                <div class="tool-tags"><span>ArcGIS Pro</span><span>GEOS 419</span></div>
+              </div>
+            </div>
+
+            <div class="project-card">
+              <img src="images/sem1-florida-seniors-total.jpg" alt="Proportional symbol map showing total number of seniors aged 65 and up by county in Florida, 2010">
+              <div class="project-body">
+                <h3>Total senior population - Florida counties, 2010</h3>
+                <p>Companion proportional symbol map to the percentage map above, showing absolute counts of seniors per county and highlighting the counties identified as statistical outliers.</p>
+                <div class="tool-tags"><span>ArcGIS Pro</span><span>GEOS 419</span></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="course-group">
+          <h4>GEOS 409 - GIS Data Capture I</h4>
+          <p class="course-desc">Field data collection with GPS/mobile mapping tools, and raster surface modelling from elevation data.</p>
+          <div class="project-grid">
+
+            <div class="project-card">
+              <img src="images/sem1-geos409-mobile-mapping.jpg" alt="Aerial map with GPS-collected point and line features for benches, fire hydrants, garbage bins, signs, buildings, and recreation areas">
+              <div class="project-body">
+                <h3>GPS and mobile mapping</h3>
+                <p>Field-collected GPS points and lines (benches, fire hydrants, garbage bins, signs, buildings, recreation areas) compared against reference "true" locations, with RMSE calculated per feature type to assess GPS accuracy.</p>
+                <div class="tool-tags"><span>ArcGIS Pro</span><span>GPS field capture</span><span>GEOS 409</span></div>
+              </div>
+            </div>
+
+            <div class="project-card">
+              <img src="images/sem1-geos409-surface-modelling.jpg" alt="Four-panel raster surface model showing IDW interpolation, hillshade, slope, and aspect for a terrain area">
+              <div class="project-body">
+                <h3>Surface modelling</h3>
+                <p>Four derived terrain surfaces from a single elevation dataset - IDW interpolation, hillshade, slope, and aspect - used to compare how each raster technique reveals different aspects of the landscape.</p>
+                <div class="tool-tags"><span>ArcGIS Pro</span><span>Raster analysis</span><span>GEOS 409</span></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="course-group">
+          <h4>GEOS 410 - GIS Data Manipulation and Transformation</h4>
+          <p class="course-desc">Survey grid mapping, geoprocessing automation, and format transformation using FME and ModelBuilder.</p>
+          <div class="project-grid">
+
+            <div class="project-card">
+              <img src="images/sem1-geos410-survey-mapping.jpg" alt="Survey and mapping systems map showing township, range, section, and legal subdivision grid with roads, hydrology, and pipelines">
+              <div class="project-body">
+                <h3>Survey and mapping systems</h3>
+                <p>Map of the Alberta Township System (ATS) grid - townships, sections, and quarter sections - overlaid with roads, hydrology, and pipeline infrastructure for a defined study township.</p>
+                <div class="tool-tags"><span>ArcGIS Pro</span><span>ATS grid</span><span>GEOS 410</span></div>
+              </div>
+            </div>
+
+            <div class="project-card">
+              <img src="images/sem1-geos410-data-manipulation.jpg" alt="DEM and hillshade map of a Calgary neighbourhood showing house footprints, trees, land use, and an archaeological site">
+              <div class="project-body">
+                <h3>Data manipulation and transformation</h3>
+                <p>Combined DEM and hillshade surface over a Calgary neighbourhood, with house footprints, tree points, land use polygons, and a marked archaeological site - built through a data transformation and clipping workflow.</p>
+                <div class="tool-tags"><span>ArcGIS Pro</span><span>DEM</span><span>GEOS 410</span></div>
+              </div>
+            </div>
+
+            <div class="project-card">
+              <img class="diagram" src="images/sem1-geos410-fme-workflow.png" alt="FME workspace diagram showing geometry filters and transformers converting raw datasets into cleaned feature layers">
+              <div class="project-body">
+                <h3>FME data transformation workflow</h3>
+                <p>An FME workspace built to clean and route raw survey datasets - filtering geometry by type, generating a DEM and hillshade raster from CSV elevation points, and exporting standardized feature layers.</p>
+                <div class="tool-tags"><span>FME</span><span>Data automation</span><span>GEOS 410</span></div>
+              </div>
+            </div>
+
+            <div class="project-card">
+              <img src="images/sem1-geos410-model-builder.png" alt="ModelBuilder diagram showing automated projection, clipping, and merging of infrastructure layers into a study area">
+              <div class="project-body">
+                <h3>ModelBuilder automation</h3>
+                <p>A ModelBuilder workflow that projects infrastructure layers (pipelines, roads, hydrology, contours) into a common coordinate system, then clips and merges them across two ATS quarters into one study area.</p>
+                <div class="tool-tags"><span>ArcGIS ModelBuilder</span><span>Geoprocessing</span><span>GEOS 410</span></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <h3 class="semester-label semester-label--divider" id="sem2">Semester 2</h3>
+        <p class="intro">Second semester coursework across five courses - enterprise and web GIS, advanced data capture through remote sensing, GIS programming, cartographic design, and the applied capstone project. Being updated as coursework is completed.</p>
+
+        <div class="course-group">
+          <h4>GEOS 450 - Enterprise and Web GIS</h4>
+          <p class="course-desc">Managing enterprise and web-based GIS environments - ArcGIS Enterprise and ArcGIS Online - including internet mapping applications, crowd-sourced and mobile data collection, enterprise geodatabase design, multi-user editing, and API-based customization.</p>
+          <div class="project-grid">
+            <div class="project-card">
+              <div class="project-body">
+                <h3>Web app builds - Experience Builder &amp; Dashboards</h3>
+                <p>Work in progress on ArcGIS Enterprise/Online web apps: an Experience Builder tutorial build and a live operational dashboard, both published to ArcGIS Online.</p>
+                <div class="tool-tags"><span style="color:var(--amber);border-color:var(--teal-dim);">In Progress</span><span>ArcGIS Enterprise</span><span>ArcGIS Online</span><span>GEOS 450</span></div>
+                <div class="app-links">
+                  <a href="https://experience.arcgis.com/experience/06e0d23c4dc94e778987dd8045ba5d32" target="_blank" rel="noopener">Experience Builder app ↗</a>
+                  <a href="https://www.arcgis.com/apps/dashboards/599dd1bc20b6475ea48310b21d857752" target="_blank" rel="noopener">Dashboard app ↗</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="course-group">
+          <h4>GEOS 451 - GIS Data Capture II</h4>
+          <p class="course-desc">Raster analysis and remote sensing for GIS - grid statistics, passive and active sensing systems, multispectral image processing and classification, remotely piloted aircraft systems (RPAS) data processing, and LiDAR integration.</p>
+          <div class="project-grid">
+            <div class="project-card">
+              <img src="images/sem2-geos451-sibbald-lake-classification.jpg" alt="Supervised land cover classification map of Sibbald Lake, Alberta showing developed, tree/shrub, grassland, water, and bare ground classes">
+              <div class="project-body">
+                <h3>Supervised land cover classification - Sibbald Lake, AB</h3>
+                <p>Maximum Likelihood supervised classification of PlanetScope multispectral imagery into five land cover classes (Developed, Tree/Shrub, Grassland, Water, Bare Ground) for a mixed-use landscape near Sibbald Lake, AB. Training data was digitized from high-resolution imagery in ArcGIS Pro, with the classified output (84.5% overall accuracy) produced to support ecological assessment and sampling design for the Ledam Land Trust.</p>
+                <div class="tool-tags"><span>ArcGIS Pro</span><span>Remote sensing</span><span>Supervised classification</span><span>GEOS 451</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="course-group">
+          <h4>GEOS 456 - GIS Programming</h4>
+          <p class="course-desc">Python scripting for GIS - from language fundamentals to advanced geoprocessing with ArcPy, spatial data access with cursors, raster analysis through Spatial Analyst, custom tool creation, debugging, and scripted web maps.</p>
+          <div class="project-grid">
+
+            <div class="project-card">
+              <img src="images/sem2-geos456-assign1-toulouse-network.jpg" alt="Three proportional symbol maps showing the length of bande cyclable, piste cyclable, and reseau vert cyclable networks by township in Toulouse, France">
+              <div class="project-body">
+                <h3>Toulouse cycling network analysis - automated geoprocessing script</h3>
+                <p>An ArcPy script that projects raw commune and cycling-network shapefiles into a common coordinate system (NTF Paris Lambert Sud France), intersects each network by township, and calculates the top 3 townships by network length for the bande cyclable, piste cyclable, and réseau vert cyclable layers. The script checks each intersected feature class's geometry type at run time so it correctly calculates length or area regardless of which layers turn out to be lines or polygons.</p>
+                <div class="tool-tags"><span>Python</span><span>ArcPy</span><span>Geoprocessing automation</span><span>GEOS 456</span></div>
+                <details class="code-toggle">
+                  <summary>View full script</summary>
+                  <div class="code-wrap"><pre><code class="language-python">#-------------------------------------------------------------------------------
+# Name:        GEOS456_Assign01 (CORRECTED REFERENCE VERSION)
+# Purpose:     To incorporate geoprocessing techniques into high-level
+#              programming (HLP) language - identify the top 3 townships
+#              (communes) in Toulouse containing the most cycling network.
+#
+# Author:      John Abboud
+# Date:        03/06/2026
+#
+# NOTE: This is a corrected reference copy made after grading, kept for
+# future reference. Original error: line ~135 failed because
+# CalculateGeometryAttributes_management was run with &quot;LENGTH&quot; on every
+# intersected feature class. The instructor confirmed this fails whenever a
+# feature class with a different geometry type (e.g. a polygon) is mixed in
+# with polylines, since &quot;LENGTH&quot; is not a valid geometry property for
+# polygons. The fix below uses arcpy.Describe().shapeType to check each
+# feature class&#x27;s actual geometry type at run time and calculates LENGTH
+# for polylines or AREA for polygons accordingly - so the script adapts
+# correctly no matter which input layers turn out to be which geometry type.
+#-------------------------------------------------------------------------------
+
+import arcpy, os
+
+# Allow existing outputs to be overwritten
+arcpy.env.overwriteOutput = True
+
+# FIX: Set the workspace to the root assignment folder, as required by the
+# instructor, so the script can be run directly from C:\GEOS456\Assign01
+arcpy.env.workspace = r&quot;C:\GEOS456\Assign01&quot;
+root = arcpy.env.workspace
+
+# Path to geodatabase where all outputs will be stored
+gdb = os.path.join(root, &quot;Toulouse.gdb&quot;)
+
+# Define the coordinate system for projection
+projection = arcpy.SpatialReference(&quot;NTF (PARIS) Lambert Sud France&quot;)
+
+#--------------------------------------------------
+# 1. FIND AND PROJECT ALL SHAPEFILES
+
+print(&quot;1. RAW data (shapefiles) in the folder:&quot;)
+
+# Raw data is stored in two subfolders beneath the root workspace
+raw_folders = [
+    os.path.join(root, &quot;communes&quot;),
+    os.path.join(root, &quot;reseau-cyclable-et-vert&quot;)
+]
+
+for folder in raw_folders:
+    arcpy.env.workspace = folder
+    fcs = arcpy.ListFeatureClasses()
+
+    for fc in fcs:
+        print(&quot; - &quot; + fc)  # print file name
+
+        # Create output name for projected feature
+        out_name = fc.replace(&quot;.shp&quot;, &quot;_projected&quot;)
+
+        # Full path to save the projected file inside the geodatabase
+        out_path = os.path.join(gdb, out_name)
+
+        # Run projection tool
+        arcpy.management.Project(fc, out_path, projection)
+
+print(&quot;&quot;)
+
+#--------------------------------------------------
+# 2. LIST FEATURES INSIDE THE GDB (BEFORE INTERSECT)
+
+# Switch workspace to geodatabase
+arcpy.env.workspace = gdb
+
+print(&quot;2. Features stored in gdb before intersecting:&quot;)
+
+# Get all feature classes in the gdb
+fc_list = arcpy.ListFeatureClasses()
+
+for fc in fc_list:
+    print(&quot; - &quot; + fc)
+
+print(&quot;&quot;)
+
+#--------------------------------------------------
+# 3. SEPARATE NETWORKS AND TOWNSHIPS
+
+networks = []   # will store cycling network layers
+township = &quot;&quot;   # will store commune layer
+
+for fc in fc_list:
+
+    # Select only the cycling/green network layers
+    if &quot;Cyclable&quot; in fc or &quot;ReseauVert&quot; in fc:
+        networks.append(fc)
+
+    # Identify the township layer (communes)
+    if &quot;commune&quot; in fc.lower():
+        township = fc
+
+#--------------------------------------------------
+# 4. INTERSECT NETWORKS WITH TOWNSHIPS
+
+# This step splits cycling/green networks by township boundaries
+for fc in networks:
+
+    out_fc = fc + &quot;_by_commune&quot;
+
+    # Intersect tool combines geometry from both layers
+    arcpy.analysis.Intersect([fc, township], out_fc)
+
+    print(fc + &quot; successfully intersected&quot;)
+    print(&quot;&quot;)
+
+#--------------------------------------------------
+# 5. LIST FEATURES AFTER INTERSECT
+
+print(&quot;2.Below is the list of features stored in gdb after intersecting:&quot;)
+
+fc_list = arcpy.ListFeatureClasses()
+
+for fc in fc_list:
+    print(&quot; - &quot; + fc)
+
+print(&quot;&quot;)
+
+#--------------------------------------------------
+# 6. ADD A LENGTH/AREA FIELD AND CALCULATE GEOMETRY
+#
+# FIX: &quot;LENGTH&quot; is only a valid geometry property for polylines - using it
+# on a polygon causes a tool error. arcpy.Describe().shapeType is used here
+# to check each feature class&#x27;s actual geometry type before deciding
+# whether to calculate LENGTH or AREA, rather than assuming based on name.
+
+intersects = arcpy.ListFeatureClasses(&quot;*_by_commune&quot;)
+
+# Add a field to each intersected feature class - DOUBLE works for both
+# a length value (km) or an area value (sq km)
+for fc in intersects:
+    fcDesc = arcpy.Describe(fc)
+
+    if fcDesc.shapeType == &quot;Polygon&quot;:
+        arcpy.management.AddField(fc, &quot;Area_SqKM&quot;, &quot;DOUBLE&quot;)
+        print(&quot;Area_SqKM field added to &quot; + fc + &quot; (Polygon)&quot;)
+    else:
+        arcpy.management.AddField(fc, &quot;Length_KM&quot;, &quot;DOUBLE&quot;)
+        print(&quot;Length_KM field added to &quot; + fc + &quot; (Polyline)&quot;)
+    print(&quot;&quot;)
+
+# Calculate geometry attributes based on each feature class&#x27;s shape type
+for fc in intersects:
+    fcDesc = arcpy.Describe(fc)
+
+    if fcDesc.shapeType == &quot;Polygon&quot;:
+        arcpy.management.CalculateGeometryAttributes(
+            fc,
+            [[&quot;Area_SqKM&quot;, &quot;AREA&quot;]],
+            area_unit=&quot;SQUARE_KILOMETERS&quot;
+        )
+        print(&quot;Area_SqKM calculated successfully for &quot; + fc)
+    else:
+        arcpy.management.CalculateGeometryAttributes(
+            fc,
+            [[&quot;Length_KM&quot;, &quot;LENGTH&quot;]],
+            length_unit=&quot;KILOMETERS&quot;
+        )
+        print(&quot;Length_KM calculated successfully for &quot; + fc)
+    print(&quot;&quot;)
+
+#--------------------------------------------------
+# 7. SUMMARIZE TOTAL LENGTH/AREA PER TOWNSHIP
+
+# Create summary tables (sum of length or area per township)
+for fc in intersects:
+    fcDesc = arcpy.Describe(fc)
+    out_table = fc + &quot;_sum&quot;
+
+    if fcDesc.shapeType == &quot;Polygon&quot;:
+        arcpy.analysis.Statistics(
+            fc,
+            out_table,
+            [[&quot;Area_SqKM&quot;, &quot;SUM&quot;]],
+            &quot;libelle&quot;
+        )
+    else:
+        arcpy.analysis.Statistics(
+            fc,
+            out_table,
+            [[&quot;Length_KM&quot;, &quot;SUM&quot;]],
+            &quot;libelle&quot;
+        )
+
+print(&quot;&quot;)
+
+#--------------------------------------------------
+# 8. PRINT TOP 3 TOWNSHIPS FOR EACH NETWORK
+
+print(&quot;Below is the summary table of the top 3 townships:&quot;)
+
+# Get all summary tables
+tables = arcpy.ListTables(&quot;*_sum&quot;)
+
+for table in tables:
+
+    # Recover the original intersected feature class name from the table
+    # name (table name = fc name + &quot;_sum&quot;) so its shape type can be
+    # checked directly, instead of guessing the field from the layer name
+    fc_name = table.replace(&quot;_sum&quot;, &quot;&quot;)
+    fcDesc = arcpy.Describe(fc_name)
+
+    if fcDesc.shapeType == &quot;Polygon&quot;:
+        field_name = &quot;SUM_Area_SqKM&quot;
+        unit_label = &quot;sq km&quot;
+    else:
+        field_name = &quot;SUM_Length_KM&quot;
+        unit_label = &quot;km&quot;
+
+    # Assign a readable label based on the table name
+    if &quot;Bande_Cyclable&quot; in table:
+        label = &quot;Bande Cyclable&quot;
+    elif &quot;Piste_Cyclable&quot; in table:
+        label = &quot;Piste Cyclable&quot;
+    elif &quot;ReseauVert&quot; in table:
+        label = &quot;ReseauVert&quot;
+    else:
+        label = table
+
+    print(&quot;\nTop 3 townships - &quot; + label + &quot;:&quot;)
+
+    rows = []
+
+    # Read table values using a search cursor
+    with arcpy.da.SearchCursor(table, [&quot;libelle&quot;, field_name]) as sc:
+        for row in sc:
+            rows.append([row[0], row[1]])
+
+    # Sort rows manually from highest to lowest
+    for x in range(len(rows)):
+        for y in range(x + 1, len(rows)):
+            if rows[y][1] &gt; rows[x][1]:
+                temp = rows[x]
+                rows[x] = rows[y]
+                rows[y] = temp
+
+    # Print the top 3 results only
+    count = 0
+    for item in rows:
+        print(&quot; - {0}: {1:.2f} {2}&quot;.format(item[0], item[1], unit_label))
+        count += 1
+        if count == 3:
+            break
+
+print(&quot;&quot;)
+print(&quot;Assignment complete!&quot;)
+
+
+#-------------------------------------------------------------------------------
+# Sources Consulted
+#-------------------------------------------------------------------------------
+&#x27;&#x27;&#x27;
+ArcGIS Pro Documentation:
+
+Project (Data Management)
+https://pro.arcgis.com/en/pro-app/latest/tool-reference/data-management/project.htm
+
+Intersect (Analysis)
+https://pro.arcgis.com/en/pro-app/latest/tool-reference/analysis/intersect.htm
+
+Add Field (Data Management)
+https://pro.arcgis.com/en/pro-app/latest/tool-reference/data-management/add-field.htm
+
+Calculate Geometry Attributes (Data Management)
+https://pro.arcgis.com/en/pro-app/latest/tool-reference/data-management/calculate-geometry-attributes.htm
+
+Summary Statistics (Analysis)
+https://pro.arcgis.com/en/pro-app/latest/tool-reference/analysis/summary-statistics.htm
+
+ListFeatureClasses (ArcPy)
+https://pro.arcgis.com/en/pro-app/latest/arcpy/functions/listfeatureclasses.htm
+
+Describe (ArcPy)
+https://pro.arcgis.com/en/pro-app/latest/arcpy/functions/describe.htm
+
+General ArcPy Reference
+https://pro.arcgis.com/en/pro-app/latest/arcpy/get-started/what-is-arcpy-.htm
+&#x27;&#x27;&#x27;</code></pre></div>
+                </details>
+                <div class="script-download">↓ <a href="scripts/GEOS456_Assign01_Toulouse.py" download>Download GEOS456_Assign01_Toulouse.py</a></div>
+              </div>
+            </div>
+
+            <div class="project-card">
+              <img src="images/sem1-geos410-survey-mapping.jpg" alt="Survey and mapping systems map showing township, range, section, and legal subdivision grid with roads, hydrology, and pipelines, similar to the study area produced by the Assignment 2 script">
+              <div class="project-body">
+                <h3>ATS/DLS land fabric automation and GPS point location - Alberta</h3>
+                <p>A script that builds a file geodatabase from scratch, importing and projecting NTS 1:20,000 base features (contours, trails, pipelines, powerlines, roads) and the ATS/DLS land fabric (sections, quarter sections, legal subdivisions) into a common projection, defines the study area as the township containing a supplied GPS point, then clips and merges the base feature and land fabric layers to that study area. A search cursor is used to print the full DLS description (LSD-Sec-Twp-Rge-Mer) of the legal subdivision containing the GPS point.</p>
+                <div class="tool-tags"><span>Python</span><span>ArcPy</span><span>Geodatabase automation</span><span>GEOS 456</span></div>
+                <details class="code-toggle">
+                  <summary>View full script</summary>
+                  <div class="code-wrap"><pre><code class="language-python">#-------------------------------------------------------------------------------
+# Name:        Assignment 2: Geoprocessing for Map Overlays
+# Purpose:     Automate the conversion and management of NTS base features,
+#              the ATS/DLS land fabric, and a GPS point into a single file
+#              geodatabase for use in mapping initiatives.
+#
+# Author:      John Abboud
+# Created:     19/06/2026
+# Copyright:   (c) 456460 2026
+#-------------------------------------------------------------------------------
+
+# Import the arcpy module
+import arcpy
+import os
+
+# Set environment workspace and overwrite properties
+arcpy.env.workspace = r&quot;C:\GEOS456\Assign02&quot;
+arcpy.env.overwriteOutput = True
+
+# Root project folder - everything below references this location
+root = r&quot;C:\GEOS456\Assign02&quot;
+gdb = os.path.join(root, &quot;Assignment02.gdb&quot;)
+
+# Spatial reference objects used throughout the script
+# NAD_1983_10TM_AEP_Resource - the raw Base data&#x27;s true projection
+AEP_10TM = arcpy.SpatialReference(3403)
+# NAD_1983_UTM_Zone_12N - the project&#x27;s target projection
+UTM12N = arcpy.SpatialReference(26912)
+
+
+# Helper function used after every geoprocessing tool
+# prints the first and last message returned by the most recently run tool
+def print_messages():
+    msgCount = arcpy.GetMessageCount()
+    if msgCount &gt; 0:
+        print(arcpy.GetMessage(0))
+        print(arcpy.GetMessage(msgCount - 1))
+
+
+
+# Create a list of all the assignment datasets prior to importing,
+# and describe the data type, geometry and spatial reference of
+# each shapefile in the assignment data folder
+
+
+print(&quot;Listing and describing all raw assignment datasets&quot;)
+print(&quot;&quot;)
+
+# List of every raw data folder that contains shapefiles for this assignment
+raw_folders = [
+    root,
+    os.path.join(root, &quot;Base&quot;, &quot;82I11NW&quot;, &quot;82I11NW&quot;),
+    os.path.join(root, &quot;Base&quot;, &quot;82I14SW&quot;),
+    os.path.join(root, &quot;DLS&quot;)
+]
+
+for folder in raw_folders:
+    arcpy.env.workspace = folder
+    fcList = arcpy.ListFeatureClasses()
+    print(&quot;Folder:&quot;, folder)
+    for fc in fcList:
+        fcDesc = arcpy.Describe(fc)
+        print(&quot;    Name:&quot;, fc)
+        print(&quot;        Shape Type:&quot;, fcDesc.shapeType)
+        print(&quot;        Spatial Reference:&quot;, fcDesc.spatialReference.name)
+    print(&quot;&quot;)
+
+
+# Check if the assignment geodatabase already exists.
+# If it exists, delete it prior to making a new one.
+
+print(&quot;Checking for an existing Assignment02.gdb&quot;)
+
+arcpy.env.workspace = root
+
+if arcpy.Exists(gdb):
+    arcpy.management.Delete(gdb)
+    print(&quot;Existing Assignment02.gdb was found and deleted&quot;)
+else:
+    print(&quot;No existing Assignment02.gdb was found&quot;)
+print(&quot;&quot;)
+
+
+
+# Create the file geodatabase and feature datasets to store the data
+
+print(&quot;Creating Assignment02.gdb and feature datasets&quot;)
+
+# Create the file geodatabase in the Assign02 folder
+arcpy.management.CreateFileGDB(root, &quot;Assignment02.gdb&quot;)
+print_messages()
+print(&quot;Assignment02.gdb created&quot;)
+print(&quot;&quot;)
+
+# Create a feature dataset to hold the DLS / ATS land fabric data
+arcpy.management.CreateFeatureDataset(gdb, &quot;DLS&quot;, UTM12N)
+print_messages()
+print(&quot;DLS feature dataset created&quot;)
+print(&quot;&quot;)
+
+# Create a feature dataset to hold the 1:20,000 Base Features data
+arcpy.management.CreateFeatureDataset(gdb, &quot;Base_Features&quot;, UTM12N)
+print_messages()
+print(&quot;Base_Features feature dataset created&quot;)
+print(&quot;&quot;)
+
+# Convert all assignment data and store it in the geodatabase
+print(&quot;Importing, projecting, merging and clipping all assignment data&quot;)
+print(&quot;&quot;)
+
+
+# Import and project the GPS point (already in the correct projection,
+# so Project is used simply to copy it into the gdb with a clean name)
+
+print(&quot;Importing GSP_Pointe.shp (GPS point) to the geodatabase...&quot;)
+in_gps = os.path.join(root, &quot;GSP_Pointe.shp&quot;)
+out_gps = os.path.join(gdb, &quot;GPS_Point&quot;)
+arcpy.management.Project(in_gps, out_gps, UTM12N)
+print_messages()
+print(&quot;GPS point imported&quot;)
+print(&quot;&quot;)
+
+# Project the Township grid and identify the Study Area
+# (the township that contains the GPS point)
+
+print(&quot;Projecting Township grid (82I_TWP.shp) into the geodatabase...&quot;)
+in_twp = os.path.join(root, &quot;DLS&quot;, &quot;82I_TWP.shp&quot;)
+out_twp = os.path.join(gdb, &quot;raw_TWP&quot;)
+arcpy.management.Project(in_twp, out_twp, UTM12N)
+print_messages()
+print(&quot;Township grid projected&quot;)
+print(&quot;&quot;)
+
+print(&quot;Selecting the township that contains the GPS point...&quot;)
+twp_layer = arcpy.management.MakeFeatureLayer(out_twp, &quot;twp_layer&quot;)
+gps_layer = arcpy.management.MakeFeatureLayer(out_gps, &quot;gps_layer&quot;)
+
+# Select townships that CONTAIN the GPS point
+arcpy.management.SelectLayerByLocation(twp_layer, &quot;CONTAINS&quot;, gps_layer, &quot;&quot;, &quot;NEW_SELECTION&quot;)
+print_messages()
+print(&quot;Township containing GPS point selected&quot;)
+print(&quot;&quot;)
+
+print(&quot;Exporting the selected township as the Study_Area...&quot;)
+study_area = os.path.join(gdb, &quot;DLS&quot;, &quot;Study_Area&quot;)
+arcpy.conversion.ExportFeatures(twp_layer, study_area)
+print_messages()
+print(&quot;Study_Area created in the DLS feature dataset&quot;)
+print(&quot;&quot;)
+
+# Remove the intermediate, non-essential township data
+arcpy.management.Delete(out_twp)
+print(&quot;Intermediate raw_TWP deleted&quot;)
+print(&quot;&quot;)
+
+# Project the remaining ATS/DLS land fabric (Sections, Quarter Sections,
+# Legal Subdivisions) and clip each one to the Study_Area.
+# Note: Road Allowance (RA) is intentionally excluded per the assignment.
+
+print(&quot;Processing DLS / ATS land fabric layers...&quot;)
+print(&quot;&quot;)
+
+# Dictionary of DLS shapefiles to process: {raw shapefile name : output name}
+dls_layers = {
+    &quot;82I_SEC.shp&quot;: &quot;Section&quot;,
+    &quot;82I_QTR.shp&quot;: &quot;QuarterSection&quot;,
+    &quot;82I_LSD.shp&quot;: &quot;LegalSubdivision&quot;
+}
+
+for raw_name, out_name in dls_layers.items():
+    print(&quot;Processing &quot; + out_name + &quot;...&quot;)
+
+    # Project the raw shapefile into the geodatabase (NAD 1983 UTM Zone 12N)
+    in_shp = os.path.join(root, &quot;DLS&quot;, raw_name)
+    out_projected = os.path.join(gdb, &quot;raw_&quot; + out_name)
+    arcpy.management.Project(in_shp, out_projected, UTM12N)
+    print_messages()
+
+    # Clip the projected layer to the Study_Area so it does not extend
+    # beyond the boundary of the study area
+    out_clip = os.path.join(gdb, &quot;DLS&quot;, out_name)
+    arcpy.analysis.Clip(out_projected, study_area, out_clip)
+    print_messages()
+    print(out_name + &quot; clipped to Study_Area&quot;)
+
+    # Remove the intermediate, non-essential projected data
+    arcpy.management.Delete(out_projected)
+    print(&quot;Intermediate raw_&quot; + out_name + &quot; deleted&quot;)
+    print(&quot;&quot;)
+
+
+# Process the 1:20,000 Base Features.
+# Each base feature exists as two shapefiles (one per NTS quarter:
+# 82I11NW and 82I14SW) that are missing a coordinate system.
+# Workflow:
+#       1. Define Projection -&gt; NAD_1983_10TM_AEP_Resource
+#       2. Project -&gt; NAD_1983_UTM_Zone_12N
+#       3. Merge the two NTS quarters into one feature class
+#       4. Clip the merged feature class to the Study_Area
+
+
+print(&quot;Processing 1:20,000 Base Features...&quot;)
+print(&quot;&quot;)
+
+# Path to each NTS quarter&#x27;s raw Base Feature shapefiles
+nts_82I11NW = os.path.join(root, &quot;Base&quot;, &quot;82I11NW&quot;, &quot;82I11NW&quot;)
+nts_82I14SW = os.path.join(root, &quot;Base&quot;, &quot;82I14SW&quot;)
+
+# Dictionary of base feature shapefiles to process:
+# {raw shapefile name : output name in Base_Features}
+base_features = {
+    &quot;BF_CONTOUR_ARC.shp&quot;: &quot;Contours&quot;,
+    &quot;BF_CUT_TRAIL_ARC.shp&quot;: &quot;Trails&quot;,
+    &quot;BF_PIPELINE_ARC.shp&quot;: &quot;Pipelines&quot;,
+    &quot;BF_POWERLINE_ARC.shp&quot;: &quot;Powerlines&quot;,
+    &quot;BF_ROAD_ARC.shp&quot;: &quot;Roads&quot;
+}
+
+for raw_name, out_name in base_features.items():
+    print(&quot;Processing &quot; + out_name + &quot;...&quot;)
+
+    # 82I11NW quarter
+    in_11nw = os.path.join(nts_82I11NW, raw_name)
+    defined_11nw = os.path.join(gdb, out_name + &quot;_82I11NW_Unprojected&quot;)
+    # Import the raw shapefile into the gdb (the source has no projection)
+    arcpy.conversion.FeatureClassToFeatureClass(in_11nw, gdb, out_name + &quot;_82I11NW_Unprojected&quot;)
+    # Define the projection as NAD_1983_10TM_AEP_Resource
+    arcpy.management.DefineProjection(defined_11nw, AEP_10TM)
+    # Project into NAD_1983_UTM_Zone_12N
+    projected_11nw = os.path.join(gdb, out_name + &quot;_82I11NW_Projected&quot;)
+    arcpy.management.Project(defined_11nw, projected_11nw, UTM12N)
+    print_messages()
+
+    # 82I14SW quarter
+    in_14sw = os.path.join(nts_82I14SW, raw_name)
+    defined_14sw = os.path.join(gdb, out_name + &quot;_82I14SW_Unprojected&quot;)
+    arcpy.conversion.FeatureClassToFeatureClass(in_14sw, gdb, out_name + &quot;_82I14SW_Unprojected&quot;)
+    arcpy.management.DefineProjection(defined_14sw, AEP_10TM)
+    projected_14sw = os.path.join(gdb, out_name + &quot;_82I14SW_Projected&quot;)
+    arcpy.management.Project(defined_14sw, projected_14sw, UTM12N)
+    print_messages()
+
+    # Merge the two projected NTS quarters into a single feature class
+    merged = os.path.join(gdb, out_name + &quot;_Merged&quot;)
+    arcpy.management.Merge([projected_11nw, projected_14sw], merged)
+    print_messages()
+
+    # Clip the merged feature class to the Study_Area
+    out_clip = os.path.join(gdb, &quot;Base_Features&quot;, out_name)
+    arcpy.analysis.Clip(merged, study_area, out_clip)
+    print_messages()
+    print(out_name + &quot; merged and clipped to Study_Area&quot;)
+
+    # Remove all intermediate, non-essential data
+    arcpy.management.Delete(defined_11nw)
+    arcpy.management.Delete(projected_11nw)
+    arcpy.management.Delete(defined_14sw)
+    arcpy.management.Delete(projected_14sw)
+    arcpy.management.Delete(merged)
+    print(&quot;Intermediate &quot; + out_name + &quot; data deleted&quot;)
+    print(&quot;&quot;)
+
+
+
+# List the features within each feature dataset and describe the
+# final spatial reference of each feature class
+
+print(&quot;Final feature class list and spatial reference for each dataset&quot;)
+print(&quot;&quot;)
+
+final_locations = [
+    gdb,
+    os.path.join(gdb, &quot;DLS&quot;),
+    os.path.join(gdb, &quot;Base_Features&quot;)
+]
+
+for location in final_locations:
+    arcpy.env.workspace = location
+    fcList = arcpy.ListFeatureClasses()
+    print(&quot;Location:&quot;, location)
+    for fc in fcList:
+        fcDesc = arcpy.Describe(fc)
+        print(&quot;    Name:&quot;, fc)
+        print(&quot;        Shape Type:&quot;, fcDesc.shapeType)
+        print(&quot;        Spatial Reference:&quot;, fcDesc.spatialReference.name)
+    print(&quot;&quot;)
+
+
+# Only the final datasets are stored in the geodatabase.
+# All intermediate and non-essential features were already removed
+
+print(&quot;Intermediate and non-essential data removed&quot;)
+print(&quot;&quot;)
+
+# Use a cursor to identify and print the full DLS description of the
+# single Legal Subdivision that the GPS point falls within
+
+print(&quot;Printing the DLS description for the LSD containing the GPS point&quot;)
+print(&quot;&quot;)
+
+lsd_fc = os.path.join(gdb, &quot;DLS&quot;, &quot;LegalSubdivision&quot;)
+
+# Make feature layers so the LSD that contains the GPS point can be selected
+lsd_layer = arcpy.management.MakeFeatureLayer(lsd_fc, &quot;lsd_layer&quot;)
+gps_layer2 = arcpy.management.MakeFeatureLayer(out_gps, &quot;gps_layer2&quot;)
+
+# Select the single LSD polygon that CONTAINS the GPS point
+arcpy.management.SelectLayerByLocation(lsd_layer, &quot;CONTAINS&quot;, gps_layer2, &quot;&quot;, &quot;NEW_SELECTION&quot;)
+print_messages()
+print(&quot;LSD containing the GPS point selected&quot;)
+print(&quot;&quot;)
+
+# Use a search cursor on the selected LSD only to read the fields needed
+# to build the DLS description. Field names follow the standard ATS schema
+found = False
+with arcpy.da.SearchCursor(lsd_layer, [&quot;LSD&quot;, &quot;SEC&quot;, &quot;TWP&quot;, &quot;RGE&quot;, &quot;MER&quot;]) as cursor:
+    for row in cursor:
+        found = True
+        lsd, sec, twp, rge, mer = row
+        print(&quot;LSD&quot; + str(lsd).zfill(2) + &quot; - Sec&quot; + str(sec).zfill(2) + &quot; - Twp&quot; + str(twp)
+              + &quot; - Rge&quot; + str(rge) + &quot; - W&quot; + str(mer))
+
+# Defensive check in case the GPS point does not fall within any LSD
+if not found:
+    print(&quot;No LSD was found containing the GPS point - check the GPS point location&quot;)
+print(&quot;&quot;)
+
+# Assignment complete :)
+
+print(&quot;Script complete - Assignment02.gdb has been created at &quot; + root)
+
+
+&#x27;&#x27;&#x27;
+Sources Consulted:
+
+An Overview of ArcPy functions
+    https://pro.arcgis.com/en/pro-app/latest/arcpy/functions/alphabetical-list-of-arcpy-functions.htm
+Clip (Analysis)
+    https://pro.arcgis.com/en/pro-app/latest/tool-reference/analysis/clip.htm
+Create Feature Dataset (Data Management)
+    https://pro.arcgis.com/en/pro-app/latest/tool-reference/data-management/create-feature-dataset.htm
+Create File GDB (Data Management)
+    https://pro.arcgis.com/en/pro-app/latest/tool-reference/data-management/create-file-gdb.htm
+Define Projection (Data Management)
+    https://pro.arcgis.com/en/pro-app/latest/tool-reference/data-management/define-projection.htm
+Delete (Data Management)
+    https://pro.arcgis.com/en/pro-app/latest/tool-reference/data-management/delete.htm
+Describe
+    https://pro.arcgis.com/en/pro-app/latest/arcpy/functions/describe.htm
+Exists
+    https://pro.arcgis.com/en/pro-app/latest/arcpy/functions/exists.htm
+Export Features (Conversion)
+    https://pro.arcgis.com/en/pro-app/latest/tool-reference/conversion/export-features.htm
+Feature Class To Feature Class (Conversion)
+    https://pro.arcgis.com/en/pro-app/latest/tool-reference/conversion/feature-class-to-feature-class.htm
+GetMessage / GetMessageCount
+    https://pro.arcgis.com/en/pro-app/latest/arcpy/functions/getmessage.htm
+Introduction to ArcPy
+    https://pro.arcgis.com/en/pro-app/latest/arcpy/get-started/what-is-arcpy-.htm
+ListFeatureClasses
+    https://pro.arcgis.com/en/pro-app/latest/arcpy/functions/listfeatureclasses.htm
+Make Feature Layer (Data Management)
+    https://pro.arcgis.com/en/pro-app/latest/tool-reference/data-management/make-feature-layer.htm
+Merge (Data Management)
+    https://pro.arcgis.com/en/pro-app/latest/tool-reference/data-management/merge.htm
+Project (Data Management)
+    https://pro.arcgis.com/en/pro-app/latest/tool-reference/data-management/project.htm
+SearchCursor
+    https://pro.arcgis.com/en/pro-app/latest/arcpy/data-access/searchcursor-class.htm
+Select Layer By Location (Data Management)
+    https://pro.arcgis.com/en/pro-app/latest/tool-reference/data-management/select-layer-by-location.htm
+SpatialReference
+    https://pro.arcgis.com/en/pro-app/latest/arcpy/classes/spatialreference.htm
+&#x27;&#x27;&#x27;</code></pre></div>
+                </details>
+                <div class="script-download">↓ <a href="scripts/GEOS456_Assign02_ATS_DLS.py" download>Download GEOS456_Assign02_ATS_DLS.py</a></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="course-group">
+          <h4>GEOS 457 - Cartography and Geovisualization</h4>
+          <p class="course-desc">Thematic mapping and design theory - choropleth, graduated/proportional symbol, dot density, isarithmic, and bivariate maps, plus 3D maps, map animation, cartograms, flow maps, and colour theory for cartographic design.</p>
+          <div class="project-grid">
+
+            <div class="project-card">
+              <img src="images/sem2-geos457-tutorial1-canada-density.jpg" alt="Choropleth map of population density by census division in Canada, 2016, with an inset of southern Ontario">
+              <div class="project-body">
+                <h3>Population density by census division - Canada, 2016</h3>
+                <p>Choropleth map classifying census divisions across Canada by population density (Albers Equal Area Conic projection), with a detailed inset of southern Ontario to show density patterns in the country's most densely populated region at a larger scale.</p>
+                <div class="tool-tags"><span>ArcGIS Pro</span><span>Choropleth mapping</span><span>GEOS 457</span></div>
+              </div>
+            </div>
+
+            <div class="project-card">
+              <img src="images/sem2-geos457-tutorial3-usa-seniors-proportional.jpg" alt="Proportional symbol map showing senior population by state in the contiguous USA, 2010">
+              <div class="project-body">
+                <h3>Senior population by state - proportional symbols, USA 2010</h3>
+                <p>Proportional symbol map sizing each state by its population of seniors aged 65 and up, classified using the Natural Breaks (Jenks) method to group states into comparable symbol-size ranges.</p>
+                <div class="tool-tags"><span>ArcGIS Pro</span><span>Proportional symbols</span><span>GEOS 457</span></div>
+              </div>
+            </div>
+
+            <div class="project-card">
+              <img src="images/sem2-geos457-tutorial4-usa-seniors-piecharts.jpg" alt="Proportional pie chart map showing Hispanic versus non-Hispanic senior population by state in the contiguous USA, 2010">
+              <div class="project-body">
+                <h3>Senior population composition by state - pie charts, USA 2010</h3>
+                <p>Proportional pie chart map building on the previous symbol map, sizing each state's pie by total senior population while splitting the chart into Hispanic and non-Hispanic shares - combining magnitude and composition in a single symbol.</p>
+                <div class="tool-tags"><span>ArcGIS Pro</span><span>Pie chart maps</span><span>GEOS 457</span></div>
+              </div>
+            </div>
+
+            <div class="project-card">
+              <img src="images/sem2-geos457-tutorial5-philadelphia-classification.jpg" alt="Four choropleth maps of burglary ratios in Philadelphia census tracts, 2010, comparing quantile, equal interval, manual, and natural breaks classification methods">
+              <div class="project-body">
+                <h3>Burglary rate classification methods comparison - Philadelphia, 2010</h3>
+                <p>A four-panel comparison of the same burglary-rate-per-1,000-residents dataset mapped with quantile, equal interval, manual, and natural breaks classification, evaluated using Goodness of Variance Fit (GVF) to show how classification choice changes the map's message even when the underlying data doesn't change.</p>
+                <div class="tool-tags"><span>ArcGIS Pro</span><span>Data classification</span><span>GEOS 457</span></div>
+              </div>
+            </div>
+
+            <div class="project-card">
+              <img src="images/sem2-geos457-tutorial6-texas-hispanic.jpg" alt="Choropleth map of Hispanic population percentage and proportional symbol map of Hispanic population totals by county in Texas, 2000">
+              <div class="project-body">
+                <h3>Hispanic population distribution - Texas counties, 2000</h3>
+                <p>Paired choropleth and proportional symbol maps showing Hispanic population as a percentage of total population alongside absolute Hispanic population totals by county, illustrating how the same demographic pattern can read very differently depending on whether it's normalized or shown as a raw count.</p>
+                <div class="tool-tags"><span>ArcGIS Pro</span><span>Choropleth mapping</span><span>Proportional symbols</span><span>GEOS 457</span></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="course-group">
+          <h4>GEOS 459 - Applied GIS Capstone Project</h4>
+          <p class="course-desc">A full GIS project lifecycle for a real business challenge - project planning, data capture and management, spatial analysis, output design, client presentation, and project closure.</p>
+          <div class="project-grid">
+            <div class="project-card" id="capstone-card" style="scroll-margin-top:70px;">
+              <img src="images/sem2-geos459-capstone-cover.png" alt="Cover slide for the Avalanche Trigger-Zone Digital Twin capstone project, GEOS 459 Group 1">
+              <div class="project-body">
+                <h3>Avalanche Trigger-Zone Digital Twin*</h3>
+                <p>An in-progress group capstone project focused on the Coal Creek to Morrissey Ridge study area, just southeast of Fernie, British Columbia. The goal is to help identify where avalanche trigger zones may be located, so that future drone-based avalanche control planning can be more targeted and safer.</p>
+                <div class="tool-tags"><span style="color:var(--amber);border-color:var(--teal-dim);">In Progress</span><span>ArcGIS Pro</span><span>Terrain analysis</span><span>Capstone</span><span>GEOS 459</span></div>
+                <div class="capstone-meta">
+                  <span><strong>Team:</strong> Delu Maduekwe · Teng Zhang · John Abboud</span>
+                  <span><strong>Client:</strong> CIRUS Lab, SAIT</span>
+                  <span><strong>Study area:</strong> Coal Creek to Morrissey Ridge, Fernie, BC</span>
+                </div>
+                <div class="capstone-footnote">* working title - subject to change as project scope is finalized</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- RESUME -->
+      <section class="section" id="resume">
+        <div class="section-head">
+          <h2>Resume</h2>
+        </div>
+        <p class="intro">Before starting the BGIS program, I spent over 15 years working as an electronics and instrumentation technologist across aerospace, oilfield, and utility industries. That background in troubleshooting, precision testing, and technical documentation now carries over into GIS data quality and field work.</p>
+
+        <div class="resume-download">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3v12m0 0l-4-4m4 4l4-4"/><path d="M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2"/></svg>
+          <div class="rd-text">
+            <div class="rd-title">Resume - John Abboud, C.E.T.</div>
+            <div class="rd-sub">PDF · 2 pages · updated Jul 2026</div>
+          </div>
+          <a class="rd-btn" href="resume/John_Abboud_Resume.pdf" target="_blank" rel="noopener">Download PDF ↓</a>
+        </div>
+
+        <div class="resume-group">
+          <h4>Education</h4>
+          <div class="timeline-entry">
+            <div class="when">2025 - Present</div>
+            <h5>Bachelor of Applied Technology, Geographic Information Systems</h5>
+            <div class="org">SAIT, Calgary, AB</div>
+            <ul>
+              <li>Coursework in cartographic design, spatial analysis, geodatabase design, GPS field data capture, and geoprocessing automation (FME, ModelBuilder)</li>
+            </ul>
+          </div>
+          <div class="timeline-entry">
+            <div class="when">2009</div>
+            <h5>Electronics Engineering Technology Diploma</h5>
+            <div class="org">SAIT, Calgary, AB</div>
+            <ul>
+              <li>TAC-accredited program covering circuit design, analysis, and troubleshooting; digital and analog electronics; microprocessor systems; wireless communications; and automated test and measurement</li>
+              <li>Completed a capstone project applying research and design skills to a proposed engineering solution</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="resume-group">
+          <h4>Certification</h4>
+          <div class="timeline-entry">
+            <div class="when">Current</div>
+            <h5>Certified Engineering Technologist (C.E.T.)</h5>
+            <div class="org">Association of Science and Engineering Technology Professionals of Alberta (ASET)</div>
+          </div>
+        </div>
+
+        <div class="resume-group">
+          <h4>Experience</h4>
+          <div class="timeline-entry">
+            <div class="when">Jun 2024 - Jan 2025</div>
+            <h5>ILI Field Technician</h5>
+            <div class="org">United Pacific Projects · Calgary, AB</div>
+            <ul>
+              <li>Performed infield and shop-based maintenance, repairs, and cleaning on pipeline in-line inspection tools</li>
+              <li>Travelled to remote sites to prepare inspection tools for surveys and advised on conditions affecting data quality</li>
+            </ul>
+          </div>
+          <div class="timeline-entry">
+            <div class="when">Jul 2019 - Apr 2024</div>
+            <h5>Electronics Repair Technician</h5>
+            <div class="org">Arcfield Canada · Calgary, AB</div>
+            <ul>
+              <li>Tested, repaired, and maintained CF-18 avionics systems to component level using automated test equipment and approved repair schemes</li>
+              <li>Calibrated test equipment to OEM specifications and maintained documentation under ISO 9001/AS9100 and Airworthiness standards</li>
+            </ul>
+          </div>
+          <div class="timeline-entry">
+            <div class="when">Jun 2009 - Mar 2019</div>
+            <h5>Wireline Electronics Technologist III</h5>
+            <div class="org">Weatherford Canada Partnership · Grande Prairie / Red Deer, AB</div>
+            <ul>
+              <li>Diagnosed and repaired electronic and mechanical faults in wireline tools, performing preventive, corrective, and calibration maintenance</li>
+              <li>Participated in root cause analysis, trained new hires, and managed spare parts inventory and on-call support</li>
+            </ul>
+          </div>
+          <div class="timeline-entry">
+            <div class="when">May 2008 - Aug 2008</div>
+            <h5>Electronic Bench Repair Technician</h5>
+            <div class="org">Atco Gas · Calgary, AB</div>
+            <ul>
+              <li>Calibrated, repaired, and tested gas instruments and pipe locators, documenting all work for traceability</li>
+            </ul>
+          </div>
+          <div class="timeline-entry">
+            <div class="when">Feb 2007 - Aug 2007</div>
+            <h5>Electronics Technologist</h5>
+            <div class="org">Guardian Telecom · Calgary, AB</div>
+            <ul>
+              <li>Assembled, inspected, and tested electronic circuit boards through soldering and mechanical assembly</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- SKILLS -->
+      <section class="section" id="skills">
+        <div class="section-head">
+          <h2>Skills &amp; tools</h2>
+        </div>
+        <p class="intro">A working list of software and concepts covered so far. Edit freely as your toolkit grows.</p>
+        <div class="skills-grid">
+          <div class="skill-block">
+            <h3>GIS software</h3>
+            <ul>
+              <li>ArcGIS Pro</li>
+              <li>QGIS</li>
+              <li>ArcGIS Online</li>
+            </ul>
+          </div>
+          <div class="skill-block">
+            <h3>Spatial analysis</h3>
+            <ul>
+              <li>Coordinate systems &amp; projections</li>
+              <li>Spatial joins &amp; queries</li>
+              <li>Geodatabase design</li>
+            </ul>
+          </div>
+          <div class="skill-block">
+            <h3>Data &amp; office</h3>
+            <ul>
+              <li>Python</li>
+              <li>SQL</li>
+              <li>Excel</li>
+              <li>Cartographic design</li>
+            </ul>
+          </div>
+          <div class="skill-block">
+            <h3>Professional &amp; language</h3>
+            <ul>
+              <li>Troubleshooting &amp; problem-solving</li>
+              <li>Technical documentation</li>
+              <li>English &amp; Arabic (fluent), French (advanced)</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section class="section" id="contact">
+        <div class="section-head">
+          <h2>Contact</h2>
+        </div>
+        <div class="contact-row">
+          <div class="contact-card">
+            <div class="label">Email</div>
+            <a href="mailto:john.abboud@proton.me">john.abboud@proton.me</a>
+          </div>
+          <div class="contact-card">
+            <div class="label">LinkedIn</div>
+            <a href="https://www.linkedin.com/in/abboud-john" target="_blank" rel="noopener">linkedin.com/in/abboud-john</a>
+          </div>
+          <div class="contact-card">
+            <div class="label">GitHub</div>
+            <a href="https://john-abboud.github.io/" target="_blank" rel="noopener">github.com/john-abboud</a>
+          </div>
+          <div class="contact-card">
+            <div class="label">Location</div>
+            <span class="value">Calgary, AB</span>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <footer>
+    <div class="scale-bar">
+      <div class="bar"></div>
+      <span>SCALE 1 : NOT TO SCALE</span>
+    </div>
+    <div class="credit">BGIS PORTFOLIO · V1 · JUL 2026</div>
+  </footer>
+
+</div>
+
+<button class="back-to-top" id="backToTop" aria-label="Back to top">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
+<div class="lightbox" id="lightbox">
+  <span class="hint">CLICK TO CLOSE</span>
+  <img id="lightboxImg" src="" alt="">
+</div>
+
+<script>
+  // Highlight the current section's nav link as it scrolls into view (both the main nav and the compact mini-nav)
+  const navLinks = document.querySelectorAll('#topNav a, #miniNav a');
+  const sections = document.querySelectorAll('.section');
+
+  const spy = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        const id = entry.target.id;
+        navLinks.forEach(link => {
+          link.classList.toggle('active', link.dataset.target === id);
+        });
+      }
+    });
+  }, { rootMargin: '-45% 0px -50% 0px' });
+  sections.forEach(s => spy.observe(s));
+
+  // Show the compact mini-nav once the main tile grid has scrolled out of view (mobile only)
+  const miniNav = document.getElementById('miniNav');
+  const mainNav = document.getElementById('topNav');
+  const miniNavSpy = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      miniNav.classList.toggle('visible', !entry.isIntersecting);
+    });
+  }, { rootMargin: '-1px 0px 0px 0px' });
+  miniNavSpy.observe(mainNav);
+
+  // Back to top button
+  const backToTop = document.getElementById('backToTop');
+  window.addEventListener('scroll', () => {
+    backToTop.classList.toggle('visible', window.scrollY > 500);
+  }, { passive: true });
+  backToTop.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightboxImg');
+  document.querySelectorAll('.project-card img').forEach(img => {
+    img.addEventListener('click', () => {
+      lightboxImg.src = img.getAttribute('src');
+      lightboxImg.alt = img.getAttribute('alt');
+      lightbox.classList.add('open');
+    });
+  });
+  lightbox.addEventListener('click', () => lightbox.classList.remove('open'));
+  document.addEventListener('keydown', e => {
+    if(e.key === 'Escape') lightbox.classList.remove('open');
+  });
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+<script>
+  if (window.Prism) { Prism.highlightAll(); }
+</script>
+
+</body>
+</html>
+  .graticule-top, .graticule-left{
+    position:fixed;
+    font-family:'JetBrains Mono',monospace;
+    font-size:9px;
+    letter-spacing:0.5px;
+    color:var(--line);
+    z-index:5;
+    pointer-events:none;
+  }
+  .graticule-top{
+    top:0; left:0; right:0; height:18px;
+    display:flex; justify-content:space-between;
+    padding:4px 16px 0 16px;
+    border-bottom:1px solid var(--line);
+    background:var(--ink);
+  }
+  .graticule-left{display:none;}
+  @media(min-width:900px){
+    .graticule-left{
+      display:flex; flex-direction:column; justify-content:space-between;
+      top:18px; bottom:0; left:0; width:26px;
+      padding:16px 0 16px 6px;
+      border-right:1px solid var(--line);
+      background:var(--ink);
+    }
+    .graticule-left span{writing-mode:vertical-rl; transform:rotate(180deg);}
+  }
+
+  .page{
+    margin-top:18px;
+  }
+  @media(min-width:900px){
+    .page{margin-left:26px;}
+  }
+
+  /* ---------- Header / toolbar ---------- */
+  header{
+    padding:2.5rem 1.5rem 1.5rem;
+    max-width:1000px;
+    margin:0 auto;
+  }
+  .compass{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    color:var(--teal);
+    letter-spacing:1px;
+    margin-bottom:1rem;
+  }
+  .compass svg{width:14px;height:14px;}
+  h1{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:700;
+    font-size:clamp(2.2rem,5vw,3.4rem);
+    margin:0 0 .4rem;
+    letter-spacing:-0.5px;
+  }
+  .role{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:1.05rem;
+    color:var(--teal);
+    font-weight:500;
+    margin:0 0 1rem;
+  }
+  .tagline{
+    max-width:560px;
+    color:var(--paper-dim);
+    font-size:0.98rem;
+  }
+  .coords{
+    margin-top:1.2rem;
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    color:var(--line);
+  }
+
+  /* ---------- Persistent top navigation ---------- */
+  .topnav-wrap{
+    position:sticky;
+    top:0;
+    z-index:40;
+    background:var(--ink);
+    border-bottom:1px solid var(--line);
+  }
+  .topnav{
+    max-width:1000px;
+    margin:0 auto;
+    padding:.6rem 1.5rem;
+    display:flex;
+    flex-wrap:wrap;
+    gap:4px;
+  }
+  .topnav a{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    letter-spacing:.4px;
+    color:var(--paper-dim);
+    text-decoration:none;
+    padding:8px 12px;
+    border-radius:2px;
+    white-space:nowrap;
+    transition:background 0.15s, color 0.15s;
+  }
+  .topnav a:hover{color:var(--paper); background:var(--panel-2); text-decoration:none;}
+  .topnav a.active{color:var(--ink); background:var(--teal); font-weight:600;}
+
+  /* On phones, arrange nav as a checkerboard grid of tiles - not sticky, so it doesn't eat permanent screen space */
+  @media(max-width:799px){
+    .topnav-wrap{position:static;}
+    .topnav{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:1px;
+      padding:0;
+      background:var(--line);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      overflow:hidden;
+    }
+    .topnav a{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding:16px 8px;
+      min-height:56px;
+      font-size:12.5px;
+      line-height:1.25;
+      border-radius:0;
+    }
+    .topnav a:nth-child(4n+1),
+    .topnav a:nth-child(4n+4){ background:var(--panel); }
+    .topnav a:nth-child(4n+2),
+    .topnav a:nth-child(4n+3){ background:var(--panel-2); }
+    .topnav a.active{background:var(--teal); color:var(--ink);}
+  }
+
   .layout{
     max-width:1000px;
     margin:0 auto;
