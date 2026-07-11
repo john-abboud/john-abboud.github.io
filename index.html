@@ -21,6 +21,7 @@
     --radius:4px;
   }
   *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
   html,body{margin:0;padding:0;}
   body{
     background:var(--ink);
@@ -111,112 +112,78 @@
     color:var(--line);
   }
 
-  /* ---------- Layers panel (tab nav) ---------- */
+  /* ---------- Persistent top navigation ---------- */
+  .topnav-wrap{
+    position:sticky;
+    top:0;
+    z-index:40;
+    background:var(--ink);
+    border-bottom:1px solid var(--line);
+  }
+  .topnav{
+    max-width:1000px;
+    margin:0 auto;
+    padding:.6rem 1.5rem;
+    display:flex;
+    flex-wrap:wrap;
+    gap:4px;
+  }
+  .topnav a{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    letter-spacing:.4px;
+    color:var(--paper-dim);
+    text-decoration:none;
+    padding:8px 12px;
+    border-radius:2px;
+    white-space:nowrap;
+    transition:background 0.15s, color 0.15s;
+  }
+  .topnav a:hover{color:var(--paper); background:var(--panel-2); text-decoration:none;}
+  .topnav a.active{color:var(--ink); background:var(--teal); font-weight:600;}
+
   .layout{
     max-width:1000px;
     margin:0 auto;
     padding:0 1.5rem 4rem;
-    display:grid;
-    grid-template-columns:1fr;
-    gap:1.5rem;
-  }
-  @media(min-width:800px){
-    .layout{grid-template-columns:220px 1fr; align-items:start;}
   }
 
-  .layers-panel{
-    background:var(--panel);
-    border:1px solid var(--line);
-    border-radius:var(--radius);
-    overflow:hidden;
-    position:sticky;
-    top:34px;
-  }
-  .layers-panel .panel-head{
-    font-family:'JetBrains Mono',monospace;
-    font-size:10px;
-    letter-spacing:1.5px;
-    color:var(--paper-dim);
-    padding:10px 14px;
-    border-bottom:1px solid var(--line);
-    text-transform:uppercase;
-  }
-  .layer-item{
+  /* Back to top */
+  .back-to-top{
+    position:fixed;
+    right:18px;
+    bottom:18px;
+    z-index:60;
+    width:44px;
+    height:44px;
+    border-radius:50%;
+    background:var(--teal);
+    color:var(--ink);
+    border:none;
     display:flex;
     align-items:center;
-    gap:10px;
-    width:100%;
-    background:none;
-    border:none;
-    color:var(--paper-dim);
-    font-family:'Inter',sans-serif;
-    font-size:14px;
-    font-weight:500;
-    text-align:left;
-    padding:11px 14px;
+    justify-content:center;
+    box-shadow:0 4px 14px rgba(0,0,0,0.45);
     cursor:pointer;
-    border-bottom:1px solid rgba(255,255,255,0.04);
-    transition:background 0.15s;
+    opacity:0;
+    pointer-events:none;
+    transform:translateY(10px);
+    transition:opacity 0.2s, transform 0.2s, background 0.15s;
   }
-  .layer-item:last-child{border-bottom:none;}
-  .layer-item:hover{background:var(--panel-2);}
-  .layer-item .box{
-    width:13px;height:13px;
-    border:1.5px solid var(--line);
-    border-radius:2px;
-    flex-shrink:0;
-    position:relative;
-  }
-  .layer-item.active{color:var(--paper); background:var(--panel-2);}
-  .layer-item.active .box{background:var(--teal); border-color:var(--teal);}
-  .layer-item.active .box::after{
-    content:'';
-    position:absolute; inset:0;
-    background-image:linear-gradient(45deg, transparent 40%, rgba(255,255,255,.3) 50%, transparent 60%);
-  }
-
-  /* Expand to a checkerboard grid of tiles on phones - every section visible at once, nothing to scroll or miss */
-  @media(max-width:799px){
-    .layers-panel{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      position:static;
-      top:auto;
-    }
-    .layers-panel .panel-head{
-      grid-column:1 / -1;
-    }
-    .layer-scroll{
-      display:contents;
-    }
-    .layer-item{
-      width:100%;
-      flex-direction:column;
-      justify-content:center;
-      text-align:center;
-      gap:6px;
-      padding:16px 8px;
-      min-height:64px;
-      font-size:12.5px;
-      line-height:1.25;
-      border-bottom:1px solid rgba(255,255,255,0.06);
-      border-right:1px solid rgba(255,255,255,0.06);
-    }
-    .layer-item:nth-child(4n+1),
-    .layer-item:nth-child(4n+4){ background:var(--panel); }
-    .layer-item:nth-child(4n+2),
-    .layer-item:nth-child(4n+3){ background:var(--panel-2); }
-    .layer-item:nth-last-child(-n+2){border-bottom:none;}
-    .layer-item:nth-child(even){border-right:none;}
-    .layer-item .box{width:11px; height:11px;}
-    .layer-item.active{background:var(--teal) !important; color:var(--ink);}
-    .layer-item.active .box{border-color:var(--ink); background:transparent;}
-    .layer-item.active .box::after{display:none;}
-  }
+  .back-to-top.visible{opacity:1; pointer-events:auto; transform:translateY(0);}
+  .back-to-top:hover{background:var(--amber);}
+  .back-to-top svg{width:18px;height:18px;}
 
   /* ---------- Main content ---------- */
-  .section{display:none;}
-  .section.active{display:block;}
+  .section{
+    scroll-margin-top:60px;
+    padding-top:2.6rem;
+    border-top:1px solid var(--line);
+  }
+  .section:first-of-type{
+    padding-top:2.2rem;
+    border-top:none;
+  }
 
   .section-head{
     display:flex;
@@ -233,11 +200,6 @@
     font-size:1.5rem;
     margin:0;
     font-weight:600;
-  }
-  .section-head .meta{
-    font-family:'JetBrains Mono',monospace;
-    font-size:11px;
-    color:var(--teal);
   }
   .section p.intro{
     color:var(--paper-dim);
@@ -311,6 +273,74 @@
   .featured-card .story-link:hover{
     background:var(--amber);
   }
+
+  /* Featured / highlights section (leads the page) */
+  .highlight-grid{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:1.2rem;
+  }
+  @media(min-width:700px){
+    .highlight-grid{grid-template-columns:1fr 1fr;}
+  }
+  .highlight-card{
+    background:var(--panel);
+    border:1px solid var(--teal-dim);
+    border-radius:var(--radius);
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+  }
+  .highlight-card img{
+    display:block;
+    width:100%;
+    aspect-ratio:4/3;
+    object-fit:cover;
+    border-bottom:1px solid var(--line);
+  }
+  .highlight-body{
+    padding:1.2rem 1.3rem 1.4rem;
+    display:flex;
+    flex-direction:column;
+    gap:.5rem;
+    flex:1;
+  }
+  .highlight-body.no-image{padding-top:1.4rem;}
+  .highlight-body .flag{
+    font-family:'JetBrains Mono',monospace;
+    font-size:10px;
+    letter-spacing:1.2px;
+    color:var(--teal);
+    text-transform:uppercase;
+  }
+  .highlight-body h3{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:1.1rem;
+    margin:0;
+  }
+  .highlight-body p{
+    color:var(--paper-dim);
+    font-size:13.5px;
+    margin:0;
+    flex:1;
+  }
+  .highlight-body .story-link{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    font-family:'Space Grotesk',sans-serif;
+    font-size:13.5px;
+    font-weight:600;
+    color:var(--ink);
+    background:var(--teal);
+    padding:8px 14px;
+    border-radius:2px;
+    width:fit-content;
+    margin-top:.3rem;
+    transition:background 0.15s;
+    text-decoration:none;
+  }
+  .highlight-body .story-link:hover{background:var(--amber);}
 
   /* Project cards */
   .project-grid{
@@ -784,27 +814,59 @@
     <div class="coords">DATUM: NAD83 · PROJECTION: UTM ZONE 11N · LAST SURVEYED: JUL 2026</div>
   </header>
 
-  <div class="layout">
-
-    <nav class="layers-panel" id="layersPanel">
-      <div class="panel-head">Layers</div>
-      <div class="layer-scroll" id="layerScroll">
-        <button class="layer-item active" data-target="about"><span class="box"></span>Overview</button>
-        <button class="layer-item" data-target="sem1"><span class="box"></span>Semester 1</button>
-        <button class="layer-item" data-target="sem2"><span class="box"></span>Semester 2</button>
-        <button class="layer-item" data-target="resume"><span class="box"></span>Resume</button>
-        <button class="layer-item" data-target="skills"><span class="box"></span>Skills &amp; tools</button>
-        <button class="layer-item" data-target="contact"><span class="box"></span>Contact</button>
-      </div>
+  <div class="topnav-wrap">
+    <nav class="topnav" id="topNav">
+      <a href="#featured" data-target="featured">Featured</a>
+      <a href="#about" data-target="about">Overview</a>
+      <a href="#sem1" data-target="sem1">Semester 1</a>
+      <a href="#sem2" data-target="sem2">Semester 2</a>
+      <a href="#resume" data-target="resume">Resume</a>
+      <a href="#skills" data-target="skills">Skills &amp; tools</a>
+      <a href="#contact" data-target="contact">Contact</a>
     </nav>
+  </div>
+
+  <div class="layout">
 
     <main>
 
+      <!-- FEATURED -->
+      <section class="section" id="featured">
+        <div class="section-head">
+          <h2>Featured work</h2>
+        </div>
+        <p class="intro">The two things most worth a look right now: an active capstone project and a pair of live web apps.</p>
+        <div class="highlight-grid">
+
+          <div class="highlight-card">
+            <img src="images/sem2-geos459-capstone-cover.png" alt="Cover slide for the Avalanche Trigger-Zone Digital Twin capstone project">
+            <div class="highlight-body">
+              <span class="flag">In progress · GEOS 459 Capstone</span>
+              <h3>Avalanche Trigger-Zone Digital Twin</h3>
+              <p>Identifying likely avalanche trigger zones from Coal Creek to Morrissey Ridge, near Fernie, BC, to help make future drone-based avalanche control more targeted and safer - for client CIRUS Lab, SAIT.</p>
+              <a class="story-link" href="#capstone-card">See project details ↓</a>
+            </div>
+          </div>
+
+          <div class="highlight-card">
+            <div class="highlight-body no-image">
+              <span class="flag">Live · GEOS 450 Enterprise &amp; Web GIS</span>
+              <h3>Web app builds - Experience Builder &amp; Dashboards</h3>
+              <p>An Experience Builder tutorial build and an operational dashboard, both published live on ArcGIS Online - open either one directly, no login required.</p>
+              <div class="app-links">
+                <a href="https://experience.arcgis.com/experience/06e0d23c4dc94e778987dd8045ba5d32" target="_blank" rel="noopener">Experience Builder app ↗</a>
+                <a href="https://www.arcgis.com/apps/dashboards/599dd1bc20b6475ea48310b21d857752" target="_blank" rel="noopener">Dashboard app ↗</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
       <!-- OVERVIEW -->
-      <section class="section active" id="about">
+      <section class="section" id="about">
         <div class="section-head">
           <h2>Overview</h2>
-          <span class="meta">LAYER 01 / 06</span>
         </div>
         <div class="about-grid">
           <div class="about-text">
@@ -828,7 +890,6 @@
       <section class="section" id="sem1">
         <div class="section-head">
           <h2>Semester 1 projects</h2>
-          <span class="meta">LAYER 02 / 06</span>
         </div>
         <p class="intro">Four courses across the first semester of the BGIS program - cartographic output, GPS-based field capture, surface modelling, and geoprocessing automation - plus a capstone story map tying the semester's work together.</p>
 
@@ -958,7 +1019,6 @@
       <section class="section" id="sem2">
         <div class="section-head">
           <h2>Semester 2 projects</h2>
-          <span class="meta">LAYER 03 / 06</span>
         </div>
         <p class="intro">Second semester coursework across five courses - enterprise and web GIS, advanced data capture through remote sensing, GIS programming, cartographic design, and the applied capstone project. Being updated as coursework is completed.</p>
 
@@ -1744,7 +1804,7 @@ SpatialReference
           <h4>GEOS 459 - Applied GIS Capstone Project</h4>
           <p class="course-desc">A full GIS project lifecycle for a real business challenge - project planning, data capture and management, spatial analysis, output design, client presentation, and project closure.</p>
           <div class="project-grid">
-            <div class="project-card">
+            <div class="project-card" id="capstone-card" style="scroll-margin-top:70px;">
               <img src="images/sem2-geos459-capstone-cover.png" alt="Cover slide for the Avalanche Trigger-Zone Digital Twin capstone project, GEOS 459 Group 1">
               <div class="project-body">
                 <h3>Avalanche Trigger-Zone Digital Twin*</h3>
@@ -1766,7 +1826,6 @@ SpatialReference
       <section class="section" id="resume">
         <div class="section-head">
           <h2>Resume</h2>
-          <span class="meta">LAYER 04 / 06</span>
         </div>
         <p class="intro">Before starting the BGIS program, I spent over 15 years working as an electronics and instrumentation technologist across aerospace, oilfield, and utility industries. That background in troubleshooting, precision testing, and technical documentation now carries over into GIS data quality and field work.</p>
 
@@ -1861,7 +1920,6 @@ SpatialReference
       <section class="section" id="skills">
         <div class="section-head">
           <h2>Skills &amp; tools</h2>
-          <span class="meta">LAYER 05 / 06</span>
         </div>
         <p class="intro">A working list of software and concepts covered so far. Edit freely as your toolkit grows.</p>
         <div class="skills-grid">
@@ -1905,7 +1963,6 @@ SpatialReference
       <section class="section" id="contact">
         <div class="section-head">
           <h2>Contact</h2>
-          <span class="meta">LAYER 06 / 06</span>
         </div>
         <p class="intro">Edit these with your real details before publishing.</p>
         <div class="contact-row">
@@ -1941,24 +1998,42 @@ SpatialReference
 
 </div>
 
+<button class="back-to-top" id="backToTop" aria-label="Back to top">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
 <div class="lightbox" id="lightbox">
   <span class="hint">CLICK TO CLOSE</span>
   <img id="lightboxImg" src="" alt="">
 </div>
 
 <script>
-  const buttons = document.querySelectorAll('.layer-item');
+  // Highlight the current section's nav link as it scrolls into view
+  const navLinks = document.querySelectorAll('#topNav a');
   const sections = document.querySelectorAll('.section');
 
-  buttons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      buttons.forEach(b => b.classList.remove('active'));
-      sections.forEach(s => s.classList.remove('active'));
-      btn.classList.add('active');
-      document.getElementById(btn.dataset.target).classList.add('active');
-      window.scrollTo({top:0, behavior:'smooth'});
+  const spy = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        const id = entry.target.id;
+        navLinks.forEach(link => {
+          link.classList.toggle('active', link.dataset.target === id);
+        });
+      }
     });
-  });  const lightbox = document.getElementById('lightbox');
+  }, { rootMargin: '-45% 0px -50% 0px' });
+  sections.forEach(s => spy.observe(s));
+
+  // Back to top button
+  const backToTop = document.getElementById('backToTop');
+  window.addEventListener('scroll', () => {
+    backToTop.classList.toggle('visible', window.scrollY > 500);
+  }, { passive: true });
+  backToTop.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  const lightbox = document.getElementById('lightbox');
   const lightboxImg = document.getElementById('lightboxImg');
   document.querySelectorAll('.project-card img').forEach(img => {
     img.addEventListener('click', () => {
