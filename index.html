@@ -24,7 +24,10 @@
   html{scroll-behavior:smooth;}
   html,body{margin:0;padding:0;}
   body{
-    background:var(--ink);
+    background-color:var(--ink);
+    background-image:
+      repeating-linear-gradient(0deg, rgba(60,88,101,0.09) 0px, rgba(60,88,101,0.09) 1px, transparent 1px, transparent 88px),
+      repeating-linear-gradient(90deg, rgba(60,88,101,0.09) 0px, rgba(60,88,101,0.09) 1px, transparent 1px, transparent 88px);
     color:var(--paper);
     font-family:'Inter',sans-serif;
     line-height:1.6;
@@ -284,6 +287,19 @@
     padding-top:2.2rem;
     border-top:none;
   }
+
+  /* Static contour accent behind Featured only - no animation, stays calm like the rest of the page */
+  #featured{position:relative; overflow:hidden;}
+  #featured > *:not(.section-bg){position:relative; z-index:1;}
+  .section-bg{
+    position:absolute;
+    inset:0;
+    z-index:0;
+    pointer-events:none;
+    opacity:0.5;
+  }
+  .section-bg svg{width:100%; height:100%; display:block;}
+  .section-bg .contour{fill:none; stroke:var(--line); stroke-width:1; opacity:0.4;}
 
   .section-head{
     display:flex;
@@ -687,10 +703,10 @@
   .capstone-meta strong{color:var(--teal); font-weight:500;}
 
   /* Scroll-reveal (progressive enhancement - only activates once JS adds .reveal) */
-  .reveal{opacity:0; transform:translateY(18px); transition:opacity 0.6s ease, transform 0.6s ease;}
-  .reveal.in-view{opacity:1; transform:translateY(0);}
+  .reveal{opacity:0; transform:translateY(18px); transition:opacity 0.6s ease, transform 0.6s ease; pointer-events:none;}
+  .reveal.in-view{opacity:1; transform:translateY(0); pointer-events:auto;}
   @media(prefers-reduced-motion: reduce){
-    .reveal{opacity:1; transform:none; transition:none;}
+    .reveal{opacity:1; transform:none; transition:none; pointer-events:auto;}
   }
   .team-credit{
     margin-top:2px;
@@ -1000,6 +1016,13 @@
 
       <!-- FEATURED -->
       <section class="section" id="featured">
+        <div class="section-bg" aria-hidden="true">
+          <svg viewBox="0 0 1000 280" preserveAspectRatio="none">
+            <path class="contour" d="M-50,50 Q160,15 360,55 T760,35 T1150,60" />
+            <path class="contour" d="M-50,110 Q200,75 420,115 T820,90 T1150,120" />
+            <path class="contour" d="M-50,170 Q180,135 400,175 T780,150 T1150,180" />
+          </svg>
+        </div>
         <div class="section-head">
           <h2>Featured work</h2>
         </div>
@@ -2209,8 +2232,13 @@ SpatialReference
           revealSpy.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    }, { threshold: 0, rootMargin: '0px 0px -10% 0px' });
     revealTargets.forEach(el => revealSpy.observe(el));
+
+    // Failsafe: if anything is ever stuck hidden (unexpected layout, browser quirk, etc.), force it visible after a few seconds rather than leaving invisible-but-clickable content
+    setTimeout(() => {
+      document.querySelectorAll('.reveal:not(.in-view)').forEach(el => el.classList.add('in-view'));
+    }, 2500);
 
     // Hero contour background: subtle drift is pure CSS; nudge slightly further on mouse move (desktop only)
     const heroBg = document.getElementById('heroBg');
