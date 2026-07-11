@@ -377,6 +377,13 @@
     font-size:1.15rem;
     margin:0;
   }
+  .card-subtitle{
+    font-family:'Inter',sans-serif;
+    font-size:12.5px;
+    font-style:italic;
+    color:var(--paper-dim);
+    margin:-2px 0 2px;
+  }
   .featured-card p{
     color:var(--paper-dim);
     font-size:14px;
@@ -703,7 +710,7 @@
   .capstone-meta strong{color:var(--teal); font-weight:500;}
 
   /* Scroll-reveal (progressive enhancement - only activates once JS adds .reveal) */
-  .reveal{opacity:0; transform:translateY(18px); transition:opacity 0.6s ease, transform 0.6s ease; pointer-events:none;}
+  .reveal{opacity:0; transform:translateY(28px); transition:opacity 0.7s ease, transform 0.7s ease; pointer-events:none;}
   .reveal.in-view{opacity:1; transform:translateY(0); pointer-events:auto;}
   @media(prefers-reduced-motion: reduce){
     .reveal{opacity:1; transform:none; transition:none; pointer-events:auto;}
@@ -1052,12 +1059,13 @@
           </div>
 
           <div class="highlight-card">
-            <img src="images/sem1-storymap-cover.jpg" alt="Rooftop suitability classification map draped over aerial imagery, showing a stadium, running track, and surrounding residential blocks">
+            <img src="images/sem1-storymap-cover.jpg" alt="Rooftop solar potential classification map draped over aerial imagery of a Calgary neighborhood, showing a stadium, running track, and surrounding residential blocks">
             <div class="highlight-body">
               <span class="flag">Semester 1 final project · GEOS 406</span>
-              <h3>Interactive story map</h3>
-              <p>The semester's capstone deliverable, built in ArcGIS StoryMaps - an interactive narrative combining maps, imagery, and text into a guided geospatial story.</p>
-              <p class="team-credit"><strong>Team:</strong> Sanaz · John Abboud</p>
+              <h3>Where the Sun Shines and Income Aligns</h3>
+              <p class="card-subtitle">A GIS-based community analysis of rooftop solar potential in Calgary</p>
+              <p>An interactive ArcGIS StoryMaps narrative examining where rooftop solar suitability aligns - and doesn't - with household income across Calgary neighborhoods.</p>
+              <p class="team-credit"><strong>Team:</strong> Sanaz Ebrahimzadeh Narloo · John Abboud</p>
               <a class="story-link" href="https://storymaps.arcgis.com/stories/4eb50804a2494a84a2c6894d2e86b017" target="_blank" rel="noopener">View the story map ↗</a>
             </div>
           </div>
@@ -1077,9 +1085,10 @@
 
         <div class="featured-card">
           <span class="flag">Semester 1 final project · GEOS 406 - Geospatial Project Foundations</span>
-          <h3>Interactive story map</h3>
-          <p>The semester's capstone deliverable, built in ArcGIS StoryMaps - an interactive narrative combining maps, imagery, and text into a guided geospatial story.</p>
-          <p class="team-credit"><strong>Team:</strong> Sanaz · John Abboud</p>
+          <h3>Where the Sun Shines and Income Aligns</h3>
+          <p class="card-subtitle">A GIS-based community analysis of rooftop solar potential in Calgary</p>
+          <p>An interactive ArcGIS StoryMaps narrative examining where rooftop solar suitability aligns - and doesn't - with household income across Calgary neighborhoods.</p>
+          <p class="team-credit"><strong>Team:</strong> Sanaz Ebrahimzadeh Narloo · John Abboud</p>
           <a class="story-link" href="https://storymaps.arcgis.com/stories/4eb50804a2494a84a2c6894d2e86b017" target="_blank" rel="noopener">View the story map ↗</a>
         </div>
 
@@ -2099,7 +2108,7 @@ SpatialReference
         <div class="section-head">
           <h2>Skills &amp; tools</h2>
         </div>
-        <p class="intro">A working list of software and concepts covered so far. Edit freely as your toolkit grows.</p>
+        <p class="intro">A working list of software and concepts covered so far, growing each semester.</p>
         <div class="skills-grid">
           <div class="skill-block">
             <h3>GIS software</h3>
@@ -2223,14 +2232,19 @@ SpatialReference
   // Scroll-reveal: sections and highlight cards gently rise into view as you scroll
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if(!reduceMotion){
-    const revealTargets = document.querySelectorAll('.section:not(#about), .highlight-card, .featured-card');
+    const revealTargets = document.querySelectorAll('.section:not(#about), .highlight-card, .featured-card, .project-card');
     revealTargets.forEach(el => el.classList.add('reveal'));
+
+    // Stagger project-cards within the same course-group so they cascade in slightly offset, not all at once
+    document.querySelectorAll('.course-group').forEach(group => {
+      group.querySelectorAll('.project-card').forEach((card, i) => {
+        card.style.transitionDelay = (Math.min(i, 5) * 90) + 'ms';
+      });
+    });
+
     const revealSpy = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if(entry.isIntersecting){
-          entry.target.classList.add('in-view');
-          revealSpy.unobserve(entry.target);
-        }
+        entry.target.classList.toggle('in-view', entry.isIntersecting);
       });
     }, { threshold: 0, rootMargin: '0px 0px -10% 0px' });
     revealTargets.forEach(el => revealSpy.observe(el));
