@@ -1,25 +1,25 @@
 # john-abboud.github.io
 
-Personal GIS portfolio for **John Abboud, C.E.T.** — built while completing the Bachelor of Applied Technology, Geographic Information Systems (BGIS) program at SAIT (Calgary, AB). Live at:
+Personal GIS portfolio for **John Abboud, C.E.T.** - built while completing the Bachelor of Applied Technology, Geographic Information Systems (BGIS) program at SAIT (Calgary, AB). Live at:
 
 **[john-abboud.github.io](https://john-abboud.github.io/)**
 
 ## What's here
 
-A single-page site tracking coursework, tools, and project work as the program progresses — cartographic design, spatial analysis, GPS field capture, remote sensing, GIS programming, and the applied capstone project — alongside a downloadable resume and contact details.
+A single-page site tracking coursework, tools, and project work as the program progresses - cartographic design, spatial analysis, GPS field capture, remote sensing, GIS programming, and the applied capstone project - alongside a downloadable resume and contact details.
 
 Sections on the live site:
 
-- **Overview** — program, background, and what I'm looking for
-- **Featured work** — the capstone project, live web apps, and the Semester 1 story map
-- **Coursework** — project write-ups organized by semester and course
-- **Resume** — downloadable PDF (and source Word doc)
-- **Skills & tools** — software and concepts covered so far
+- **Overview** - program, background, and what I'm looking for
+- **Featured work** - the capstone project, live web apps, and the Semester 1 story map
+- **Coursework** - project write-ups organized by semester and course
+- **Resume** - downloadable PDF (and source Word doc)
+- **Skills & tools** - software and concepts covered so far
 - **Contact**
 
 ## Stack
 
-Plain HTML/CSS/JS. No build step, no framework, no bundler — just one `index.html` plus assets, served directly by GitHub Pages.
+Plain HTML/CSS/JS. No build step, no framework, no bundler - just one `index.html` plus assets, served directly by GitHub Pages.
 
 - Syntax highlighting for embedded scripts via [Prism.js](https://prismjs.com/) (loaded from cdnjs)
 - Fonts via Google Fonts (Space Grotesk, Inter, JetBrains Mono)
@@ -64,12 +64,12 @@ No install, no dependencies. Either:
 
 ## Updating the resume
 
-The PDF in `resume/` is the one linked from the site — replace it directly (same filename) and the download button updates automatically. The `.docx` is kept as the editable source; re-export to PDF after making changes.
+The PDF in `resume/` is the one linked from the site - replace it directly (same filename) and the download button updates automatically. The `.docx` is kept as the editable source; re-export to PDF after making changes.
 
 ## Credits
 
-- **Sanaz Ebrahimzadeh Narloo** — co-author, GEOS 406 solar potential story map
-- **Delu Maduekwe** and **Teng Zhang** — capstone team, GEOS 459
+- **Sanaz Ebrahimzadeh Narloo** - co-author, GEOS 406 solar potential story map
+- **Delu Maduekwe** and **Teng Zhang** - capstone team, GEOS 459
 - Client for the capstone project: CIRUS Lab, SAIT
 
 ## Contact
