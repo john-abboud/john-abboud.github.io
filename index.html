@@ -413,9 +413,14 @@
   /* Featured / highlights section (leads the page) */
   .highlight-grid{
     display:grid;
-    grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
+    grid-template-columns:repeat(2, 1fr);
     gap:1.2rem;
   }
+  @media(max-width:699px){
+    .highlight-grid{grid-template-columns:1fr;}
+  }
+  /* If the count is odd, let the last card span the full row instead of leaving it orphaned next to blank space */
+  .highlight-card:last-child:nth-child(odd){grid-column:1 / -1;}
   .highlight-card{
     background:var(--panel);
     border:1px solid var(--teal-dim);
@@ -482,9 +487,13 @@
   /* Project cards */
   .project-grid{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    grid-template-columns:repeat(2, 1fr);
     gap:1.2rem;
   }
+  @media(max-width:699px){
+    .project-grid{grid-template-columns:1fr;}
+  }
+  .project-card:last-child:nth-child(odd){grid-column:1 / -1;}
   .project-card{
     background:var(--panel);
     border:1px solid var(--line);
