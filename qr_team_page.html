@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Highway to the Trigger Zone: Meet the Team</title>
+<style>
+  :root {
+    --navy: #1a3a5c;
+    --navy-dark: #12283f;
+    --accent: #196fc4;
+    --bg: #f7f5ef;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
+    background: var(--bg);
+    color: #222;
+  }
+  header {
+    background: linear-gradient(135deg, var(--navy), var(--navy-dark));
+    color: #fff;
+    padding: 48px 24px 40px;
+    text-align: center;
+  }
+  header h1 {
+    margin: 0 0 8px;
+    font-size: clamp(24px, 4vw, 36px);
+    letter-spacing: 0.5px;
+  }
+  header p {
+    margin: 0;
+    font-size: 16px;
+    opacity: 0.85;
+    max-width: 640px;
+    margin-inline: auto;
+  }
+  main {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 40px 20px 60px;
+  }
+  .intro {
+    text-align: center;
+    margin-bottom: 40px;
+    color: #444;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 28px;
+  }
+  .card {
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    padding: 28px 24px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .card img.qr {
+    width: 160px;
+    height: 160px;
+    margin: 16px 0;
+    border-radius: 8px;
+  }
+  .card h2 {
+    margin: 0;
+    font-size: 20px;
+    color: var(--navy);
+  }
+  .card .role {
+    font-size: 13px;
+    color: #888;
+    margin-top: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .card a.linkedin-btn {
+    margin-top: 14px;
+    display: inline-block;
+    padding: 10px 22px;
+    background: var(--accent);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: background 0.2s ease;
+  }
+  .card a.linkedin-btn:hover {
+    background: #0f5aa3;
+  }
+  .card .scan-hint {
+    font-size: 12px;
+    color: #999;
+    margin-top: 6px;
+  }
+  footer {
+    text-align: center;
+    padding: 28px 20px 40px;
+    font-size: 13px;
+    color: #999;
+  }
+  footer a { color: var(--accent); }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Highway to the Trigger Zone</h1>
+  <p>Automated avalanche trigger-zone mapping for remote, drone-assisted control. SAIT BGIS Capstone, CIRUS Lab</p>
+</header>
+
+<main>
+  <p class="intro">
+    Thanks for scanning the QR code on our poster! Connect with the team on LinkedIn below:
+    scan any card's code directly, or tap the button on this page.
+  </p>
+
+  <div class="team-grid">
+
+    <div class="card">
+      <div class="role">Project Team</div>
+      <h2>John Abboud</h2>
+      <img class="qr" src="qr_linkedin_john.png" alt="QR code linking to John Abboud's LinkedIn profile">
+      <div class="scan-hint">Scan to connect</div>
+      <a class="linkedin-btn" href="https://www.linkedin.com/in/abboud-john" target="_blank" rel="noopener">Connect on LinkedIn</a>
+    </div>
+
+    <div class="card">
+      <div class="role">Project Manager</div>
+      <h2>Delu Maduekwe</h2>
+      <img class="qr" src="qr_linkedin_delu.png" alt="QR code linking to Delu Maduekwe's LinkedIn profile">
+      <div class="scan-hint">Scan to connect</div>
+      <a class="linkedin-btn" href="https://www.linkedin.com/in/delu-maduekwe/" target="_blank" rel="noopener">Connect on LinkedIn</a>
+    </div>
+
+    <div class="card">
+      <div class="role">Project Team</div>
+      <h2>Teng Zhang</h2>
+      <img class="qr" src="qr_linkedin_teng.png" alt="QR code linking to Teng Zhang's LinkedIn profile">
+      <div class="scan-hint">Scan to connect</div>
+      <a class="linkedin-btn" href="https://www.linkedin.com/in/teng-zhang-gis/" target="_blank" rel="noopener">Connect on LinkedIn</a>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  SAIT Bachelor of Applied Technology, Geographic Information Systems &middot; Capstone Project 2026<br>
+  <a href="https://john-abboud.github.io/">john-abboud.github.io</a>
+</footer>
+
+</body>
+</html>
