@@ -536,79 +536,13 @@
     background:#fff;
     padding:8px;
   }
-  .project-body{padding:14px 16px 16px;}
-
-  /* Compare slider - drag-to-reveal imagery comparison, used in place of a static screenshot */
-  .compare-frame{
-    position:relative;
-    width:100%;
-    aspect-ratio:4/3;
-    overflow:hidden;
-    border-bottom:1px solid var(--line);
-    cursor:ew-resize;
-    user-select:none;
-    background:var(--ink);
-    touch-action:none;
-  }
-  .compare-frame img{
-    position:absolute;
-    top:0; left:0;
-    width:100%; height:100%;
-    object-fit:cover;
+  .project-card img.portrait{
+    aspect-ratio:2/3;
+    object-fit:contain;
     object-position:center;
-    display:block;
-    pointer-events:none;
-    border-bottom:none;
-    cursor:default;
+    background:#f4f2ea;
   }
-  .compare-frame .compare-after{clip-path:inset(0 0 0 50%);}
-  .compare-divider{
-    position:absolute;
-    top:0; bottom:0; left:50%;
-    width:2px;
-    background:var(--amber);
-    transform:translateX(-1px);
-    pointer-events:none;
-    box-shadow:0 0 8px rgba(227,162,60,0.55);
-  }
-  .compare-handle{
-    position:absolute;
-    top:50%; left:50%;
-    width:32px; height:32px;
-    border-radius:50%;
-    background:var(--amber);
-    transform:translate(-50%,-50%);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    pointer-events:none;
-    border:2px solid var(--ink);
-  }
-  .compare-handle svg{width:14px;height:14px;}
-  .compare-tag{
-    position:absolute;
-    top:10px;
-    font-family:'JetBrains Mono',monospace;
-    font-size:10px;
-    letter-spacing:0.4px;
-    padding:4px 9px;
-    border-radius:2px;
-    background:rgba(15,31,41,0.82);
-    color:var(--paper);
-    border:1px solid var(--line);
-    pointer-events:none;
-  }
-  .compare-tag.left{left:10px;}
-  .compare-tag.right{right:10px;}
-  .compare-hint{
-    font-family:'JetBrains Mono',monospace;
-    font-size:10px;
-    letter-spacing:0.4px;
-    color:var(--line);
-    text-align:center;
-    padding:6px 0 0;
-    background:var(--panel);
-  }
+  .project-body{padding:14px 16px 16px;}
 
   /* Lightbox */
   .lightbox{
@@ -1124,11 +1058,11 @@
         <div class="highlight-grid">
 
           <div class="highlight-card">
-            <img src="images/sem2-geos459-capstone-cover.png" alt="Cover slide for the Avalanche Trigger-Zone Digital Twin capstone project">
+            <img src="images/sem2-geos459-capstone-cover.png" alt="Highway to the Trigger Zone - Avalanche Trigger-Zone Digital Twin capstone project cover slide">
             <div class="highlight-body">
-              <span class="flag">In progress · GEOS 459 Capstone</span>
-              <h3>Avalanche Trigger-Zone Digital Twin</h3>
-              <p>Identifying likely avalanche trigger zones from Coal Creek to Morrissey Ridge, near Fernie, BC, to help make future drone-based avalanche control more targeted and safer - for client CIRUS Lab, SAIT.</p>
+              <span class="flag">GEOS 459 Capstone · Final presentation</span>
+              <h3>Highway to the Trigger Zone</h3>
+              <p>268 candidate avalanche trigger zones distilled from 72.5 km² of complex terrain on Morrissey Ridge, near Fernie, BC, using a six-factor AHP suitability model built from 1 m LiDAR - for client CIRUS Lab, SAIT.</p>
               <a class="story-link" href="#capstone-card">See project details ↓</a>
             </div>
           </div>
@@ -1150,8 +1084,8 @@
             <div class="highlight-body">
               <span class="flag">Semester 1 final project · GEOS 406</span>
               <h3>Where the Sun Shines and Income Aligns</h3>
-              <p class="card-subtitle">A GIS-based community analysis of rooftop solar potential in Calgary</p>
-              <p>An interactive ArcGIS StoryMaps narrative examining where rooftop solar suitability aligns - and doesn't - with household income across Calgary neighborhoods.</p>
+              <p class="card-subtitle">A GIS-based neighborhood analysis of rooftop solar potential in Calgary</p>
+              <p>A composite suitability index - combining solar radiation modelled from a LiDAR-derived DEM, residential rooftop area, and median household income - ranks Calgary communities for rooftop solar adoption. Hot Spot Analysis and Global Moran's I confirm income and solar suitability cluster together in the city's west and southwest, led by Edgemont, West Springs, Aspen Woods, and Springbank Hill.</p>
               <p class="team-credit"><strong>Team:</strong> Sanaz Ebrahimzadeh Narloo · John Abboud</p>
               <a class="story-link" href="https://storymaps.arcgis.com/stories/4eb50804a2494a84a2c6894d2e86b017" target="_blank" rel="noopener">View the story map ↗</a>
             </div>
@@ -1320,21 +1254,12 @@
             </div>
 
             <div class="project-card">
-              <div class="compare-frame" data-compare>
-                <img src="images/sem2-geos451-ass2-wetland-truecolor.jpg" class="compare-before" alt="Sentinel-2 true colour imagery of the assigned study section">
-                <img src="images/sem2-geos451-ass2-wetland-classified.jpg" class="compare-after" alt="Deep learning wetland classification output for the same section">
-                <div class="compare-tag left">True colour</div>
-                <div class="compare-tag right">U-Net output</div>
-                <div class="compare-divider"></div>
-                <div class="compare-handle">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="#0F1F29" stroke-width="2.4" stroke-linecap="round"><path d="M12 2v20M2 12h20"/></svg>
-                </div>
-              </div>
-              <div class="compare-hint">drag to compare</div>
+              <img src="images/sem2-geos451-devils-head-wildfire.jpg" alt="Burn severity map of the Devil's Head wildfire near Blackrock Mountain, Alberta, classified into unburned, low, medium, and high severity using dNBR">
               <div class="project-body">
-                <h3>Wetland mapping with a custom deep learning model</h3>
-                <p>Built and trained a U-Net pixel classifier (ResNet-34 backbone) to detect wetlands from Sentinel-2 imagery, using the Alberta Merged Wetland Inventory as training data across a full township and withholding one section entirely for testing. Training data was manually quality-checked against true colour, NDVI, and MNDWI reference layers before export. On the held-out section, the model reached 0.81 precision, 0.94 recall, and a Kappa of 0.76 against an independent ground truth layer.</p>
-                <div class="tool-tags"><span>ArcGIS Pro</span><span>Deep learning</span><span>U-Net / ResNet-34</span><span>Sentinel-2</span><span>GEOS 451</span></div>
+                <h3>Final project: Devil's Head wildfire burn severity</h3>
+                <p>Mapped burn severity for the 2020 Devil's Head (Blackrock Mountain) wildfire in Alberta's Bighorn Backcountry using the differenced Normalized Burn Ratio (dNBR) method, comparing Sentinel-2 imagery from before and after the fire. The reclassified severity raster measured a total burned area of 2,478.40 ha - closely matching the historically reported 2,420 ha - across unburned, low, medium, and high severity classes.</p>
+                <div class="tool-tags"><span>ArcGIS Pro</span><span>Remote sensing</span><span>dNBR analysis</span><span>Sentinel-2</span><span>GEOS 451</span></div>
+                <div class="script-download">↓ <a href="reports/sem2-geos451-devils-head-wildfire-report.pdf" target="_blank" rel="noopener">Download full report (PDF)</a></div>
               </div>
             </div>
           </div>
@@ -1658,7 +1583,6 @@ https://pro.arcgis.com/en/pro-app/latest/arcpy/get-started/what-is-arcpy-.htm
 #
 # Author:      John Abboud
 # Created:     19/06/2026
-# Copyright:   (c) 456460 2026
 #-------------------------------------------------------------------------------
 
 # Import the arcpy module
@@ -2029,6 +1953,1837 @@ SpatialReference
               </div>
             </div>
 
+            <div class="project-card">
+              <img class="portrait" src="images/sem2-geos456-wildlife-habitat-connectivity.jpg" alt="Map showing a Kananaskis-area park boundary, bear habitat patches, and optimal least-cost routes connecting them for wildlife corridor planning">
+              <div class="project-body">
+                <h3>Final project: Connecting wildlife habitat corridors</h3>
+                <p>An end-to-end automated workflow that identifies optimal wildlife movement corridors between bear habitat patches within a Kananaskis-area park boundary. The script manages and converts input data, runs raster-based spatial analysis to build a cost surface, and uses Optimal Region Connections to compute least-cost routes linking each habitat patch, with mapping automated via ArcPy.</p>
+                <div class="tool-tags"><span>Python</span><span>ArcPy</span><span>Spatial Analyst</span><span>Least-cost path</span><span>GEOS 456</span></div>
+                <details class="code-toggle">
+                  <summary>View full script</summary>
+                  <div class="code-wrap"><pre><code class="language-python">#-------------------------------------------------------------------------------
+# Name:        Final Project: Connecting Wildlife Habitat
+# Purpose:     The purpose of this assignment is to incorporate Python functionality
+#              learned throughout the semester, including data management,
+#              data conversion, selections, spatial analyses using raster datasets,
+#              vector datasets and mapping automation using arcpy.
+#
+# Author:      John Abboud
+# Created:     03/08/2026
+#-------------------------------------------------------------------------------
+
+
+
+# Import the arcpy module
+import arcpy
+import os
+import gc
+
+# Set environment workspace and overwrite properties
+arcpy.env.workspace = r&quot;C:\GEOS456\FinalProject&quot;
+arcpy.env.overwriteOutput = True
+
+# Root project folder - everything below references this location
+root = r&quot;C:\GEOS456\FinalProject&quot;
+gdb = os.path.join(root, &quot;KananaskisWildlife.gdb&quot;)
+
+# Spatial reference object used throughout the script
+# NAD_1983_UTM_Zone_11N - the project&#x27;s target projection
+UTM11N = arcpy.SpatialReference(26911)
+
+# Helper function used after every geoprocessing tool
+# prints the first and last message returned by the most recently run tool
+def print_messages():
+    msgCount = arcpy.GetMessageCount()
+    if msgCount &gt; 0:
+        print(arcpy.GetMessage(0))
+        print(arcpy.GetMessage(msgCount - 1))
+
+
+# Check if the assignment geodatabase already exists.
+# If it exists, delete it prior to making a new one.
+
+print(&quot;Checking for an existing KananaskisWildlife.gdb&quot;)
+
+arcpy.env.workspace = root
+
+if arcpy.Exists(gdb):
+    arcpy.management.Delete(gdb)
+    print_messages()
+    print(&quot;Existing KananaskisWildlife.gdb was found and deleted&quot;)
+else:
+    print(&quot;No existing KananaskisWildlife.gdb was found&quot;)
+print(&quot;&quot;)
+
+
+# Create the file geodatabase and feature datasets to store the data
+
+print(&quot;Creating KananaskisWildlife.gdb and feature datasets&quot;)
+
+arcpy.management.CreateFileGDB(root, &quot;KananaskisWildlife.gdb&quot;)
+print_messages()
+print(&quot;KananaskisWildlife.gdb created&quot;)
+print(&quot;&quot;)
+
+# Kananaskis = base/context layers, Wildlife = habitat + analysis outputs,
+# Reference = administrative/index grids (townships, NTS map sheets)
+fds_list = [&quot;Kananaskis&quot;, &quot;Wildlife&quot;, &quot;Reference&quot;]
+for fds in fds_list:
+    arcpy.management.CreateFeatureDataset(gdb, fds, UTM11N)
+    print_messages()
+print(&quot;Feature datasets created: Kananaskis, Wildlife, Reference&quot;)
+print(&quot;&quot;)
+
+
+# List of every raw data folder that contains shapefiles for this assignment,
+# and dictionary mapping each raw shapefile name to its feature dataset and
+# clean output name in the geodatabase
+
+raw_vector_folders = [
+    os.path.join(root, &quot;ATS&quot;),
+    os.path.join(root, &quot;Kananaskis&quot;),
+    os.path.join(root, &quot;Landcover&quot;),
+    os.path.join(root, &quot;NTS&quot;, &quot;NTS-50&quot;),
+    os.path.join(root, &quot;Wildlife&quot;)
+]
+
+raw_raster_folders = [
+    os.path.join(root, &quot;dem&quot;)
+]
+
+fds_assignment = {
+    &quot;KCountry_Bound&quot;: (&quot;Kananaskis&quot;, &quot;Park_Boundary&quot;),
+    &quot;Road&quot;:           (&quot;Kananaskis&quot;, &quot;Roads&quot;),
+    &quot;Trails&quot;:         (&quot;Kananaskis&quot;, &quot;Trails&quot;),
+    &quot;Hydro&quot;:          (&quot;Kananaskis&quot;, &quot;Hydro&quot;),
+    &quot;Transportation&quot;: (&quot;Kananaskis&quot;, &quot;Transportation&quot;),
+    &quot;AB_Landcover&quot;:   (&quot;Kananaskis&quot;, &quot;AB_Landcover&quot;),
+    &quot;Bear_Habitat&quot;:   (&quot;Wildlife&quot;, &quot;Bear_Habitat&quot;),
+    &quot;ESA&quot;:            (&quot;Wildlife&quot;, &quot;ESA&quot;),
+    &quot;AB_Township&quot;:    (&quot;Reference&quot;, &quot;AB_Township&quot;),
+    &quot;NTS50&quot;:          (&quot;Reference&quot;, &quot;NTS_50&quot;)
+}
+
+
+# Import and project all vector layers into the geodatabase.
+# Each shapefile&#x27;s spatial reference is checked at runtime: layers already in
+# UTM 11N are copied as-is, everything else is projected.
+
+print(&quot;Copying/projecting vector layers into KananaskisWildlife.gdb...&quot;)
+for folder in raw_vector_folders:
+    arcpy.env.workspace = folder
+    fcList = arcpy.ListFeatureClasses() or []
+    print(&quot;Folder:&quot;, folder)
+
+    for fc in fcList:
+        fcDesc = arcpy.Describe(fc)
+        fc_name = os.path.splitext(fc)[0]
+        print(&quot;    Name:&quot;, fc)
+        print(&quot;        Shape Type:&quot;, fcDesc.shapeType)
+        print(&quot;        Spatial Reference:&quot;, fcDesc.spatialReference.name)
+
+        if fc_name not in fds_assignment:
+            print(f&quot;        Skipping {fc_name}, no feature dataset assigned&quot;)
+            continue
+
+        target_fds, out_name = fds_assignment[fc_name]
+        out_path = os.path.join(gdb, target_fds, out_name)
+
+        # factoryCode 26911 = NAD83 UTM Zone 11N
+        if fcDesc.spatialReference.factoryCode == 26911:
+            arcpy.management.CopyFeatures(fc, out_path)
+        else:
+            arcpy.management.Project(fc, out_path, UTM11N)
+        print_messages()
+    print(&quot;&quot;)
+
+
+# Import and project the DEM into the geodatabase, resampled to 25m
+
+print(&quot;Copying/projecting DEM into KananaskisWildlife.gdb...&quot;)
+for folder in raw_raster_folders:
+    arcpy.env.workspace = folder
+    rasList = arcpy.ListRasters() or []
+    print(&quot;Folder:&quot;, folder)
+
+    for ras in rasList:
+        rasDesc = arcpy.Describe(ras)
+        out_path = os.path.join(gdb, &quot;DEM&quot;)
+        print(&quot;    Name:&quot;, ras)
+        print(&quot;        Spatial Reference:&quot;, rasDesc.spatialReference.name)
+        print(&quot;        Cell Size:&quot;, rasDesc.meanCellWidth)
+
+        if rasDesc.spatialReference.factoryCode == 26911:
+            arcpy.management.CopyRaster(ras, out_path)
+        else:
+            # BILINEAR resampling for continuous elevation data
+            arcpy.management.ProjectRaster(ras, out_path, UTM11N, &quot;BILINEAR&quot;, 25)
+        print_messages()
+    print(&quot;&quot;)
+
+# Reset the workspace to the geodatabase now that the folder-by-folder import
+# loops above are done, so any tool with an unspecified output defaults safely
+# into the gdb instead of the last raw data folder
+arcpy.env.workspace = gdb
+
+
+# Clip all layers to the Kananaskis Park Boundary.
+# Physical/context layers get a hard Clip. Reference grids (townships, NTS
+# sheets) use Select by Location instead, so whole units are kept rather than
+# sliced at the boundary edge.
+
+boundary = os.path.join(gdb, &quot;Kananaskis&quot;, &quot;Park_Boundary&quot;)
+
+print(&quot;Clipping vector layers to the park boundary...&quot;)
+
+clip_targets = {
+    &quot;Kananaskis&quot;: [&quot;Roads&quot;, &quot;Trails&quot;, &quot;Hydro&quot;, &quot;Transportation&quot;, &quot;AB_Landcover&quot;],
+    &quot;Wildlife&quot;: [&quot;Bear_Habitat&quot;, &quot;ESA&quot;]
+}
+
+for fds, layers in clip_targets.items():
+    for layer in layers:
+        in_fc = os.path.join(gdb, fds, layer)
+        out_fc = os.path.join(gdb, fds, layer + &quot;_Clip&quot;)
+        arcpy.analysis.Clip(in_fc, boundary, out_fc)
+        print_messages()
+        print(f&quot;    {layer} clipped&quot;)
+print(&quot;&quot;)
+
+print(&quot;Selecting reference layers that intersect the park boundary...&quot;)
+ref_layers = [&quot;AB_Township&quot;, &quot;NTS_50&quot;]
+
+for layer in ref_layers:
+    in_fc = os.path.join(gdb, &quot;Reference&quot;, layer)
+    lyr_name = layer + &quot;_lyr&quot;
+    out_fc = os.path.join(gdb, &quot;Reference&quot;, layer + &quot;_Clip&quot;)
+
+    arcpy.management.MakeFeatureLayer(in_fc, lyr_name)
+    arcpy.management.SelectLayerByLocation(lyr_name, &quot;INTERSECT&quot;, boundary)
+    arcpy.management.CopyFeatures(lyr_name, out_fc)
+    print_messages()
+    print(f&quot;    {layer} intersecting features copied&quot;)
+print(&quot;&quot;)
+
+# Clip the DEM raster to the boundary&#x27;s exact shape
+print(&quot;Clipping DEM to the park boundary...&quot;)
+dem_in = os.path.join(gdb, &quot;DEM&quot;)
+dem_out = os.path.join(gdb, &quot;DEM_Clip&quot;)
+arcpy.management.Clip(dem_in, &quot;#&quot;, dem_out, boundary, &quot;#&quot;, &quot;ClippingGeometry&quot;, &quot;NO_MAINTAIN_EXTENT&quot;)
+print_messages()
+print(&quot;DEM clipped&quot;)
+print(&quot;&quot;)
+
+
+# Convert the landcover polygon to a 25m raster, then reclassify using the
+# assignment&#x27;s landcover cost scale (1 = most desirable, 10 = least desirable)
+
+arcpy.CheckOutExtension(&quot;Spatial&quot;)
+
+print(&quot;Converting AB_Landcover_Clip polygon to a 25m raster...&quot;)
+landcover_clip = os.path.join(gdb, &quot;Kananaskis&quot;, &quot;AB_Landcover_Clip&quot;)
+landcover_raster = os.path.join(gdb, &quot;Landcover_Raster&quot;)
+
+arcpy.conversion.PolygonToRaster(
+    in_features=landcover_clip,
+    value_field=&quot;LC_class&quot;,
+    out_rasterdataset=landcover_raster,
+    cell_assignment=&quot;MAXIMUM_AREA&quot;,
+    cellsize=25
+)
+print_messages()
+print(&quot;Landcover raster created&quot;)
+print(&quot;&quot;)
+
+print(&quot;Reclassifying Landcover raster using the assignment&#x27;s landcover cost scale...&quot;)
+rcls_landcover_out = os.path.join(gdb, &quot;RCLS_Landcover&quot;)
+
+# ABMI code -&gt; rubric scale value
+#   20 Water -&gt; 10          50 Shrubland -&gt; 3          210 Coniferous Forest -&gt; 1
+#   31 Snow/Ice -&gt; 8         110 Grassland -&gt; 2          220 Broadleaf Forest -&gt; 1
+#   32 Rock/Rubble -&gt; 7      120 Agriculture -&gt; 9        230 Mixed Forest -&gt; 1
+#   33 Exposed Land -&gt; 6
+#   34 Developed -&gt; 10
+remap = arcpy.sa.RemapValue([
+    [20, 10], [31, 8], [32, 7], [33, 6], [34, 10],
+    [50, 3], [110, 2], [120, 9], [210, 1], [220, 1], [230, 1]
+])
+
+rcls_landcover = arcpy.sa.Reclassify(landcover_raster, &quot;VALUE&quot;, remap, &quot;DATA&quot;)
+rcls_landcover.save(rcls_landcover_out)
+print_messages()
+print(&quot;Landcover reclassification completed&quot;)
+print(&quot;&quot;)
+
+
+# Terrain ruggedness: Focal Statistics (RANGE, 3x3) on the clipped DEM.
+# High values = choppy, uneven terrain; low values = smooth, easy to cross.
+
+print(&quot;Calculating terrain ruggedness from DEM_Clip...&quot;)
+dem_clip = arcpy.Raster(os.path.join(gdb, &quot;DEM_Clip&quot;))
+terrain_ruggedness_out = os.path.join(gdb, &quot;Terrain_Ruggedness&quot;)
+
+terrain_ruggedness = arcpy.sa.FocalStatistics(dem_clip, &quot;Rectangle 3 3 CELL&quot;, &quot;RANGE&quot;, &quot;DATA&quot;)
+terrain_ruggedness.save(terrain_ruggedness_out)
+print_messages()
+print(&quot;Terrain ruggedness raster created&quot;)
+print(&quot;&quot;)
+
+
+# Distance Accumulation: distance from every cell to the nearest hydrology,
+# trail, and road feature. Cell size forced to 25 since these are vector
+# sources and won&#x27;t otherwise inherit the project&#x27;s raster cell size.
+
+print(&quot;Running Distance Accumulation on Hydro_Clip, Trails_Clip, and Road_Clip...&quot;)
+
+with arcpy.EnvManager(cellSize=25):
+    hydro_clip = os.path.join(gdb, &quot;Kananaskis&quot;, &quot;Hydro_Clip&quot;)
+    distaccum_hydro_out = os.path.join(gdb, &quot;DistAccum_Hydro&quot;)
+    distaccum_hydro = arcpy.sa.DistanceAccumulation(hydro_clip)
+    distaccum_hydro.save(distaccum_hydro_out)
+    print_messages()
+    print(&quot;DistAccum_Hydro created&quot;)
+
+    trails_clip = os.path.join(gdb, &quot;Kananaskis&quot;, &quot;Trails_Clip&quot;)
+    distaccum_trails_out = os.path.join(gdb, &quot;DistAccum_Trails&quot;)
+    distaccum_trails = arcpy.sa.DistanceAccumulation(trails_clip)
+    distaccum_trails.save(distaccum_trails_out)
+    print_messages()
+    print(&quot;DistAccum_Trails created&quot;)
+
+    road_clip = os.path.join(gdb, &quot;Kananaskis&quot;, &quot;Roads_Clip&quot;)
+    distaccum_roads_out = os.path.join(gdb, &quot;DistAccum_Roads&quot;)
+    distaccum_roads = arcpy.sa.DistanceAccumulation(road_clip)
+    distaccum_roads.save(distaccum_roads_out)
+    print_messages()
+    print(&quot;DistAccum_Roads created&quot;)
+print(&quot;&quot;)
+
+
+# Rescale By Function: convert each raw cost input onto a shared 0-10 scale.
+# Terrain + Hydro are increasing (low input = low cost); Trails + Roads are
+# decreasing (from/to scale swapped). Each output is re-clipped to the boundary.
+
+def rescale_and_clip(raster_name, out_name, from_scale, to_scale):
+    src = arcpy.Raster(os.path.join(gdb, raster_name))
+    tf = arcpy.sa.TfLinear(src.minimum, src.maximum)
+    rescaled = arcpy.sa.RescaleByFunction(src, tf, from_scale, to_scale)
+    rescaled_out = os.path.join(gdb, out_name)
+    rescaled.save(rescaled_out)
+    print_messages()
+
+    clip_out = os.path.join(gdb, out_name + &quot;_Clip&quot;)
+    arcpy.management.Clip(rescaled_out, &quot;#&quot;, clip_out, boundary, &quot;#&quot;,
+                           &quot;ClippingGeometry&quot;, &quot;NO_MAINTAIN_EXTENT&quot;)
+    print_messages()
+    print(f&quot;{out_name} rescaled and clipped&quot;)
+    print(&quot;&quot;)
+
+print(&quot;Rescaling terrain ruggedness and proximity rasters to a 0-10 cost scale...&quot;)
+rescale_and_clip(&quot;Terrain_Ruggedness&quot;, &quot;RESCALE_Terrain&quot;, 0, 10)
+rescale_and_clip(&quot;DistAccum_Hydro&quot;, &quot;RESCALE_Hydro&quot;, 0, 10)
+rescale_and_clip(&quot;DistAccum_Trails&quot;, &quot;RESCALE_Trails&quot;, 10, 0)
+rescale_and_clip(&quot;DistAccum_Roads&quot;, &quot;RESCALE_Roads&quot;, 10, 0)
+
+
+# Weighted Sum: combine the five 0-10 cost inputs into one cost surface.
+# All weights = 1, per the assignment&#x27;s default weighting.
+
+print(&quot;Combining five cost inputs into a single weighted cost surface...&quot;)
+
+rcls_landcover_r = arcpy.Raster(os.path.join(gdb, &quot;RCLS_Landcover&quot;))
+rescale_terrain_r = arcpy.Raster(os.path.join(gdb, &quot;RESCALE_Terrain_Clip&quot;))
+rescale_hydro_r = arcpy.Raster(os.path.join(gdb, &quot;RESCALE_Hydro_Clip&quot;))
+rescale_trails_r = arcpy.Raster(os.path.join(gdb, &quot;RESCALE_Trails_Clip&quot;))
+rescale_roads_r = arcpy.Raster(os.path.join(gdb, &quot;RESCALE_Roads_Clip&quot;))
+
+ws_table = arcpy.sa.WSTable([
+    [rcls_landcover_r, &quot;VALUE&quot;, 1],
+    [rescale_terrain_r, &quot;VALUE&quot;, 1],
+    [rescale_hydro_r, &quot;VALUE&quot;, 1],
+    [rescale_trails_r, &quot;VALUE&quot;, 1],
+    [rescale_roads_r, &quot;VALUE&quot;, 1]
+])
+
+cost_surface_out = os.path.join(gdb, &quot;Cost_Surface&quot;)
+cost_surface = arcpy.sa.WeightedSum(ws_table)
+cost_surface.save(cost_surface_out)
+print_messages()
+print(&quot;Cost_Surface created&quot;)
+print(&quot;&quot;)
+
+
+# Optimal Region Connections: generate least-cost corridor routes connecting
+# every pair of bear habitat patches across the combined cost surface.
+# out_neighbor_paths is given an explicit gdb path rather than &quot;#&quot;, since
+# leaving it unspecified caused a persistent &quot;table already exists&quot; error.
+
+print(&quot;Generating optimal wildlife corridor routes between habitat patches...&quot;)
+
+bear_habitat = os.path.join(gdb, &quot;Wildlife&quot;, &quot;Bear_Habitat&quot;)
+optimal_routes_out = os.path.join(gdb, &quot;Wildlife&quot;, &quot;Optimal_Routes&quot;)
+
+neighbor_paths_out = os.path.join(gdb, &quot;NeighborPaths&quot;)
+arcpy.sa.OptimalRegionConnections(
+    bear_habitat,           # in_input_data
+    optimal_routes_out,     # out_optimal_paths
+    &quot;#&quot;,                    # in_input_barrier_data
+    cost_surface_out,       # in_cost_raster
+    neighbor_paths_out,     # out_neighbor_paths
+    &quot;PLANAR&quot;,               # in_distance_method
+    &quot;GENERATE_CONNECTIONS&quot;  # in_connection_type
+)
+print_messages()
+print(&quot;Optimal_Routes created&quot;)
+
+# Confirm where the output actually landed, since this tool has been observed
+# to write to the geodatabase root instead of the given feature dataset path
+root_level_path = os.path.join(gdb, &quot;Optimal_Routes&quot;)
+if arcpy.Exists(optimal_routes_out):
+    print(&quot;Optimal_Routes confirmed at the intended Wildlife feature dataset path&quot;)
+elif arcpy.Exists(root_level_path):
+    print(&quot;NOTE: Optimal_Routes was written to the geodatabase root instead&quot;)
+    optimal_routes_out = root_level_path
+else:
+    raise RuntimeError(&quot;Optimal_Routes was not found after OptimalRegionConnections completed.&quot;)
+print(&quot;&quot;)
+
+
+# Grid statistics and printed results
+
+boundary_zone = os.path.join(gdb, &quot;Kananaskis&quot;, &quot;Park_Boundary&quot;)
+
+# 1. Average elevation of Kananaskis Country
+print(&quot;Calculating average elevation of Kananaskis Country...&quot;)
+avg_elev_table = os.path.join(gdb, &quot;TBL_AvgElevation&quot;)
+arcpy.sa.ZonalStatisticsAsTable(
+    in_zone_data=boundary_zone,
+    zone_field=&quot;OBJECTID&quot;,
+    in_value_raster=dem_clip,
+    out_table=avg_elev_table,
+    statistics_type=&quot;MEAN&quot;
+)
+print_messages()
+with arcpy.da.SearchCursor(avg_elev_table, [&quot;MEAN&quot;]) as cursor:
+    for row in cursor:
+        print(f&quot;Average elevation of Kananaskis Country: {row[0]:.2f} m&quot;)
+print(&quot;&quot;)
+
+# 2. Area of each landcover type within the park
+print(&quot;Calculating landcover area by class within the park...&quot;)
+landcover_clip_poly = os.path.join(gdb, &quot;Kananaskis&quot;, &quot;AB_Landcover_Clip&quot;)
+landcover_area_table = os.path.join(gdb, &quot;TBL_LandcoverArea&quot;)
+with arcpy.EnvManager(cellSize=25):
+    arcpy.sa.TabulateArea(
+        in_zone_data=boundary_zone,
+        zone_field=&quot;OBJECTID&quot;,
+        in_class_data=landcover_clip_poly,
+        class_field=&quot;LC_class&quot;,
+        out_table=landcover_area_table
+    )
+print_messages()
+print(&quot;TBL_LandcoverArea created&quot;)
+print(&quot;&quot;)
+
+# 3. Total length of the optimal routes, using a SHAPE@LENGTH geometry token
+print(&quot;Calculating total length of the optimal routes...&quot;)
+total_length = 0
+with arcpy.da.SearchCursor(optimal_routes_out, [&quot;SHAPE@LENGTH&quot;]) as cursor:
+    for row in cursor:
+        total_length += row[0]
+print(f&quot;Total length of optimal routes: {total_length:.2f} m&quot;)
+print(&quot;&quot;)
+
+# 4. NTS map sheets and TWP-RGE-MER covering the park
+print(&quot;Identifying NTS map sheets and townships covering the park...&quot;)
+nts_clip = os.path.join(gdb, &quot;Reference&quot;, &quot;NTS_50_Clip&quot;)
+township_clip = os.path.join(gdb, &quot;Reference&quot;, &quot;AB_Township_Clip&quot;)
+
+nts_sheets = set()
+with arcpy.da.SearchCursor(nts_clip, [&quot;NAME&quot;]) as cursor:
+    for row in cursor:
+        nts_sheets.add(row[0])
+print(&quot;1:50,000 NTS map sheets covering Kananaskis Country:&quot;)
+for sheet in sorted(nts_sheets):
+    print(f&quot;    {sheet}&quot;)
+
+townships = set()
+with arcpy.da.SearchCursor(township_clip, [&quot;DESCRIPTOR&quot;]) as cursor:
+    for row in cursor:
+        townships.add(row[0])
+print(&quot;Townships (TWP-RGE-MER) covering Kananaskis Country:&quot;)
+for twp in sorted(townships):
+    print(f&quot;    {twp}&quot;)
+print(&quot;&quot;)
+
+
+# Final cleanup: remove every intermediate/working dataset that isn&#x27;t part of
+# the assignment&#x27;s Final Data Requirements list. Transportation is excluded
+# from KEEP since it was never actually part of that required list, even
+# though it was processed earlier because it happened to be in the raw folder.
+
+optimal_routes_final = optimal_routes_out
+
+print(&quot;Removing intermediate datasets not required in the final deliverable...&quot;)
+KEEP = {
+    os.path.join(gdb, &quot;Kananaskis&quot;, &quot;Park_Boundary&quot;),
+    os.path.join(gdb, &quot;Kananaskis&quot;, &quot;Roads_Clip&quot;),
+    os.path.join(gdb, &quot;Kananaskis&quot;, &quot;Trails_Clip&quot;),
+    os.path.join(gdb, &quot;Kananaskis&quot;, &quot;Hydro_Clip&quot;),
+    os.path.join(gdb, &quot;Kananaskis&quot;, &quot;AB_Landcover_Clip&quot;),
+    os.path.join(gdb, &quot;Wildlife&quot;, &quot;Bear_Habitat&quot;),
+    os.path.join(gdb, &quot;Wildlife&quot;, &quot;ESA_Clip&quot;),
+    optimal_routes_out,
+    os.path.join(gdb, &quot;Reference&quot;, &quot;AB_Township_Clip&quot;),
+    os.path.join(gdb, &quot;Reference&quot;, &quot;NTS_50_Clip&quot;),
+    os.path.join(gdb, &quot;DEM_Clip&quot;),
+    os.path.join(gdb, &quot;Terrain_Ruggedness&quot;),
+    os.path.join(gdb, &quot;TBL_AvgElevation&quot;),
+    os.path.join(gdb, &quot;TBL_LandcoverArea&quot;),
+}
+
+# Paths normalized before comparing, since arcpy.da.Walk&#x27;s returned paths
+# don&#x27;t always match hardcoded paths on exact string equality
+KEEP_NORMALIZED = {os.path.normcase(os.path.normpath(p)) for p in KEEP}
+
+all_items = []
+for dirpath, dirnames, filenames in arcpy.da.Walk(gdb, datatype=[&quot;FeatureClass&quot;, &quot;RasterDataset&quot;, &quot;Table&quot;]):
+    for fname in filenames:
+        all_items.append(os.path.join(dirpath, fname))
+
+for item in all_items:
+    if os.path.normcase(os.path.normpath(item)) not in KEEP_NORMALIZED:
+        arcpy.management.Delete(item)
+        print_messages()
+        print(f&quot;    Deleted intermediate dataset: {os.path.basename(item)}&quot;)
+print(&quot;&quot;)
+
+# List and describe every final dataset that remains: geometry and spatial
+# reference for feature classes, cell size and spatial reference for rasters,
+# and name only for tables
+print(&quot;Final feature classes, rasters, and tables in KananaskisWildlife.gdb:&quot;)
+for item in sorted(KEEP):
+    if not arcpy.Exists(item):
+        continue
+    desc = arcpy.Describe(item)
+    name = os.path.basename(item)
+    if desc.dataType == &quot;FeatureClass&quot;:
+        print(f&quot;    {name} (feature class)&quot;)
+        print(f&quot;        Geometry: {desc.shapeType}&quot;)
+        print(f&quot;        Spatial Reference: {desc.spatialReference.name}&quot;)
+    elif desc.dataType == &quot;RasterDataset&quot;:
+        print(f&quot;    {name} (raster)&quot;)
+        print(f&quot;        Cell Size: {desc.meanCellWidth}&quot;)
+        print(f&quot;        Spatial Reference: {desc.spatialReference.name}&quot;)
+    elif desc.dataType == &quot;Table&quot;:
+        print(f&quot;    {name} (table)&quot;)
+    else:
+        print(f&quot;    {name} ({desc.dataType})&quot;)
+print(&quot;&quot;)
+
+# Release Python-side Raster object references to datasets just deleted above,
+# and clear the workspace cache, since stale in-memory handles to deleted data
+# can cause confusing errors in the map export step that follows
+del (dem_clip, rcls_landcover_r, rescale_terrain_r, rescale_hydro_r,
+     rescale_trails_r, rescale_roads_r, terrain_ruggedness, landcover_raster,
+     rcls_landcover, distaccum_hydro, distaccum_trails, distaccum_roads, cost_surface)
+arcpy.management.ClearWorkspaceCache(gdb)
+print_messages()
+print(&quot;Workspace cache cleared&quot;)
+print(&quot;&quot;)
+
+
+# Populate the provided map layout and export to PDF.
+# The .aprx is opened by its explicit path rather than &quot;CURRENT&quot;, since this
+# script runs through PyScripter&#x27;s remote interpreter, not ArcGIS Pro&#x27;s own
+# Python window.
+
+print(&quot;Populating the map layout and exporting to PDF...&quot;)
+aprx_path = os.path.join(root, &quot;GEOS456_FinalProject.aprx&quot;)
+aprx = arcpy.mp.ArcGISProject(aprx_path)
+active_map = aprx.listMaps()[0]
+layout = aprx.listLayouts()[0]
+
+# Park_Boundary is added first so it draws underneath Bear_Habitat and
+# Optimal_Routes (Pro adds each new layer to the top of the draw order)
+for lyr_path in [os.path.join(gdb, &quot;Kananaskis&quot;, &quot;Park_Boundary&quot;), os.path.join(gdb, &quot;Wildlife&quot;, &quot;Bear_Habitat&quot;), optimal_routes_final]:
+    if not arcpy.Exists(lyr_path):
+        print(f&quot;    WARNING: {lyr_path} does not exist, skipping&quot;)
+        continue
+    catalog_path = arcpy.Describe(lyr_path).catalogPath
+    print(f&quot;    Adding {catalog_path}&quot;)
+    active_map.addDataFromPath(catalog_path)
+print_messages()
+
+# Zoom the map frame to the park boundary, since addDataFromPath adds a layer
+# to the map but does not zoom to show it
+print(&quot;Setting map frame extent to show the park boundary and its contents...&quot;)
+map_frame = layout.listElements(&quot;MAPFRAME_ELEMENT&quot;)[0]
+boundary_layers = active_map.listLayers(&quot;Park_Boundary&quot;)
+if boundary_layers:
+    map_frame.camera.setExtent(map_frame.getLayerExtent(boundary_layers[0], True))
+    print(&quot;Map frame extent set to Park_Boundary&quot;)
+else:
+    print(&quot;    WARNING: Park_Boundary layer not found, map frame extent left unchanged&quot;)
+print(&quot;&quot;)
+
+# Replace the layout template&#x27;s placeholder title text
+print(&quot;Updating map title...&quot;)
+title_updated = False
+for elem in layout.listElements(&quot;TEXT_ELEMENT&quot;):
+    if &quot;TITLE&quot; in elem.name.upper():
+        elem.text = &quot;Connecting Wildlife Habitat&quot;
+        print(f&quot;    Updated title element: {elem.name}&quot;)
+        title_updated = True
+if not title_updated:
+    print(&quot;    WARNING: no title text element found, template title left unchanged&quot;)
+print(&quot;&quot;)
+
+pdf_out = os.path.join(root, &quot;GEOS456_FP_Abboud_John.pdf&quot;)
+layout.exportToPDF(pdf_out)
+print_messages()
+print(f&quot;Map exported to {pdf_out}&quot;)
+print(&quot;&quot;)
+
+# Release the aprx and every related map/layout object, so ArcGIS Pro
+# doesn&#x27;t leave the project locked/read-only. del aprx alone was not enough,
+# since active_map, layout, map_frame, and boundary_layers still referenced it.
+del aprx, active_map, layout, map_frame, boundary_layers
+try:
+    del elem
+except NameError:
+    pass
+gc.collect()
+print(&quot;aprx and related map/layout objects released&quot;)
+print(&quot;&quot;)
+
+# Assignment complete :)
+
+print(&quot;Script complete - KananaskisWildlife.gdb and the map PDF have been created&quot;)
+
+
+#-------------------------------------------------------------------------------
+# Name:        Final Project: Connecting Wildlife Habitat
+# Purpose:     Build a geoprocessing model to identify optimal wildlife corridor
+#              routes connecting bear habitat patches in Kananaskis Country,
+#              using a weighted cost surface based on landcover, terrain
+#              ruggedness, and proximity to roads, trails, and hydrology.
+#
+# Author:      John Abboud
+# Created:     03/08/2026
+#-------------------------------------------------------------------------------
+
+# Import the arcpy module
+import arcpy
+import os
+import gc
+
+# Set environment workspace and overwrite properties
+arcpy.env.workspace = r&quot;C:\GEOS456\FinalProject&quot;
+arcpy.env.overwriteOutput = True
+
+# Root project folder - everything below references this location
+root = r&quot;C:\GEOS456\FinalProject&quot;
+gdb = os.path.join(root, &quot;KananaskisWildlife.gdb&quot;)
+
+# Spatial reference object used throughout the script
+# NAD_1983_UTM_Zone_11N - the project&#x27;s target projection
+UTM11N = arcpy.SpatialReference(26911)
+
+# Helper function used after every geoprocessing tool
+# prints the first and last message returned by the most recently run tool
+def print_messages():
+    msgCount = arcpy.GetMessageCount()
+    if msgCount &gt; 0:
+        print(arcpy.GetMessage(0))
+        print(arcpy.GetMessage(msgCount - 1))
+
+
+# Check if the assignment geodatabase already exists.
+# If it exists, delete it prior to making a new one.
+
+print(&quot;Checking for an existing KananaskisWildlife.gdb&quot;)
+
+arcpy.env.workspace = root
+
+if arcpy.Exists(gdb):
+    arcpy.management.Delete(gdb)
+    print_messages()
+    print(&quot;Existing KananaskisWildlife.gdb was found and deleted&quot;)
+else:
+    print(&quot;No existing KananaskisWildlife.gdb was found&quot;)
+print(&quot;&quot;)
+
+
+# Create the file geodatabase and feature datasets to store the data
+
+print(&quot;Creating KananaskisWildlife.gdb and feature datasets&quot;)
+
+arcpy.management.CreateFileGDB(root, &quot;KananaskisWildlife.gdb&quot;)
+print_messages()
+print(&quot;KananaskisWildlife.gdb created&quot;)
+print(&quot;&quot;)
+
+# Kananaskis = base/context layers, Wildlife = habitat + analysis outputs,
+# Reference = administrative/index grids (townships, NTS map sheets)
+fds_list = [&quot;Kananaskis&quot;, &quot;Wildlife&quot;, &quot;Reference&quot;]
+for fds in fds_list:
+    arcpy.management.CreateFeatureDataset(gdb, fds, UTM11N)
+    print_messages()
+print(&quot;Feature datasets created: Kananaskis, Wildlife, Reference&quot;)
+print(&quot;&quot;)
+
+
+# List of every raw data folder that contains shapefiles for this assignment,
+# and dictionary mapping each raw shapefile name to its feature dataset and
+# clean output name in the geodatabase
+
+raw_vector_folders = [
+    os.path.join(root, &quot;ATS&quot;),
+    os.path.join(root, &quot;Kananaskis&quot;),
+    os.path.join(root, &quot;Landcover&quot;),
+    os.path.join(root, &quot;NTS&quot;, &quot;NTS-50&quot;),
+    os.path.join(root, &quot;Wildlife&quot;)
+]
+
+raw_raster_folders = [
+    os.path.join(root, &quot;dem&quot;)
+]
+
+fds_assignment = {
+    &quot;KCountry_Bound&quot;: (&quot;Kananaskis&quot;, &quot;Park_Boundary&quot;),
+    &quot;Road&quot;:           (&quot;Kananaskis&quot;, &quot;Roads&quot;),
+    &quot;Trails&quot;:         (&quot;Kananaskis&quot;, &quot;Trails&quot;),
+    &quot;Hydro&quot;:          (&quot;Kananaskis&quot;, &quot;Hydro&quot;),
+    &quot;Transportation&quot;: (&quot;Kananaskis&quot;, &quot;Transportation&quot;),
+    &quot;AB_Landcover&quot;:   (&quot;Kananaskis&quot;, &quot;AB_Landcover&quot;),
+    &quot;Bear_Habitat&quot;:   (&quot;Wildlife&quot;, &quot;Bear_Habitat&quot;),
+    &quot;ESA&quot;:            (&quot;Wildlife&quot;, &quot;ESA&quot;),
+    &quot;AB_Township&quot;:    (&quot;Reference&quot;, &quot;AB_Township&quot;),
+    &quot;NTS50&quot;:          (&quot;Reference&quot;, &quot;NTS_50&quot;)
+}
+
+
+# Import and project all vector layers into the geodatabase.
+# Each shapefile&#x27;s spatial reference is checked at runtime: layers already in
+# UTM 11N are copied as-is, everything else is projected.
+
+print(&quot;Copying/projecting vector layers into KananaskisWildlife.gdb...&quot;)
+for folder in raw_vector_folders:
+    arcpy.env.workspace = folder
+    fcList = arcpy.ListFeatureClasses() or []
+    print(&quot;Folder:&quot;, folder)
+
+    for fc in fcList:
+        fcDesc = arcpy.Describe(fc)
+        fc_name = os.path.splitext(fc)[0]
+        print(&quot;    Name:&quot;, fc)
+        print(&quot;        Shape Type:&quot;, fcDesc.shapeType)
+        print(&quot;        Spatial Reference:&quot;, fcDesc.spatialReference.name)
+
+        if fc_name not in fds_assignment:
+            print(f&quot;        Skipping {fc_name}, no feature dataset assigned&quot;)
+            continue
+
+        target_fds, out_name = fds_assignment[fc_name]
+        out_path = os.path.join(gdb, target_fds, out_name)
+
+        # factoryCode 26911 = NAD83 UTM Zone 11N
+        if fcDesc.spatialReference.factoryCode == 26911:
+            arcpy.management.CopyFeatures(fc, out_path)
+        else:
+            arcpy.management.Project(fc, out_path, UTM11N)
+        print_messages()
+    print(&quot;&quot;)
+
+
+# Import and project the DEM into the geodatabase, resampled to 25m
+
+print(&quot;Copying/projecting DEM into KananaskisWildlife.gdb...&quot;)
+for folder in raw_raster_folders:
+    arcpy.env.workspace = folder
+    rasList = arcpy.ListRasters() or []
+    print(&quot;Folder:&quot;, folder)
+
+    for ras in rasList:
+        rasDesc = arcpy.Describe(ras)
+        out_path = os.path.join(gdb, &quot;DEM&quot;)
+        print(&quot;    Name:&quot;, ras)
+        print(&quot;        Spatial Reference:&quot;, rasDesc.spatialReference.name)
+        print(&quot;        Cell Size:&quot;, rasDesc.meanCellWidth)
+
+        if rasDesc.spatialReference.factoryCode == 26911:
+            arcpy.management.CopyRaster(ras, out_path)
+        else:
+            # BILINEAR resampling for continuous elevation data
+            arcpy.management.ProjectRaster(ras, out_path, UTM11N, &quot;BILINEAR&quot;, 25)
+        print_messages()
+    print(&quot;&quot;)
+
+# Reset the workspace to the geodatabase now that the folder-by-folder import
+# loops above are done, so any tool with an unspecified output defaults safely
+# into the gdb instead of the last raw data folder
+arcpy.env.workspace = gdb
+
+
+# Clip all layers to the Kananaskis Park Boundary.
+# Physical/context layers get a hard Clip. Reference grids (townships, NTS
+# sheets) use Select by Location instead, so whole units are kept rather than
+# sliced at the boundary edge.
+
+boundary = os.path.join(gdb, &quot;Kananaskis&quot;, &quot;Park_Boundary&quot;)
+
+print(&quot;Clipping vector layers to the park boundary...&quot;)
+
+clip_targets = {
+    &quot;Kananaskis&quot;: [&quot;Roads&quot;, &quot;Trails&quot;, &quot;Hydro&quot;, &quot;Transportation&quot;, &quot;AB_Landcover&quot;],
+    &quot;Wildlife&quot;: [&quot;Bear_Habitat&quot;, &quot;ESA&quot;]
+}
+
+for fds, layers in clip_targets.items():
+    for layer in layers:
+        in_fc = os.path.join(gdb, fds, layer)
+        out_fc = os.path.join(gdb, fds, layer + &quot;_Clip&quot;)
+        arcpy.analysis.Clip(in_fc, boundary, out_fc)
+        print_messages()
+        print(f&quot;    {layer} clipped&quot;)
+print(&quot;&quot;)
+
+print(&quot;Selecting reference layers that intersect the park boundary...&quot;)
+ref_layers = [&quot;AB_Township&quot;, &quot;NTS_50&quot;]
+
+for layer in ref_layers:
+    in_fc = os.path.join(gdb, &quot;Reference&quot;, layer)
+    lyr_name = layer + &quot;_lyr&quot;
+    out_fc = os.path.join(gdb, &quot;Reference&quot;, layer + &quot;_Clip&quot;)
+
+    arcpy.management.MakeFeatureLayer(in_fc, lyr_name)
+    arcpy.management.SelectLayerByLocation(lyr_name, &quot;INTERSECT&quot;, boundary)
+    arcpy.management.CopyFeatures(lyr_name, out_fc)
+    print_messages()
+    print(f&quot;    {layer} intersecting features copied&quot;)
+print(&quot;&quot;)
+
+# Clip the DEM raster to the boundary&#x27;s exact shape
+print(&quot;Clipping DEM to the park boundary...&quot;)
+dem_in = os.path.join(gdb, &quot;DEM&quot;)
+dem_out = os.path.join(gdb, &quot;DEM_Clip&quot;)
+arcpy.management.Clip(dem_in, &quot;#&quot;, dem_out, boundary, &quot;#&quot;, &quot;ClippingGeometry&quot;, &quot;NO_MAINTAIN_EXTENT&quot;)
+print_messages()
+print(&quot;DEM clipped&quot;)
+print(&quot;&quot;)
+
+
+# Convert the landcover polygon to a 25m raster, then reclassify using the
+# assignment&#x27;s landcover cost scale (1 = most desirable, 10 = least desirable)
+
+arcpy.CheckOutExtension(&quot;Spatial&quot;)
+
+print(&quot;Converting AB_Landcover_Clip polygon to a 25m raster...&quot;)
+landcover_clip = os.path.join(gdb, &quot;Kananaskis&quot;, &quot;AB_Landcover_Clip&quot;)
+landcover_raster = os.path.join(gdb, &quot;Landcover_Raster&quot;)
+
+arcpy.conversion.PolygonToRaster(
+    in_features=landcover_clip,
+    value_field=&quot;LC_class&quot;,
+    out_rasterdataset=landcover_raster,
+    cell_assignment=&quot;MAXIMUM_AREA&quot;,
+    cellsize=25
+)
+print_messages()
+print(&quot;Landcover raster created&quot;)
+print(&quot;&quot;)
+
+print(&quot;Reclassifying Landcover raster using the assignment&#x27;s landcover cost scale...&quot;)
+rcls_landcover_out = os.path.join(gdb, &quot;RCLS_Landcover&quot;)
+
+# ABMI code -&gt; rubric scale value
+#   20 Water -&gt; 10          50 Shrubland -&gt; 3          210 Coniferous Forest -&gt; 1
+#   31 Snow/Ice -&gt; 8         110 Grassland -&gt; 2          220 Broadleaf Forest -&gt; 1
+#   32 Rock/Rubble -&gt; 7      120 Agriculture -&gt; 9        230 Mixed Forest -&gt; 1
+#   33 Exposed Land -&gt; 6
+#   34 Developed -&gt; 10
+remap = arcpy.sa.RemapValue([
+    [20, 10], [31, 8], [32, 7], [33, 6], [34, 10],
+    [50, 3], [110, 2], [120, 9], [210, 1], [220, 1], [230, 1]
+])
+
+rcls_landcover = arcpy.sa.Reclassify(landcover_raster, &quot;VALUE&quot;, remap, &quot;DATA&quot;)
+rcls_landcover.save(rcls_landcover_out)
+print_messages()
+print(&quot;Landcover reclassification completed&quot;)
+print(&quot;&quot;)
+
+
+# Terrain ruggedness: Focal Statistics (RANGE, 3x3) on the clipped DEM.
+# High values = choppy, uneven terrain; low values = smooth, easy to cross.
+
+print(&quot;Calculating terrain ruggedness from DEM_Clip...&quot;)
+dem_clip = arcpy.Raster(os.path.join(gdb, &quot;DEM_Clip&quot;))
+terrain_ruggedness_out = os.path.join(gdb, &quot;Terrain_Ruggedness&quot;)
+
+terrain_ruggedness = arcpy.sa.FocalStatistics(dem_clip, &quot;Rectangle 3 3 CELL&quot;, &quot;RANGE&quot;, &quot;DATA&quot;)
+terrain_ruggedness.save(terrain_ruggedness_out)
+print_messages()
+print(&quot;Terrain ruggedness raster created&quot;)
+print(&quot;&quot;)
+
+
+# Distance Accumulation: distance from every cell to the nearest hydrology,
+# trail, and road feature. Cell size forced to 25 since these are vector
+# sources and won&#x27;t otherwise inherit the project&#x27;s raster cell size.
+
+print(&quot;Running Distance Accumulation on Hydro_Clip, Trails_Clip, and Road_Clip...&quot;)
+
+with arcpy.EnvManager(cellSize=25):
+    hydro_clip = os.path.join(gdb, &quot;Kananaskis&quot;, &quot;Hydro_Clip&quot;)
+    distaccum_hydro_out = os.path.join(gdb, &quot;DistAccum_Hydro&quot;)
+    distaccum_hydro = arcpy.sa.DistanceAccumulation(hydro_clip)
+    distaccum_hydro.save(distaccum_hydro_out)
+    print_messages()
+    print(&quot;DistAccum_Hydro created&quot;)
+
+    trails_clip = os.path.join(gdb, &quot;Kananaskis&quot;, &quot;Trails_Clip&quot;)
+    distaccum_trails_out = os.path.join(gdb, &quot;DistAccum_Trails&quot;)
+    distaccum_trails = arcpy.sa.DistanceAccumulation(trails_clip)
+    distaccum_trails.save(distaccum_trails_out)
+    print_messages()
+    print(&quot;DistAccum_Trails created&quot;)
+
+    road_clip = os.path.join(gdb, &quot;Kananaskis&quot;, &quot;Roads_Clip&quot;)
+    distaccum_roads_out = os.path.join(gdb, &quot;DistAccum_Roads&quot;)
+    distaccum_roads = arcpy.sa.DistanceAccumulation(road_clip)
+    distaccum_roads.save(distaccum_roads_out)
+    print_messages()
+    print(&quot;DistAccum_Roads created&quot;)
+print(&quot;&quot;)
+
+
+# Rescale By Function: convert each raw cost input onto a shared 0-10 scale.
+# Terrain + Hydro are increasing (low input = low cost); Trails + Roads are
+# decreasing (from/to scale swapped). Each output is re-clipped to the boundary.
+
+def rescale_and_clip(raster_name, out_name, from_scale, to_scale):
+    src = arcpy.Raster(os.path.join(gdb, raster_name))
+    tf = arcpy.sa.TfLinear(src.minimum, src.maximum)
+    rescaled = arcpy.sa.RescaleByFunction(src, tf, from_scale, to_scale)
+    rescaled_out = os.path.join(gdb, out_name)
+    rescaled.save(rescaled_out)
+    print_messages()
+
+    clip_out = os.path.join(gdb, out_name + &quot;_Clip&quot;)
+    arcpy.management.Clip(rescaled_out, &quot;#&quot;, clip_out, boundary, &quot;#&quot;,
+                           &quot;ClippingGeometry&quot;, &quot;NO_MAINTAIN_EXTENT&quot;)
+    print_messages()
+    print(f&quot;{out_name} rescaled and clipped&quot;)
+    print(&quot;&quot;)
+
+print(&quot;Rescaling terrain ruggedness and proximity rasters to a 0-10 cost scale...&quot;)
+rescale_and_clip(&quot;Terrain_Ruggedness&quot;, &quot;RESCALE_Terrain&quot;, 0, 10)
+rescale_and_clip(&quot;DistAccum_Hydro&quot;, &quot;RESCALE_Hydro&quot;, 0, 10)
+rescale_and_clip(&quot;DistAccum_Trails&quot;, &quot;RESCALE_Trails&quot;, 10, 0)
+rescale_and_clip(&quot;DistAccum_Roads&quot;, &quot;RESCALE_Roads&quot;, 10, 0)
+
+
+# Weighted Sum: combine the five 0-10 cost inputs into one cost surface.
+# All weights = 1, per the assignment&#x27;s default weighting.
+
+print(&quot;Combining five cost inputs into a single weighted cost surface...&quot;)
+
+rcls_landcover_r = arcpy.Raster(os.path.join(gdb, &quot;RCLS_Landcover&quot;))
+rescale_terrain_r = arcpy.Raster(os.path.join(gdb, &quot;RESCALE_Terrain_Clip&quot;))
+rescale_hydro_r = arcpy.Raster(os.path.join(gdb, &quot;RESCALE_Hydro_Clip&quot;))
+rescale_trails_r = arcpy.Raster(os.path.join(gdb, &quot;RESCALE_Trails_Clip&quot;))
+rescale_roads_r = arcpy.Raster(os.path.join(gdb, &quot;RESCALE_Roads_Clip&quot;))
+
+ws_table = arcpy.sa.WSTable([
+    [rcls_landcover_r, &quot;VALUE&quot;, 1],
+    [rescale_terrain_r, &quot;VALUE&quot;, 1],
+    [rescale_hydro_r, &quot;VALUE&quot;, 1],
+    [rescale_trails_r, &quot;VALUE&quot;, 1],
+    [rescale_roads_r, &quot;VALUE&quot;, 1]
+])
+
+cost_surface_out = os.path.join(gdb, &quot;Cost_Surface&quot;)
+cost_surface = arcpy.sa.WeightedSum(ws_table)
+cost_surface.save(cost_surface_out)
+print_messages()
+print(&quot;Cost_Surface created&quot;)
+print(&quot;&quot;)
+
+
+# Optimal Region Connections: generate least-cost corridor routes connecting
+# every pair of bear habitat patches across the combined cost surface.
+# out_neighbor_paths is given an explicit gdb path rather than &quot;#&quot;, since
+# leaving it unspecified caused a persistent &quot;table already exists&quot; error.
+
+print(&quot;Generating optimal wildlife corridor routes between habitat patches...&quot;)
+
+bear_habitat = os.path.join(gdb, &quot;Wildlife&quot;, &quot;Bear_Habitat&quot;)
+optimal_routes_out = os.path.join(gdb, &quot;Wildlife&quot;, &quot;Optimal_Routes&quot;)
+
+neighbor_paths_out = os.path.join(gdb, &quot;NeighborPaths&quot;)
+arcpy.sa.OptimalRegionConnections(
+    bear_habitat,           # in_input_data
+    optimal_routes_out,     # out_optimal_paths
+    &quot;#&quot;,                    # in_input_barrier_data
+    cost_surface_out,       # in_cost_raster
+    neighbor_paths_out,     # out_neighbor_paths
+    &quot;PLANAR&quot;,               # in_distance_method
+    &quot;GENERATE_CONNECTIONS&quot;  # in_connection_type
+)
+print_messages()
+print(&quot;Optimal_Routes created&quot;)
+
+# Confirm where the output actually landed, since this tool has been observed
+# to write to the geodatabase root instead of the given feature dataset path
+root_level_path = os.path.join(gdb, &quot;Optimal_Routes&quot;)
+if arcpy.Exists(optimal_routes_out):
+    print(&quot;Optimal_Routes confirmed at the intended Wildlife feature dataset path&quot;)
+elif arcpy.Exists(root_level_path):
+    print(&quot;NOTE: Optimal_Routes was written to the geodatabase root instead&quot;)
+    optimal_routes_out = root_level_path
+else:
+    raise RuntimeError(&quot;Optimal_Routes was not found after OptimalRegionConnections completed.&quot;)
+print(&quot;&quot;)
+
+
+# Grid statistics and printed results
+
+boundary_zone = os.path.join(gdb, &quot;Kananaskis&quot;, &quot;Park_Boundary&quot;)
+
+# 1. Average elevation of Kananaskis Country
+print(&quot;Calculating average elevation of Kananaskis Country...&quot;)
+avg_elev_table = os.path.join(gdb, &quot;TBL_AvgElevation&quot;)
+arcpy.sa.ZonalStatisticsAsTable(
+    in_zone_data=boundary_zone,
+    zone_field=&quot;OBJECTID&quot;,
+    in_value_raster=dem_clip,
+    out_table=avg_elev_table,
+    statistics_type=&quot;MEAN&quot;
+)
+print_messages()
+with arcpy.da.SearchCursor(avg_elev_table, [&quot;MEAN&quot;]) as cursor:
+    for row in cursor:
+        print(f&quot;Average elevation of Kananaskis Country: {row[0]:.2f} m&quot;)
+print(&quot;&quot;)
+
+# 2. Area of each landcover type within the park
+print(&quot;Calculating landcover area by class within the park...&quot;)
+landcover_clip_poly = os.path.join(gdb, &quot;Kananaskis&quot;, &quot;AB_Landcover_Clip&quot;)
+landcover_area_table = os.path.join(gdb, &quot;TBL_LandcoverArea&quot;)
+with arcpy.EnvManager(cellSize=25):
+    arcpy.sa.TabulateArea(
+        in_zone_data=boundary_zone,
+        zone_field=&quot;OBJECTID&quot;,
+        in_class_data=landcover_clip_poly,
+        class_field=&quot;LC_class&quot;,
+        out_table=landcover_area_table
+    )
+print_messages()
+print(&quot;TBL_LandcoverArea created&quot;)
+print(&quot;&quot;)
+
+# 3. Total length of the optimal routes, using a SHAPE@LENGTH geometry token
+print(&quot;Calculating total length of the optimal routes...&quot;)
+total_length = 0
+with arcpy.da.SearchCursor(optimal_routes_out, [&quot;SHAPE@LENGTH&quot;]) as cursor:
+    for row in cursor:
+        total_length += row[0]
+print(f&quot;Total length of optimal routes: {total_length:.2f} m&quot;)
+print(&quot;&quot;)
+
+# 4. NTS map sheets and TWP-RGE-MER covering the park
+print(&quot;Identifying NTS map sheets and townships covering the park...&quot;)
+nts_clip = os.path.join(gdb, &quot;Reference&quot;, &quot;NTS_50_Clip&quot;)
+township_clip = os.path.join(gdb, &quot;Reference&quot;, &quot;AB_Township_Clip&quot;)
+
+nts_sheets = set()
+with arcpy.da.SearchCursor(nts_clip, [&quot;NAME&quot;]) as cursor:
+    for row in cursor:
+        nts_sheets.add(row[0])
+print(&quot;1:50,000 NTS map sheets covering Kananaskis Country:&quot;)
+for sheet in sorted(nts_sheets):
+    print(f&quot;    {sheet}&quot;)
+
+townships = set()
+with arcpy.da.SearchCursor(township_clip, [&quot;DESCRIPTOR&quot;]) as cursor:
+    for row in cursor:
+        townships.add(row[0])
+print(&quot;Townships (TWP-RGE-MER) covering Kananaskis Country:&quot;)
+for twp in sorted(townships):
+    print(f&quot;    {twp}&quot;)
+print(&quot;&quot;)
+
+
+# Final cleanup: remove every intermediate/working dataset that isn&#x27;t part of
+# the assignment&#x27;s Final Data Requirements list. Transportation is excluded
+# from KEEP since it was never actually part of that required list, even
+# though it was processed earlier because it happened to be in the raw folder.
+
+optimal_routes_final = optimal_routes_out
+
+print(&quot;Removing intermediate datasets not required in the final deliverable...&quot;)
+KEEP = {
+    os.path.join(gdb, &quot;Kananaskis&quot;, &quot;Park_Boundary&quot;),
+    os.path.join(gdb, &quot;Kananaskis&quot;, &quot;Roads_Clip&quot;),
+    os.path.join(gdb, &quot;Kananaskis&quot;, &quot;Trails_Clip&quot;),
+    os.path.join(gdb, &quot;Kananaskis&quot;, &quot;Hydro_Clip&quot;),
+    os.path.join(gdb, &quot;Kananaskis&quot;, &quot;AB_Landcover_Clip&quot;),
+    os.path.join(gdb, &quot;Wildlife&quot;, &quot;Bear_Habitat&quot;),
+    os.path.join(gdb, &quot;Wildlife&quot;, &quot;ESA_Clip&quot;),
+    optimal_routes_out,
+    os.path.join(gdb, &quot;Reference&quot;, &quot;AB_Township_Clip&quot;),
+    os.path.join(gdb, &quot;Reference&quot;, &quot;NTS_50_Clip&quot;),
+    os.path.join(gdb, &quot;DEM_Clip&quot;),
+    os.path.join(gdb, &quot;Terrain_Ruggedness&quot;),
+    os.path.join(gdb, &quot;TBL_AvgElevation&quot;),
+    os.path.join(gdb, &quot;TBL_LandcoverArea&quot;),
+}
+
+# Paths normalized before comparing, since arcpy.da.Walk&#x27;s returned paths
+# don&#x27;t always match hardcoded paths on exact string equality
+KEEP_NORMALIZED = {os.path.normcase(os.path.normpath(p)) for p in KEEP}
+
+all_items = []
+for dirpath, dirnames, filenames in arcpy.da.Walk(gdb, datatype=[&quot;FeatureClass&quot;, &quot;RasterDataset&quot;, &quot;Table&quot;]):
+    for fname in filenames:
+        all_items.append(os.path.join(dirpath, fname))
+
+for item in all_items:
+    if os.path.normcase(os.path.normpath(item)) not in KEEP_NORMALIZED:
+        arcpy.management.Delete(item)
+        print_messages()
+        print(f&quot;    Deleted intermediate dataset: {os.path.basename(item)}&quot;)
+print(&quot;&quot;)
+
+# List and describe every final dataset that remains: geometry and spatial
+# reference for feature classes, cell size and spatial reference for rasters,
+# and name only for tables
+print(&quot;Final feature classes, rasters, and tables in KananaskisWildlife.gdb:&quot;)
+for item in sorted(KEEP):
+    if not arcpy.Exists(item):
+        continue
+    desc = arcpy.Describe(item)
+    name = os.path.basename(item)
+    if desc.dataType == &quot;FeatureClass&quot;:
+        print(f&quot;    {name} (feature class)&quot;)
+        print(f&quot;        Geometry: {desc.shapeType}&quot;)
+        print(f&quot;        Spatial Reference: {desc.spatialReference.name}&quot;)
+    elif desc.dataType == &quot;RasterDataset&quot;:
+        print(f&quot;    {name} (raster)&quot;)
+        print(f&quot;        Cell Size: {desc.meanCellWidth}&quot;)
+        print(f&quot;        Spatial Reference: {desc.spatialReference.name}&quot;)
+    elif desc.dataType == &quot;Table&quot;:
+        print(f&quot;    {name} (table)&quot;)
+    else:
+        print(f&quot;    {name} ({desc.dataType})&quot;)
+print(&quot;&quot;)
+
+# Release Python-side Raster object references to datasets just deleted above,
+# and clear the workspace cache, since stale in-memory handles to deleted data
+# can cause confusing errors in the map export step that follows
+del (dem_clip, rcls_landcover_r, rescale_terrain_r, rescale_hydro_r,
+     rescale_trails_r, rescale_roads_r, terrain_ruggedness, landcover_raster,
+     rcls_landcover, distaccum_hydro, distaccum_trails, distaccum_roads, cost_surface)
+arcpy.management.ClearWorkspaceCache(gdb)
+print_messages()
+print(&quot;Workspace cache cleared&quot;)
+print(&quot;&quot;)
+
+
+# Populate the provided map layout and export to PDF.
+# The .aprx is opened by its explicit path rather than &quot;CURRENT&quot;, since this
+# script runs through PyScripter&#x27;s remote interpreter, not ArcGIS Pro&#x27;s own
+# Python window.
+
+print(&quot;Populating the map layout and exporting to PDF...&quot;)
+aprx_path = os.path.join(root, &quot;GEOS456_FinalProject.aprx&quot;)
+aprx = arcpy.mp.ArcGISProject(aprx_path)
+active_map = aprx.listMaps()[0]
+layout = aprx.listLayouts()[0]
+
+# Park_Boundary is added first so it draws underneath Bear_Habitat and
+# Optimal_Routes (Pro adds each new layer to the top of the draw order)
+for lyr_path in [os.path.join(gdb, &quot;Kananaskis&quot;, &quot;Park_Boundary&quot;), os.path.join(gdb, &quot;Wildlife&quot;, &quot;Bear_Habitat&quot;), optimal_routes_final]:
+    if not arcpy.Exists(lyr_path):
+        print(f&quot;    WARNING: {lyr_path} does not exist, skipping&quot;)
+        continue
+    catalog_path = arcpy.Describe(lyr_path).catalogPath
+    print(f&quot;    Adding {catalog_path}&quot;)
+    active_map.addDataFromPath(catalog_path)
+print_messages()
+
+# Zoom the map frame to the park boundary, since addDataFromPath adds a layer
+# to the map but does not zoom to show it
+print(&quot;Setting map frame extent to show the park boundary and its contents...&quot;)
+map_frame = layout.listElements(&quot;MAPFRAME_ELEMENT&quot;)[0]
+boundary_layers = active_map.listLayers(&quot;Park_Boundary&quot;)
+if boundary_layers:
+    map_frame.camera.setExtent(map_frame.getLayerExtent(boundary_layers[0], True))
+    print(&quot;Map frame extent set to Park_Boundary&quot;)
+else:
+    print(&quot;    WARNING: Park_Boundary layer not found, map frame extent left unchanged&quot;)
+print(&quot;&quot;)
+
+# Replace the layout template&#x27;s placeholder title text
+print(&quot;Updating map title...&quot;)
+title_updated = False
+for elem in layout.listElements(&quot;TEXT_ELEMENT&quot;):
+    if &quot;TITLE&quot; in elem.name.upper():
+        elem.text = &quot;Connecting Wildlife Habitat&quot;
+        print(f&quot;    Updated title element: {elem.name}&quot;)
+        title_updated = True
+if not title_updated:
+    print(&quot;    WARNING: no title text element found, template title left unchanged&quot;)
+print(&quot;&quot;)
+
+pdf_out = os.path.join(root, &quot;GEOS456_FP_Abboud_John.pdf&quot;)
+layout.exportToPDF(pdf_out)
+print_messages()
+print(f&quot;Map exported to {pdf_out}&quot;)
+print(&quot;&quot;)
+
+# Release the aprx and every related map/layout object, so ArcGIS Pro
+# doesn&#x27;t leave the project locked/read-only. del aprx alone was not enough,
+# since active_map, layout, map_frame, and boundary_layers still referenced it.
+del aprx, active_map, layout, map_frame, boundary_layers
+try:
+    del elem
+except NameError:
+    pass
+gc.collect()
+print(&quot;aprx and related map/layout objects released&quot;)
+print(&quot;&quot;)
+
+# Assignment complete :)
+
+print(&quot;Script complete - KananaskisWildlife.gdb and the map PDF have been created&quot;)
+
+
+&#x27;&#x27;&#x27;
+Sources Consulted:
+
+An Overview of ArcPy functions
+    https://pro.arcgis.com/en/pro-app/latest/arcpy/functions/alphabetical-list-of-arcpy-functions.htm
+ArcGISProject class
+    https://pro.arcgis.com/en/pro-app/latest/arcpy/mapping/arcgisproject-class.htm
+Check Out Extension / Check In Extension
+    https://pro.arcgis.com/en/pro-app/latest/arcpy/functions/checkoutextension.htm
+Clear Workspace Cache (Data Management)
+    https://pro.arcgis.com/en/pro-app/latest/tool-reference/data-management/clear-workspace-cache.htm
+Clip (Analysis)
+    https://pro.arcgis.com/en/pro-app/latest/tool-reference/analysis/clip.htm
+Clip (Data Management, raster)
+    https://pro.arcgis.com/en/pro-app/latest/tool-reference/data-management/clip.htm
+Copy Features (Data Management)
+    https://pro.arcgis.com/en/pro-app/latest/tool-reference/data-management/copy-features.htm
+Copy Raster (Data Management)
+    https://pro.arcgis.com/en/pro-app/latest/tool-reference/data-management/copy-raster.htm
+Create Feature Dataset (Data Management)
+    https://pro.arcgis.com/en/pro-app/latest/tool-reference/data-management/create-feature-dataset.htm
+Create File GDB (Data Management)
+    https://pro.arcgis.com/en/pro-app/latest/tool-reference/data-management/create-file-gdb.htm
+Delete (Data Management)
+    https://pro.arcgis.com/en/pro-app/latest/tool-reference/data-management/delete.htm
+Describe
+    https://pro.arcgis.com/en/pro-app/latest/arcpy/functions/describe.htm
+Distance Accumulation (Spatial Analyst)
+    https://pro.arcgis.com/en/pro-app/latest/tool-reference/spatial-analyst/distance-accumulation.htm
+EnvManager class
+    https://pro.arcgis.com/en/pro-app/latest/arcpy/classes/envmanager.htm
+Exists
+    https://pro.arcgis.com/en/pro-app/latest/arcpy/functions/exists.htm
+Focal Statistics (Spatial Analyst)
+    https://pro.arcgis.com/en/pro-app/latest/tool-reference/spatial-analyst/focal-statistics.htm
+GetMessage / GetMessageCount
+    https://pro.arcgis.com/en/pro-app/latest/arcpy/functions/getmessage.htm
+Layout class
+    https://pro.arcgis.com/en/pro-app/latest/arcpy/mapping/layout-class.htm
+List Feature Classes
+    https://pro.arcgis.com/en/pro-app/latest/arcpy/functions/listfeatureclasses.htm
+List Rasters
+    https://pro.arcgis.com/en/pro-app/latest/arcpy/functions/listrasters.htm
+Make Feature Layer (Data Management)
+    https://pro.arcgis.com/en/pro-app/latest/tool-reference/data-management/make-feature-layer.htm
+Map class
+    https://pro.arcgis.com/en/pro-app/latest/arcpy/mapping/map-class.htm
+Optimal Region Connections (Spatial Analyst)
+    https://pro.arcgis.com/en/pro-app/latest/tool-reference/spatial-analyst/optimal-region-connections.htm
+Polygon to Raster (Conversion)
+    https://pro.arcgis.com/en/pro-app/latest/tool-reference/conversion/polygon-to-raster.htm
+Project (Data Management)
+    https://pro.arcgis.com/en/pro-app/latest/tool-reference/data-management/project.htm
+Project Raster (Data Management)
+    https://pro.arcgis.com/en/pro-app/latest/tool-reference/data-management/project-raster.htm
+Raster class
+    https://pro.arcgis.com/en/pro-app/latest/arcpy/classes/raster-object.htm
+Reclassify (Spatial Analyst)
+    https://pro.arcgis.com/en/pro-app/latest/tool-reference/spatial-analyst/reclassify.htm
+RemapValue class
+    https://pro.arcgis.com/en/pro-app/latest/arcpy/spatial-analyst/remapvalue-class.htm
+Rescale by Function (Spatial Analyst)
+    https://pro.arcgis.com/en/pro-app/latest/tool-reference/spatial-analyst/rescale-by-function.htm
+SearchCursor
+    https://pro.arcgis.com/en/pro-app/latest/arcpy/data-access/searchcursor-class.htm
+Select Layer By Location (Data Management)
+    https://pro.arcgis.com/en/pro-app/latest/tool-reference/data-management/select-layer-by-location.htm
+SpatialReference
+    https://pro.arcgis.com/en/pro-app/latest/arcpy/classes/spatialreference.htm
+Tabulate Area (Spatial Analyst)
+    https://pro.arcgis.com/en/pro-app/latest/tool-reference/spatial-analyst/tabulate-area.htm
+TfLinear class
+    https://pro.arcgis.com/en/pro-app/latest/arcpy/spatial-analyst/tflinear-class.htm
+Walk
+    https://pro.arcgis.com/en/pro-app/latest/arcpy/data-access/walk.htm
+Weighted Sum (Spatial Analyst)
+    https://pro.arcgis.com/en/pro-app/latest/tool-reference/spatial-analyst/weighted-sum.htm
+WSTable class
+    https://pro.arcgis.com/en/pro-app/latest/arcpy/spatial-analyst/wstable-class.htm
+Zonal Statistics as Table (Spatial Analyst)
+    https://pro.arcgis.com/en/pro-app/latest/tool-reference/spatial-analyst/zonal-statistics-as-table.htm
+&#x27;&#x27;&#x27;</code></pre></div>
+                </details>
+                <div class="script-download">↓ <a href="scripts/GEOS456_FinalProject_WildlifeHabitat.py" download>Download GEOS456_FinalProject_WildlifeHabitat.py</a></div>
+              </div>
+            </div>
+
+            <div class="project-card">
+              <div class="project-body">
+                <h3>Raster suitability analysis - elevation, slope &amp; geology</h3>
+                <p>A script that describes a DEM's properties, then builds a multi-criteria suitability model by combining elevation (1,000-1,550 m), slope (&le;18&deg;), and geology (Madison Limestone) into a single raster using map algebra. Zonal statistics summarize the suitable area, cell count, and average elevation, and a second zonal pass reports mean slope across three selected watersheds.</p>
+                <div class="tool-tags"><span>Python</span><span>ArcPy</span><span>Spatial Analyst</span><span>Raster analysis</span><span>GEOS 456</span></div>
+                <details class="code-toggle">
+                  <summary>View full script</summary>
+                  <div class="code-wrap"><pre><code class="language-python">#-------------------------------------------------------------------------------
+# Name:        Assignment 3: Spatial Decisions Using Raster Datasets
+# Purpose:     The purpose of this assignment is to apply grid statistics to
+#              analyze raster datasets using high-level programming (HLP) language
+#              through geographic information system (GIS) extensions.
+#
+# Author:      John Abboud
+# Created:     15/07/2026
+#-------------------------------------------------------------------------------
+
+# Import arcpy and the Spatial Analyst module
+import arcpy
+from arcpy import env
+from arcpy.sa import *
+
+# Set environment workspace and overwrite properties
+env.workspace = r&quot;C:\GEOS456\Assign03\Spatial_Decisions.gdb&quot;
+env.overwriteOutput = True
+
+# Check out the Spatial Analyst extension so it can be used
+arcpy.CheckOutExtension(&quot;Spatial&quot;)
+print(&quot;Spatial Analyst extension checked out and ready to use.&quot;)
+print(&quot;&quot;)
+
+
+# Helper function used after every geoprocessing tool
+# prints the first and last message returned by the most recently run tool
+def print_messages():
+    msgCount = arcpy.GetMessageCount()
+    if msgCount &gt; 0:
+        print(arcpy.GetMessage(0))
+        print(arcpy.GetMessage(msgCount - 1))
+
+
+# See what is available in the workspace before starting
+print(&quot;Contents of Spatial_Decisions.gdb&quot;)
+print(&quot;    Rasters:&quot;, arcpy.ListRasters())
+print(&quot;    Feature Classes:&quot;, arcpy.ListFeatureClasses())
+print(&quot;    Tables:&quot;, arcpy.ListTables())
+print(&quot;&quot;)
+
+
+# -------------------------------------------------------------------------
+# Part 1: Describe the dem raster dataset properties
+# -------------------------------------------------------------------------
+
+print(&quot;Part 1: Describing the dem raster dataset&quot;)
+print(&quot;&quot;)
+
+dem = arcpy.Raster(&quot;dem&quot;)
+demDesc = arcpy.Describe(&quot;dem&quot;)
+
+print(&quot;Data format:&quot;, demDesc.format)
+print(&quot;Cell size (x):&quot;, demDesc.meanCellWidth)
+print(&quot;Cell size (y):&quot;, demDesc.meanCellHeight)
+print(&quot;Coordinate system:&quot;, demDesc.spatialReference.name)
+print(&quot;&quot;)
+
+
+# -------------------------------------------------------------------------
+# Part 2: Apply suitability criteria to the dem and geolgrid rasters
+#   a. Elevation: 1,000 m to 1,550 m
+#   b. Slope: &lt;= 18 degrees
+#   c. Geology Type: Madison Limestone
+# -------------------------------------------------------------------------
+
+print(&quot;Part 2: Applying suitability criteria&quot;)
+print(&quot;&quot;)
+
+geolgrid = arcpy.Raster(&quot;geolgrid&quot;)
+
+# Print the geolgrid attribute table so the correct VALUE code for
+# &quot;Madison Limestone&quot; can be confirmed before it is used below.
+print(&quot;geolgrid attribute table (confirm the Madison Limestone VALUE here):&quot;)
+geolFields = [f.name for f in arcpy.ListFields(&quot;geolgrid&quot;)]
+with arcpy.da.SearchCursor(&quot;geolgrid&quot;, geolFields) as cursor:
+    for row in cursor:
+        print(&quot;   &quot;, row)
+print(&quot;&quot;)
+
+# a. Elevation criteria: 1,000 m to 1,550 m
+print(&quot;Creating elevation criteria raster (1,000 m - 1,550 m)...&quot;)
+elev_crit = (dem &gt;= 1000) &amp; (dem &lt;= 1550)
+elev_crit.save(&quot;elev_crit&quot;)
+print_messages()
+print(&quot;Elevation criteria raster created and saved as elev_crit&quot;)
+print(&quot;&quot;)
+
+# b. Slope criteria: &lt;= 18 degrees
+print(&quot;Creating a slope raster (degrees) from the dem...&quot;)
+slopeRaster = Slope(dem, &quot;DEGREE&quot;)
+slopeRaster.save(&quot;slope&quot;)
+print_messages()
+print(&quot;Slope raster created and saved as slope&quot;)
+print(&quot;&quot;)
+
+print(&quot;Creating slope criteria raster (&lt;= 18 degrees)...&quot;)
+slope_crit = (slopeRaster &lt;= 18)
+slope_crit.save(&quot;slope_crit&quot;)
+print_messages()
+print(&quot;Slope criteria raster created and saved as slope_crit&quot;)
+print(&quot;&quot;)
+
+# c. Geology criteria: Madison Limestone
+madison_limestone_code = 7
+
+print(&quot;Creating geology criteria raster (Madison Limestone)...&quot;)
+geol_crit = (geolgrid == madison_limestone_code)
+geol_crit.save(&quot;geol_crit&quot;)
+print_messages()
+print(&quot;Geology criteria raster created and saved as geol_crit&quot;)
+print(&quot;&quot;)
+
+# Confirm the three criteria rasters were created successfully
+print(&quot;elev_crit exists:&quot;, arcpy.Exists(&quot;elev_crit&quot;))
+print(&quot;slope_crit exists:&quot;, arcpy.Exists(&quot;slope_crit&quot;))
+print(&quot;geol_crit exists:&quot;, arcpy.Exists(&quot;geol_crit&quot;))
+print(&quot;&quot;)
+
+
+# -------------------------------------------------------------------------
+# Part 2i: Combine the criteria rasters and summarize the suitable pixels
+#   • Number of cells
+#   • Area in square metres
+#   • Average elevation
+# -------------------------------------------------------------------------
+
+print(&quot;Combining criteria rasters into one final suitability raster...&quot;)
+final_criteria = Raster(&quot;elev_crit&quot;) * Raster(&quot;slope_crit&quot;) * Raster(&quot;geol_crit&quot;)
+final_criteria.save(&quot;final_criteria&quot;)
+print_messages()
+print(&quot;Final criteria raster created and saved as final_criteria&quot;)
+print(&quot;&quot;)
+
+print(&quot;Running Zonal Statistics as Table on the final criteria raster...&quot;)
+zonalTable = &quot;Mean_Elev_Stats&quot;
+ZonalStatisticsAsTable(&quot;final_criteria&quot;, &quot;VALUE&quot;, dem, zonalTable, &quot;DATA&quot;, &quot;MEAN&quot;)
+print_messages()
+print(&quot;Zonal statistics table created:&quot;, zonalTable)
+print(&quot;&quot;)
+
+print(&quot;Results - suitable pixels (Elevation + Slope + Geology criteria):&quot;)
+with arcpy.da.SearchCursor(zonalTable, [&quot;VALUE&quot;, &quot;COUNT&quot;, &quot;AREA&quot;, &quot;MEAN&quot;]) as cursor:
+    for row in cursor:
+        # VALUE = 1 means all three criteria were met for that pixel
+        if row[0] == 1:
+            print(&quot;    Number of suitable cells:&quot;, row[1])
+            print(&quot;    Suitable area (sq m):&quot;, row[2])
+            print(&quot;    Average elevation (m):&quot;, round(row[3], 2))
+print(&quot;&quot;)
+
+
+# -------------------------------------------------------------------------
+# Part 3: Mean slope for selected watersheds (wshds2c)
+#   WSHD2SC_ID: 291, 313, 525
+# -------------------------------------------------------------------------
+
+print(&quot;Part 3: Mean slope statistics for selected watersheds&quot;)
+print(&quot;&quot;)
+
+wshds = &quot;wshds2c&quot;
+
+# Confirm the actual ID field name on the watershed feature class
+print(&quot;Fields on wshds2c:&quot;)
+for f in arcpy.ListFields(wshds):
+    print(&quot;   &quot;, f.name)
+print(&quot;&quot;)
+
+id_field = &quot;WSHDS2C_ID&quot;
+
+# Add field delimiters to keep the where clause valid regardless of format
+field_delim = arcpy.AddFieldDelimiters(wshds, id_field)
+where_clause = field_delim + &quot; IN (291, 313, 525)&quot;
+
+print(&quot;Creating a feature layer for the three required watersheds...&quot;)
+wshd_layer = arcpy.management.MakeFeatureLayer(wshds, &quot;wshd_lyr&quot;, where_clause)
+print_messages()
+print(&quot;Watershed layer created&quot;)
+print(&quot;&quot;)
+
+print(&quot;Running Zonal Statistics as Table on watershed slope...&quot;)
+wshdTable = &quot;watershed_slope_stats&quot;
+ZonalStatisticsAsTable(wshd_layer, id_field, slopeRaster, wshdTable, &quot;DATA&quot;, &quot;MEAN&quot;)
+print_messages()
+print(&quot;Watershed slope statistics table created:&quot;, wshdTable)
+print(&quot;&quot;)
+
+print(&quot;Results - mean slope (degrees) by watershed:&quot;)
+with arcpy.da.SearchCursor(wshdTable, [id_field, &quot;MEAN&quot;]) as cursor:
+    for row in cursor:
+        print(f&quot;    Watershed {row[0]} - mean slope (degrees): {row[1]:.2f}&quot;)
+print(&quot;&quot;)
+
+
+# Return the Spatial Analyst extension to the license manager
+arcpy.CheckInExtension(&quot;Spatial&quot;)
+print(&quot;Spatial Analyst extension returned to the license manager.&quot;)
+print(&quot;&quot;)
+
+# Assignment complete :)
+print(&quot;Script complete - Assignment 3 analysis finished in Spatial_Decisions.gdb&quot;)
+
+
+&#x27;&#x27;&#x27;
+Sources Consulted:
+
+An Overview of ArcPy functions
+    https://pro.arcgis.com/en/pro-app/latest/arcpy/functions/alphabetical-list-of-arcpy-functions.htm
+AddFieldDelimiters
+    https://pro.arcgis.com/en/pro-app/latest/arcpy/functions/addfielddelimiters.htm
+CheckOutExtension / CheckInExtension
+    https://pro.arcgis.com/en/pro-app/latest/arcpy/functions/checkoutextension.htm
+Describe
+    https://pro.arcgis.com/en/pro-app/latest/arcpy/functions/describe.htm
+Exists
+    https://pro.arcgis.com/en/pro-app/latest/arcpy/functions/exists.htm
+GetMessage / GetMessageCount
+    https://pro.arcgis.com/en/pro-app/latest/arcpy/functions/getmessage.htm
+ListFields
+    https://pro.arcgis.com/en/pro-app/latest/arcpy/functions/listfields.htm
+ListRasters
+    https://pro.arcgis.com/en/pro-app/latest/arcpy/functions/listrasters.htm
+Make Feature Layer (Data Management)
+    https://pro.arcgis.com/en/pro-app/latest/tool-reference/data-management/make-feature-layer.htm
+Raster Calculator / Map Algebra operators
+    https://pro.arcgis.com/en/pro-app/latest/arcpy/spatial-analyst/raster-calculator.htm
+SearchCursor
+    https://pro.arcgis.com/en/pro-app/latest/arcpy/data-access/searchcursor-class.htm
+Slope (Spatial Analyst)
+    https://pro.arcgis.com/en/pro-app/latest/tool-reference/spatial-analyst/slope.htm
+Zonal Statistics as Table (Spatial Analyst)
+    https://pro.arcgis.com/en/pro-app/latest/tool-reference/spatial-analyst/zonal-statistics-as-table.htm
+&#x27;&#x27;&#x27;</code></pre></div>
+                </details>
+                <div class="script-download">↓ <a href="scripts/GEOS456_Assign03_SpatialDecisions.py" download>Download GEOS456_Assign03_SpatialDecisions.py</a></div>
+              </div>
+            </div>
+            <div class="project-card">
+              <div class="project-body">
+                <h3>Custom script tool - crime analysis for a police department</h3>
+                <p>A packaged ArcGIS Pro script tool (not just a standalone script) built for a fictional police department: given any three crime-type feature classes and a buffer distance, it intersects each crime type with precincts and ranks frequency by precinct, then buffers landmarks to identify how many assaults occur nearby and which landmark assaults cluster around most. Parameters are read with <code style="background:none;color:var(--teal);">GetParameterAsText</code> and progress is reported back through the tool's own Messages panel via <code style="background:none;color:var(--teal);">AddMessage</code>/<code style="background:none;color:var(--teal);">AddWarning</code>/<code style="background:none;color:var(--teal);">AddError</code> rather than <code style="background:none;color:var(--teal);">print()</code>.</p>
+                <div class="tool-tags"><span>Python</span><span>ArcPy</span><span>Custom script tool</span><span>GEOS 456</span></div>
+                <details class="code-toggle">
+                  <summary>View full script</summary>
+                  <div class="code-wrap"><pre><code class="language-python">#-------------------------------------------------------------------------------
+# Name:        Assignment 4: Custom Geoprocessing Tool - Crime Analysis
+# Purpose:     Custom script tool for the City of Nice Place police department.
+#              For each of three crime types, intersects the crime points with
+#              the Precincts feature class and produces a table (sorted
+#              ascending by frequency) showing how many of that crime type
+#              occurred in each precinct. Separately, buffers Landmarks by a
+#              user-supplied distance (forced to metres) and determines how
+#              many assaults occur within that distance of a landmark, and
+#              which landmark is most associated with assaults.
+#
+# Author:      John Abboud
+# Created:     26/07/2026
+#-------------------------------------------------------------------------------
+#
+# TOOL SETUP (to be done once in ArcGIS Pro, not in this file):
+#   1. In the City_of_Nice_Place.gdb, create a new toolbox named &quot;Crime_Analysis&quot;
+#      (toolbox names can&#x27;t contain spaces - use an underscore, same as the
+#      &quot;Custom_Tools&quot; toolbox from the Mod 8 Activity 1 handout)
+#   2. Right-click the toolbox -&gt; Add -&gt; Script
+#        Name:  CrimeAnalysisTool
+#        Label: Crime Analysis Tool
+#        Script File: point this to this .py file (Store tool with relative path)
+#   3. On the Parameters page, define the 5 parameters IN THIS ORDER:
+#
+#        # | Label            | Name            | Data Type     | Type     | Direction
+#        --|------------------|-----------------|---------------|----------|----------
+#        0 | Workspace        | Workspace       | Workspace     | Required | Input
+#        1 | Crime Type 1     | Crime_Type_1    | Feature Class | Required | Input
+#        2 | Crime Type 2     | Crime_Type_2    | Feature Class | Required | Input
+#        3 | Crime Type 3     | Crime_Type_3    | Feature Class | Required | Input
+#        4 | Buffer Distance  | Buffer_Distance | Linear Unit   | Required | Input
+#
+#   4. In the tool&#x27;s Item Description (Catalog -&gt; right-click tool -&gt; Edit
+#      Metadata / Properties), add a Summary describing the tool&#x27;s purpose
+#      (see the docstring above) and a short description for each parameter,
+#      e.g. &quot;The geodatabase workspace where all outputs will be saved&quot;,
+#      &quot;One of the three crime feature classes to analyze (Arsons, Assault,
+#      or burglaries can be provided in any order)&quot;, &quot;The search distance
+#      around each landmark, in any linear unit - it will be converted to
+#      metres automatically&quot;.
+#-------------------------------------------------------------------------------
+
+# Import arcpy, os and the Spatial Analyst module (os is used to pull short
+# names out of the full feature class paths passed in as parameters)
+import arcpy
+import os
+from arcpy import env
+
+# Allow outputs to be overwritten if the tool is re-run
+env.overwriteOutput = True
+
+
+# Helper function used after every geoprocessing tool - writes the first and
+# last message from the most recently run tool to the tool&#x27;s Messages panel
+def add_tool_messages():
+    msgCount = arcpy.GetMessageCount()
+    if msgCount &gt; 0:
+        arcpy.AddMessage(arcpy.GetMessage(0))
+        arcpy.AddMessage(arcpy.GetMessage(msgCount - 1))
+
+
+try:
+    # ---------------------------------------------------------------------
+    # Read in the 5 required parameters
+    # ---------------------------------------------------------------------
+    workspace = arcpy.GetParameterAsText(0)
+    crimeType1 = arcpy.GetParameterAsText(1)
+    crimeType2 = arcpy.GetParameterAsText(2)
+    crimeType3 = arcpy.GetParameterAsText(3)
+    bufferDistanceInput = arcpy.GetParameterAsText(4)
+
+    env.workspace = workspace
+
+    arcpy.AddMessage(&quot;Workspace set to: &quot; + workspace)
+    arcpy.AddMessage(&quot;&quot;)
+
+    # Force the buffer distance to metres regardless of what unit was
+    # selected on the Linear Unit parameter. GetParameterAsText on a Linear
+    # Unit parameter returns a string like &quot;250 Meters&quot; or &quot;250 Unknown&quot; -
+    # only the numeric portion is kept, then &quot;Meters&quot; is appended. Passing
+    # an explicit linear unit like this to Buffer causes ArcGIS to perform a
+    # geodesic buffer in true metres even on unprojected data.
+    distanceValue = bufferDistanceInput.split()[0]
+    bufferDistance = distanceValue + &quot; Meters&quot;
+    arcpy.AddMessage(&quot;Buffer distance forced to: &quot; + bufferDistance)
+    arcpy.AddMessage(&quot;&quot;)
+
+    # Precinct field used to group crime frequency by precinct. Verify this
+    # matches your Precincts attribute table (printed below at runtime).
+    precinct_field = &quot;Precinct&quot;
+
+    # Field on Landmarks used to identify each landmark by name. Verify this
+    # matches your Landmarks attribute table (printed below at runtime) and
+    # update if it differs.
+    landmark_field = &quot;LANDNAME&quot;
+
+    # Print the field lists for Precincts and Landmarks so the field names
+    # above can be confirmed against the actual data
+    arcpy.AddMessage(&quot;Fields on Precincts: &quot; + str([f.name for f in arcpy.ListFields(&quot;Precincts&quot;)]))
+    arcpy.AddMessage(&quot;Fields on Landmarks: &quot; + str([f.name for f in arcpy.ListFields(&quot;Landmarks&quot;)]))
+    arcpy.AddMessage(&quot;&quot;)
+
+    # ---------------------------------------------------------------------
+    # Part 1: Intersect each crime type with Precincts and summarize the
+    #         frequency of that crime type per precinct
+    # ---------------------------------------------------------------------
+
+    crimeTypes = [crimeType1, crimeType2, crimeType3]
+    sortedTables = []   # keep track of the 3 sorted output tables for Part 1c
+
+    for crimeFC in crimeTypes:
+
+        crimeName = os.path.basename(crimeFC)
+        arcpy.AddMessage(&quot;Processing crime type: &quot; + crimeName)
+
+        # Intersect this crime type with the Precincts feature class
+        intersectOut = &quot;Precincts_&quot; + crimeName
+        arcpy.analysis.Intersect([crimeFC, &quot;Precincts&quot;], intersectOut)
+        add_tool_messages()
+
+        # Count how many crime points fall in each precinct
+        freqTemp = &quot;Precinct_&quot; + crimeName + &quot;_freq_temp&quot;
+        arcpy.analysis.Frequency(intersectOut, freqTemp, [precinct_field])
+        add_tool_messages()
+
+        # Sort the frequency table ascending, as required by the assignment
+        sortedOut = &quot;Precinct_&quot; + crimeName + &quot;_Sorted&quot;
+        arcpy.management.Sort(freqTemp, sortedOut, [[&quot;FREQUENCY&quot;, &quot;ASCENDING&quot;]])
+        add_tool_messages()
+
+        # Remove the intermediate, non-essential frequency table
+        arcpy.management.Delete(freqTemp)
+
+        sortedTables.append((crimeName, sortedOut))
+        arcpy.AddMessage(crimeName + &quot; frequency by precinct saved to &quot; + sortedOut)
+        arcpy.AddMessage(&quot;&quot;)
+
+    # Print the contents of all 3 sorted tables to the tool messages
+    arcpy.AddMessage(&quot;Results - crime frequency by precinct (ascending order):&quot;)
+    for crimeName, table in sortedTables:
+        arcpy.AddMessage(&quot;  &quot; + crimeName + &quot; (&quot; + table + &quot;):&quot;)
+        with arcpy.da.SearchCursor(table, [precinct_field, &quot;FREQUENCY&quot;]) as cursor:
+            for row in cursor:
+                arcpy.AddMessage(&quot;      Precinct &quot; + str(row[0]) + &quot; - Frequency: &quot; + str(row[1]))
+    arcpy.AddMessage(&quot;&quot;)
+
+    # ---------------------------------------------------------------------
+    # Part 2: Buffer the Landmarks and determine assault proximity
+    # ---------------------------------------------------------------------
+
+    # Identify which of the 3 crime type inputs represents assaults, based
+    # on the feature class name rather than assuming a fixed parameter order
+    assaultFC = None
+    for crimeFC in crimeTypes:
+        if &quot;assault&quot; in os.path.basename(crimeFC).lower():
+            assaultFC = crimeFC
+            break
+
+    if assaultFC is None:
+        arcpy.AddWarning(&quot;None of the 3 crime type inputs appears to be the &quot;
+                          &quot;Assault feature class (name did not contain &quot;
+                          &quot;&#x27;assault&#x27;). Skipping the landmark proximity &quot;
+                          &quot;analysis in Part 2.&quot;)
+    else:
+        arcpy.AddMessage(&quot;Assault feature class identified as: &quot; + os.path.basename(assaultFC))
+        arcpy.AddMessage(&quot;&quot;)
+
+        # Buffer the landmarks by the forced-metres distance
+        bufferOut = &quot;Landmarks_Buffer_&quot; + distanceValue + &quot;m&quot;
+        arcpy.analysis.Buffer(&quot;Landmarks&quot;, bufferOut, bufferDistance)
+        add_tool_messages()
+
+        # Intersect assaults with the landmark buffers (per-landmark - one
+        # row per assault PER landmark buffer it falls inside). This is
+        # correct for the per-landmark breakdown below, but if two landmark
+        # buffers overlap, a single assault that falls in the overlap gets
+        # a row for each landmark - so this dataset must NOT be used to
+        # count total assaults, or that assault gets double-counted.
+        landmarksAssaultsOut = &quot;Landmarks_Assaults&quot;
+        arcpy.analysis.Intersect([assaultFC, bufferOut], landmarksAssaultsOut)
+        add_tool_messages()
+
+        # a) How many assaults occur within the buffer distance of a landmark?
+        # Build a second, DISSOLVED version of the buffer so overlapping
+        # landmark buffers merge into a single polygon. An assault sitting
+        # in an overlap zone then only intersects that merged shape once,
+        # regardless of how many individual landmarks it was near - giving
+        # an accurate, non-duplicated count.
+        bufferDissolved = &quot;Landmarks_Buffer_&quot; + distanceValue + &quot;m_Dissolved&quot;
+        arcpy.analysis.Buffer(&quot;Landmarks&quot;, bufferDissolved, bufferDistance, dissolve_option=&quot;ALL&quot;)
+        add_tool_messages()
+
+        assaultsUniqueOut = &quot;Landmarks_Assaults_Unique_temp&quot;
+        arcpy.analysis.Intersect([assaultFC, bufferDissolved], assaultsUniqueOut)
+        add_tool_messages()
+
+        assaultCount = arcpy.management.GetCount(assaultsUniqueOut)[0]
+
+        # Remove the intermediate dissolved-buffer datasets - they exist
+        # only to produce an accurate count and aren&#x27;t part of the required
+        # final outputs
+        arcpy.management.Delete(bufferDissolved)
+        arcpy.management.Delete(assaultsUniqueOut)
+
+        # Count assaults per landmark
+        landmarksFreqTemp = &quot;Landmarks_Assaults_freq_temp&quot;
+        arcpy.analysis.Frequency(landmarksAssaultsOut, landmarksFreqTemp, [landmark_field])
+        add_tool_messages()
+
+        # Sort descending so the top row is the landmark with the most
+        # associated assaults - directly answers question 2b
+        landmarksSortedOut = &quot;Landmarks_Assaults_Sorted&quot;
+        arcpy.management.Sort(landmarksFreqTemp, landmarksSortedOut, [[&quot;FREQUENCY&quot;, &quot;DESCENDING&quot;]])
+        add_tool_messages()
+
+        # Remove the intermediate, non-essential frequency table
+        arcpy.management.Delete(landmarksFreqTemp)
+
+        # b) Which landmark is this type of crime most likely to occur near?
+        topLandmark = None
+        topFrequency = None
+        with arcpy.da.SearchCursor(landmarksSortedOut, [landmark_field, &quot;FREQUENCY&quot;]) as cursor:
+            for row in cursor:
+                if topLandmark is None:
+                    topLandmark, topFrequency = row[0], row[1]
+
+        # c) Print the results of this table to the tool messages
+        arcpy.AddMessage(&quot;Results - assaults by landmark (descending order):&quot;)
+        with arcpy.da.SearchCursor(landmarksSortedOut, [landmark_field, &quot;FREQUENCY&quot;]) as cursor:
+            for row in cursor:
+                arcpy.AddMessage(&quot;      &quot; + str(row[0]) + &quot; - Frequency: &quot; + str(row[1]))
+        arcpy.AddMessage(&quot;&quot;)
+
+        # Final plain-language answers to Question 2, as required
+        arcpy.AddMessage(&quot;There are &quot; + str(assaultCount) + &quot; assaults that occur within &quot;
+                          + distanceValue + &quot; metres of a landmark.&quot;)
+        arcpy.AddMessage(&quot;Assaults are most likely to occur near the &quot; + str(topLandmark)
+                          + &quot; landmark (&quot; + str(topFrequency) + &quot; occurrences).&quot;)
+
+    arcpy.AddMessage(&quot;&quot;)
+    arcpy.AddMessage(&quot;Crime Analysis tool complete.&quot;)
+
+except Exception as e:
+    arcpy.AddError(&quot;The Crime Analysis tool encountered an error: &quot; + str(e))
+
+
+&#x27;&#x27;&#x27;
+Sources Consulted:
+
+An Overview of ArcPy functions
+    https://pro.arcgis.com/en/pro-app/latest/arcpy/functions/alphabetical-list-of-arcpy-functions.htm
+AddMessage / AddWarning / AddError
+    https://pro.arcgis.com/en/pro-app/latest/arcpy/functions/addmessage.htm
+    https://pro.arcgis.com/en/pro-app/latest/arcpy/functions/addwarning.htm
+    https://pro.arcgis.com/en/pro-app/latest/arcpy/functions/adderror.htm
+Buffer (Analysis)
+    https://pro.arcgis.com/en/pro-app/latest/tool-reference/analysis/buffer.htm
+Delete (Data Management)
+    https://pro.arcgis.com/en/pro-app/latest/tool-reference/data-management/delete.htm
+Frequency (Analysis)
+    https://pro.arcgis.com/en/pro-app/latest/tool-reference/analysis/frequency.htm
+GetCount (Data Management)
+    https://pro.arcgis.com/en/pro-app/latest/tool-reference/data-management/get-count.htm
+GetMessage / GetMessageCount
+    https://pro.arcgis.com/en/pro-app/latest/arcpy/functions/getmessage.htm
+GetParameterAsText
+    https://pro.arcgis.com/en/pro-app/latest/arcpy/functions/getparameterastext.htm
+Intersect (Analysis)
+    https://pro.arcgis.com/en/pro-app/latest/tool-reference/analysis/intersect.htm
+ListFields
+    https://pro.arcgis.com/en/pro-app/latest/arcpy/functions/listfields.htm
+SearchCursor
+    https://pro.arcgis.com/en/pro-app/latest/arcpy/data-access/searchcursor-class.htm
+Sort (Data Management)
+    https://pro.arcgis.com/en/pro-app/latest/tool-reference/data-management/sort.htm
+Script Tools
+    https://pro.arcgis.com/en/pro-app/latest/arcpy/geoprocessing-and-python/defining-parameters-in-a-script-tool.htm
+&#x27;&#x27;&#x27;
+</code></pre></div>
+                </details>
+                <div class="script-download">↓ <a href="scripts/GEOS456_Assign04_CrimeAnalysisTool.py" download>Download GEOS456_Assign04_CrimeAnalysisTool.py</a></div>
+              </div>
+            </div>
+
           </div>
         </div>
 
@@ -2036,18 +3791,6 @@ SpatialReference
           <h4>GEOS 457 - Cartography and Geovisualization</h4>
           <p class="course-desc">Thematic mapping and design theory - choropleth, graduated/proportional symbol, dot density, isarithmic, and bivariate maps, plus 3D maps, map animation, cartograms, flow maps, and colour theory for cartographic design.</p>
           <div class="project-grid">
-
-            <div class="project-card">
-              <img src="images/sem2-geos457-poster-africa-electricity-access.jpg" alt="Multi-panel poster titled Electricity Access Rate in Africa for 2023, showing choropleth, proportional symbol, and pie chart maps alongside a Nigeria state-level inset and supporting statistics">
-              <div class="project-body">
-                <h3>Electricity access rate in Africa, 2023 - poster</h3>
-                <p>A multi-panel academic poster examining electricity access across Africa using choropleth mapping and variable point (proportional and pie chart) symbol maps, deliberately restricted to those two map types per the assignment brief. Panels cover population without access, percentage of population with access, urban/rural split, and a Nigeria state-level inset showing the sharp north-south divide hidden by the national average. Boundary data sourced from geoBoundaries (Runfola et al., 2020, CC BY 4.0); disputed territories (Western Sahara, Abyei) are shown as No Data with a neutral disclaimer.</p>
-                <div class="tool-tags"><span>ArcGIS Pro</span><span>Choropleth mapping</span><span>Proportional symbols</span><span>Poster design</span><span>GEOS 457</span></div>
-                <div class="capstone-meta">
-                  <span><strong>Team:</strong> John Abboud &middot; Delu Maduekwe</span>
-                </div>
-              </div>
-            </div>
 
             <div class="project-card">
               <img src="images/sem2-geos457-tutorial1-canada-density.jpg" alt="Choropleth map of population density by census division in Canada, 2016, with an inset of southern Ontario">
@@ -2094,6 +3837,26 @@ SpatialReference
               </div>
             </div>
 
+            <div class="project-card">
+              <img class="portrait" src="images/sem2-geos457-assignment1-california-never-married.jpg" alt="Choropleth map of never-married population percentage by county across California in 2025, with a bar chart of highest and lowest counties and a histogram of the distribution">
+              <div class="project-body">
+                <h3>Assignment 1: never-married population - California counties, 2025</h3>
+                <p>A full map layout (11&times;17", built for an irregular state outline) classifying the share of the adult population who have never married, by county. Seven equal-interval classes (GVF = 0.96) reveal a clear urban-rural gradient - San Francisco tops the state at 40.82%, over double rural Sierra County's 19.16% - paired with a five-number-summary-driven histogram and a top/bottom-5 bar chart.</p>
+                <div class="tool-tags"><span>ArcGIS Pro</span><span>Choropleth mapping</span><span>Descriptive statistics</span><span>GEOS 457</span></div>
+                <div class="script-download">↓ <a href="posters/sem2-geos457-assignment1-california-never-married.pdf" target="_blank" rel="noopener">Download full layout (PDF)</a></div>
+              </div>
+            </div>
+
+            <div class="project-card">
+              <img src="images/sem2-geos457-tutorial7-africa-human-development.jpg" alt="Bivariate choropleth map comparing life expectancy and GNI per capita across Africa in 2013, alongside two univariate choropleth maps of each variable">
+              <div class="project-body">
+                <h3>Life expectancy and GNI per capita - Africa, 2013</h3>
+                <p>A bivariate choropleth exploring the relationship between life expectancy and GNI per capita across Africa, paired with univariate maps of each variable on their own. The correlation between the two (r = 0.44) turns out weak to moderate - not the strong link often assumed - illustrating why mapping both variables side by side tells a more honest story than either alone.</p>
+                <div class="tool-tags"><span>ArcGIS Pro</span><span>Bivariate mapping</span><span>Choropleth mapping</span><span>GEOS 457</span></div>
+                <div class="script-download">↓ <a href="posters/sem2-geos457-tutorial7-africa-human-development.pdf" target="_blank" rel="noopener">Download full layout (PDF)</a></div>
+              </div>
+            </div>
+
           </div>
         </div>
 
@@ -2102,17 +3865,22 @@ SpatialReference
           <p class="course-desc">A full GIS project lifecycle for a real business challenge - project planning, data capture and management, spatial analysis, output design, client presentation, and project closure.</p>
           <div class="project-grid">
             <div class="project-card" id="capstone-card" style="scroll-margin-top:70px;">
-              <img src="images/sem2-geos459-capstone-cover.png" alt="Cover slide for the Avalanche Trigger-Zone Digital Twin capstone project, GEOS 459 Group 1">
+              <img src="images/sem2-geos459-capstone-poster-thumb.jpg" alt="SAIT capstone poster for Highway to the Trigger Zone - Automated avalanche trigger-zone mapping for remote, drone-assisted control, showing abstract, study area, methodology, suitability model, results, validation, and conclusion panels">
               <div class="project-body">
-                <h3>Avalanche Trigger-Zone Digital Twin*</h3>
-                <p>An in-progress group capstone project focused on the Coal Creek to Morrissey Ridge study area, just southeast of Fernie, British Columbia. The goal is to help identify where avalanche trigger zones may be located, so that future drone-based avalanche control planning can be more targeted and safer.</p>
-                <div class="tool-tags"><span style="color:var(--amber);border-color:var(--teal-dim);">In Progress</span><span>ArcGIS Pro</span><span>Terrain analysis</span><span>Capstone</span><span>GEOS 459</span></div>
+                <h3>Highway to the Trigger Zone</h3>
+                <p class="card-subtitle">Avalanche Trigger-Zone Digital Twin</p>
+                <p>Converts 72.5 km² of complex terrain on Morrissey Ridge, near Fernie, BC, into a reviewable set of 268 candidate avalanche trigger zones - each carrying coordinates and terrain attributes - to help target future drone-based avalanche control. A six-factor AHP-weighted suitability model (aspect, slope, land cover, elevation, ruggedness, plan curvature) built from 1 m LiDAR is checked against existing avalanche terrain ratings, with results published as web layers and interactive 2D/3D scenes for treatment planning and flight routing.</p>
+                <div class="tool-tags"><span>ArcGIS Pro</span><span>Terrain analysis</span><span>AHP suitability modelling</span><span>Capstone</span><span>GEOS 459</span></div>
                 <div class="capstone-meta">
-                  <span><strong>Team:</strong> Delu Maduekwe · Teng Zhang · John Abboud</span>
+                  <span><strong>Team:</strong> John Abboud · Teng Zhang · Delu Maduekwe</span>
                   <span><strong>Client:</strong> CIRUS Lab, SAIT</span>
                   <span><strong>Study area:</strong> Coal Creek to Morrissey Ridge, Fernie, BC</span>
                 </div>
-                <div class="capstone-footnote">* working title - subject to change as project scope is finalized</div>
+                <div class="script-download">↓ <a href="posters/sem2-geos459-capstone-poster.pdf" target="_blank" rel="noopener">Download full poster (PDF)</a></div>
+                <div class="app-links">
+                  <a href="presentations/sem2-geos459-capstone-presentation.pptx" download>Download presentation ↓</a>
+                  <a href="https://experience.arcgis.com/experience/4e05e93636ba4c13bdeafa3d26483826" target="_blank" rel="noopener">Explore in Experience Builder ↗</a>
+                </div>
               </div>
             </div>
           </div>
@@ -2162,11 +3930,6 @@ SpatialReference
             <div class="when">Current</div>
             <h5>Certified Engineering Technologist (C.E.T.)</h5>
             <div class="org">Association of Science and Engineering Technology Professionals of Alberta (ASET)</div>
-          </div>
-          <div class="timeline-entry">
-            <div class="when">Current</div>
-            <h5>Small Remotely Piloted Aircraft (VLOS) - Basic Operations</h5>
-            <div class="org">Transport Canada</div>
           </div>
         </div>
 
@@ -2397,33 +4160,6 @@ SpatialReference
   lightbox.addEventListener('click', () => lightbox.classList.remove('open'));
   document.addEventListener('keydown', e => {
     if(e.key === 'Escape') lightbox.classList.remove('open');
-  });
-
-  // Drag-to-compare imagery sliders (supports multiple instances on the page)
-  document.querySelectorAll('[data-compare]').forEach(frame => {
-    const after = frame.querySelector('.compare-after');
-    const divider = frame.querySelector('.compare-divider');
-    const handle = frame.querySelector('.compare-handle');
-    let dragging = false;
-
-    function setPos(pct){
-      pct = Math.max(0, Math.min(100, pct));
-      after.style.clipPath = 'inset(0 0 0 ' + pct + '%)';
-      divider.style.left = pct + '%';
-      handle.style.left = pct + '%';
-    }
-    function posFromEvent(e){
-      const rect = frame.getBoundingClientRect();
-      const x = (e.touches ? e.touches[0].clientX : e.clientX) - rect.left;
-      return (x / rect.width) * 100;
-    }
-    frame.addEventListener('mousedown', e => { dragging = true; setPos(posFromEvent(e)); });
-    window.addEventListener('mousemove', e => { if(dragging) setPos(posFromEvent(e)); });
-    window.addEventListener('mouseup', () => { dragging = false; });
-    frame.addEventListener('touchstart', e => { dragging = true; setPos(posFromEvent(e)); }, {passive:true});
-    frame.addEventListener('touchmove', e => { if(dragging){ setPos(posFromEvent(e)); e.preventDefault(); } }, {passive:false});
-    window.addEventListener('touchend', () => { dragging = false; });
-    setPos(50);
   });
 </script>
 
