@@ -546,6 +546,77 @@
     object-position:center;
     background:#f4f2ea;
   }
+  /* Compare slider - drag-to-reveal imagery comparison, used in place of a static screenshot */
+  .compare-frame{
+    position:relative;
+    width:100%;
+    aspect-ratio:4/3;
+    overflow:hidden;
+    border-bottom:1px solid var(--line);
+    cursor:ew-resize;
+    user-select:none;
+    background:var(--ink);
+    touch-action:none;
+  }
+  .compare-frame img{
+    position:absolute;
+    top:0; left:0;
+    width:100%; height:100%;
+    object-fit:cover;
+    object-position:center;
+    display:block;
+    pointer-events:none;
+    border-bottom:none;
+    cursor:default;
+  }
+  .compare-frame .compare-after{clip-path:inset(0 0 0 50%);}
+  .compare-divider{
+    position:absolute;
+    top:0; bottom:0; left:50%;
+    width:2px;
+    background:var(--amber);
+    transform:translateX(-1px);
+    pointer-events:none;
+    box-shadow:0 0 8px rgba(227,162,60,0.55);
+  }
+  .compare-handle{
+    position:absolute;
+    top:50%; left:50%;
+    width:32px; height:32px;
+    border-radius:50%;
+    background:var(--amber);
+    transform:translate(-50%,-50%);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    pointer-events:none;
+    border:2px solid var(--ink);
+  }
+  .compare-handle svg{width:14px;height:14px;}
+  .compare-tag{
+    position:absolute;
+    top:10px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:10px;
+    letter-spacing:0.4px;
+    padding:4px 9px;
+    border-radius:2px;
+    background:rgba(15,31,41,0.82);
+    color:var(--paper);
+    border:1px solid var(--line);
+    pointer-events:none;
+  }
+  .compare-tag.left{left:10px;}
+  .compare-tag.right{right:10px;}
+  .compare-hint{
+    font-family:'JetBrains Mono',monospace;
+    font-size:10px;
+    letter-spacing:0.4px;
+    color:var(--line);
+    text-align:center;
+    padding:6px 0 0;
+    background:var(--panel);
+  }
   .project-body{padding:14px 16px 16px;}
 
   /* Lightbox */
@@ -1279,6 +1350,25 @@
                 <h3>Supervised land cover classification - Sibbald Lake, AB</h3>
                 <p>Maximum Likelihood supervised classification of PlanetScope multispectral imagery into five land cover classes (Developed, Tree/Shrub, Grassland, Water, Bare Ground) for a mixed-use landscape near Sibbald Lake, AB. Training data was digitized from high-resolution imagery in ArcGIS Pro, with the classified output (84.5% overall accuracy) produced to support ecological assessment and sampling design for the Ledam Land Trust.</p>
                 <div class="tool-tags"><span>ArcGIS Pro</span><span>Remote sensing</span><span>Supervised classification</span><span>GEOS 451</span></div>
+              </div>
+            </div>
+
+            <div class="project-card">
+              <div class="compare-frame" data-compare>
+                <img src="images/sem2-geos451-ass2-wetland-truecolor.jpg" class="compare-before" alt="Sentinel-2 true colour imagery of the assigned study section">
+                <img src="images/sem2-geos451-ass2-wetland-classified.jpg" class="compare-after" alt="Deep learning wetland classification output for the same section">
+                <div class="compare-tag left">True colour</div>
+                <div class="compare-tag right">U-Net output</div>
+                <div class="compare-divider"></div>
+                <div class="compare-handle">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="#0F1F29" stroke-width="2.4" stroke-linecap="round"><path d="M12 2v20M2 12h20"/></svg>
+                </div>
+              </div>
+              <div class="compare-hint">drag to compare</div>
+              <div class="project-body">
+                <h3>Wetland mapping with a custom deep learning model</h3>
+                <p>Built and trained a U-Net pixel classifier (ResNet-34 backbone) to detect wetlands from Sentinel-2 imagery, using the Alberta Merged Wetland Inventory as training data across a full township and withholding one section entirely for testing. Training data was manually quality-checked against true colour, NDVI, and MNDWI reference layers before export. On the held-out section, the model reached 0.81 precision, 0.94 recall, and a Kappa of 0.76 against an independent ground truth layer.</p>
+                <div class="tool-tags"><span>ArcGIS Pro</span><span>Deep learning</span><span>U-Net / ResNet-34</span><span>Sentinel-2</span><span>GEOS 451</span></div>
               </div>
             </div>
 
@@ -4170,6 +4260,33 @@ Zonal Statistics as Table (Spatial Analyst)
   lightbox.addEventListener('click', () => lightbox.classList.remove('open'));
   document.addEventListener('keydown', e => {
     if(e.key === 'Escape') lightbox.classList.remove('open');
+  });
+
+  // Drag-to-compare imagery sliders (supports multiple instances on the page)
+  document.querySelectorAll('[data-compare]').forEach(frame => {
+    const after = frame.querySelector('.compare-after');
+    const divider = frame.querySelector('.compare-divider');
+    const handle = frame.querySelector('.compare-handle');
+    let dragging = false;
+
+    function setPos(pct){
+      pct = Math.max(0, Math.min(100, pct));
+      after.style.clipPath = 'inset(0 0 0 ' + pct + '%)';
+      divider.style.left = pct + '%';
+      handle.style.left = pct + '%';
+    }
+    function posFromEvent(e){
+      const rect = frame.getBoundingClientRect();
+      const x = (e.touches ? e.touches[0].clientX : e.clientX) - rect.left;
+      return (x / rect.width) * 100;
+    }
+    frame.addEventListener('mousedown', e => { dragging = true; setPos(posFromEvent(e)); });
+    window.addEventListener('mousemove', e => { if(dragging) setPos(posFromEvent(e)); });
+    window.addEventListener('mouseup', () => { dragging = false; });
+    frame.addEventListener('touchstart', e => { dragging = true; setPos(posFromEvent(e)); }, {passive:true});
+    frame.addEventListener('touchmove', e => { if(dragging){ setPos(posFromEvent(e)); e.preventDefault(); } }, {passive:false});
+    window.addEventListener('touchend', () => { dragging = false; });
+    setPos(50);
   });
 </script>
 
